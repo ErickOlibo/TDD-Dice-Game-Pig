@@ -22,3 +22,7 @@
 - [Introduction to Python: Test Driven Development](https://www.youtube.com/watch?v=WrgfHZ7kPLE) YT video by Roberto Rossi (grade: 3.5, length: 4:31)
 
 - [Python Tutorial: Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI) YT video by Corey Schafer (Grade 4.5, length: 39:12)
+
+- [Git tag - Tagging explained](https://www.atlassian.com/git/tutorials/inspecting-a-repository/git-tag) Article explaining how to tag a git repo and the best practices while doing so.
+
+- [Git Basics - Tagging](https://git-scm.com/book/en/v2/Git-Basics-Tagging) Another article about tagging.
