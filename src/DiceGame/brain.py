@@ -1,4 +1,4 @@
-from enums import Difficulty
+from enums import Difficulty, Turn
 
 class Brain:
     """ A sort of Intelligence as the engine for the game
@@ -11,14 +11,19 @@ class Brain:
         pass
     
     
-    def hold_20(self, turn_points):
-        #return Play or Hold
-        pass
+    def hold_20(self, turn_points: int):
+        return self._hold(20, turn_points)
     
 
-    def hold_25(self, turn_points):
-        pass
+    def hold_25(self, turn_points: int):
+        return self._hold(25, turn_points)
     
+
+    def _hold(self, threshold: int, turn_points: int):
+        if not isinstance(turn_points, int):
+            raise ValueError('The turn points must be an Integer!')
+        return Turn.HOLD if turn_points >= threshold else Turn.ROLL
+
 
     def race_pace(self):
         pass
