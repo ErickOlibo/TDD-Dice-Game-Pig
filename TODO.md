@@ -88,9 +88,9 @@ Classes to Test and Implement are:
     1. Class name:
         - Dice
     2. Properties:
-        - etc...
+        - random roll vaule
     3. Methods:
-        - ect...
+        - roll dice
 
   - histogram.py & test_histogram.py
     1. Class name:
@@ -112,9 +112,12 @@ Classes to Test and Implement are:
     1. Class name:
         - Player
     2. Properties:
-        - etc...
+        - name 
+        - score
     3. Methods:
-        - ect...
+        - init
+        - set name 
+        - add score 
 
 ## Classes Testing & Implementation --> `NO ONE` [Due: Sat 4, March]
 ----------------------------------------------------------
