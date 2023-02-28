@@ -1,5 +1,5 @@
 import unittest
-import dice
+import DiceGame.dice as dice
 
 class TestDice(unittest.TestCase):
     def test_roll(self):
