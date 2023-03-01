@@ -1,5 +1,5 @@
 import unittest
-from enums import Difficulty, Turn, Tactic
+from helpers import Difficulty, Turn, Tactic
 from player import Player
 from brain import Brain
 
@@ -64,5 +64,4 @@ class TestBrain(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    
     unittest.main()

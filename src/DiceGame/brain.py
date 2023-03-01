@@ -1,4 +1,4 @@
-from enums import Difficulty, Turn, Tactic
+from helpers import Difficulty, Turn, Tactic
 from player import Player
 from dice import Dice
 
