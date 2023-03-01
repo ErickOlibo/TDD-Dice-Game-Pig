@@ -30,11 +30,11 @@ class TestGame(unittest.TestCase):
         
     
     def test_mode(self):
-        self.game.mode = Mode.BATTLE
-        self.assertNotEqual(self.game.mode, Mode.SOLO)
+        self.game.mode = Mode.DUEL
+        self.assertNotEqual(self.game.mode, Mode.SOLO_EASY)
         
         with self.assertRaises(TypeError):
-            self.game.mode = 'Mode.SOLO'
+            self.game.mode = 'Mode.SOLO_EASY'
             self.assertIsInstance(self.game.mode, Game)
 
 

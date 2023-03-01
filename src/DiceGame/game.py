@@ -12,7 +12,8 @@ class Game:
         self._name = str(uuid.uuid4()) # initial name as universal unique ID
         self._rules = Textual.RULES.value
         self._menu = Textual.MENU.value
-        self._mode = Mode.SOLO
+        self._mode = None
+        self._brain = None
     
     
     @property
@@ -32,7 +33,7 @@ class Game:
     @mode.setter
     def mode(self, mode: Mode):
         if not isinstance(mode, Mode):
-            raise TypeError('Mode must be BATTLE OR SOLO!')
+            raise TypeError('Mode must be SOLO or DUEL!')
         self._mode = mode
         
         
@@ -42,3 +43,5 @@ class Game:
     def get_rules(self):
         return self._rules
     
+    def start(self, mode = Mode.SOLO_EASY):
+        pass
