@@ -24,12 +24,11 @@ class TestBrain(unittest.TestCase):
     def test_action(self):
         self.brain.strategy = Tactic.TWENTY_FIVE
         
-        my_action = self.brain.action()
+        my_action = self.brain.action(45, 19)
         self.assertIsInstance(my_action, Turn)
         self.assertEqual(my_action, Turn.ROLL)
 
-        self.brain._cpu.turn_points = 27
-        my_action = self.brain.action()
+        my_action = self.brain.action(20, 27)
         self.assertEqual(my_action, Turn.HOLD)
         
         # context manager

@@ -1,21 +1,13 @@
 import random
 from helpers import  Turn, Tactic
-from player import Player
 
 class Brain:
-    """ 
-        A sort of Intelligence as the engine for the game
-        It is only available to the CPU during a Player vs CPU game
-        and for the Cheat option
-        Each instance of a Brain only controls 1 game.
-        This instance of Brain must be save with the game when paused
-    """
     
+    """A sort of Intelligence for the Player when it represent the Computer
+    
+    """
     def __init__(self):
-        self._mode = None
-        self._strategy = self._random_strategy()  # random enum selection
-        self._cpu = Player('CPU')
-        self._game_name = None
+        self._strategy = self._random_strategy()
         self._current_turns = 0
         self._max_turns = 4
         self._target = 100
@@ -26,14 +18,14 @@ class Brain:
         
         
     # Actions are defined for the Brain playing as the CPU
-    def action(self) -> Turn:
+    def action(self, score, turn_points) -> Turn:
 
         if self.strategy in [Tactic.TEN, Tactic.TWENTY, Tactic.TWENTY_FIVE]:
-            return Turn.HOLD if self._cpu.turn_points >= self.strategy.value else Turn.ROLL
+            return Turn.HOLD if turn_points >= self.strategy.value else Turn.ROLL
         
         if self.strategy == Tactic.FOUR_TURNS:
             if self._current_turns == 0:
-                if self._cpu.turn_points >= 25:
+                if turn_points >= 25:
                     self._current_turns += 1
                     return Turn.HOLD
                 else:
@@ -43,5 +35,5 @@ class Brain:
                 if remain == 0:
                     raise ZeroDivisionError('Cannot divid by Zero!')
                 
-                threshold = (self._target - self._cpu.score) // remain
-                return Turn.HOLD if self._cpu.turn_points >= threshold else Turn.ROLL
+                threshold = (self._target - score) // remain
+                return Turn.HOLD if turn_points >= threshold else Turn.ROLL
