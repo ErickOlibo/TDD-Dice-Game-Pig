@@ -1,8 +1,5 @@
 # THIS WAS COPIED from Mikael Roos Example - NEEDS TO BE UPDATED
 
-#Data Visualization
-#matplotlib 
-
 # Code analysis
 bandit
 flake8

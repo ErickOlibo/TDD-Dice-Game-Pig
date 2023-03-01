@@ -97,7 +97,7 @@ Classes to Test and Implement are:
     1. Class name:
         - Histogram
     2. Properties:
-        - etc...
+        - 
     3. Methods:
         - ect...
 
@@ -105,9 +105,11 @@ Classes to Test and Implement are:
     1. Class name:
         - Highscore
     2. Properties:
-        - etc...
+        - streak length
+        - total point 
     3. Methods:
-        - ect...
+        - add streak
+        - add point to total
 
   - player.py & test_player.py
     1. Class name:
