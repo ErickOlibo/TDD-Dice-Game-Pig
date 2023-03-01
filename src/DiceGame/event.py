@@ -7,7 +7,7 @@ class Event:
     
     def __init__(self, id, name):
         self._id = id
-        self._nane = name
+        self._name = name
         self._points = 0
         self._rolls = []
         pass
