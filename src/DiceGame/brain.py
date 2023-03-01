@@ -20,10 +20,10 @@ class Brain:
     # Actions are defined for the Brain playing as the CPU
     def action(self, score, turn_points) -> Turn:
 
-        if self.strategy in [Tactic.TEN, Tactic.TWENTY, Tactic.TWENTY_FIVE]:
-            return Turn.HOLD if turn_points >= self.strategy.value else Turn.ROLL
+        if self._strategy in [Tactic.TEN, Tactic.TWENTY, Tactic.TWENTY_FIVE]:
+            return Turn.HOLD if turn_points >= self._strategy.value else Turn.ROLL
         
-        if self.strategy == Tactic.FOUR_TURNS:
+        if self._strategy == Tactic.FOUR_TURNS:
             if self._current_turns == 0:
                 if turn_points >= 25:
                     self._current_turns += 1

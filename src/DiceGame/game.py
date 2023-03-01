@@ -1,5 +1,6 @@
 import uuid
 from helpers import Textual, Mode
+from player import Player
 
 class Game:
     """ 
@@ -14,6 +15,7 @@ class Game:
         self._menu = Textual.MENU.value
         self._mode = None
         self._brain = None
+        self._participants = None
     
     
     @property
@@ -43,5 +45,15 @@ class Game:
     def get_rules(self):
         return self._rules
     
-    def start(self, mode = Mode.SOLO_EASY):
+    def start(self, one: Player, two: Player):
+        if self._mode == None:
+            raise TypeError('Mode must be initialized before starting the game!')
+        
+        self._prepare_participants(one, two)
+        
+        pass
+    
+    def _prepare_participants(self, one, two):
+        # Fill in the names and qualities of the players
+        # ask for names, etc...
         pass

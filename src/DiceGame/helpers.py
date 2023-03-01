@@ -33,3 +33,15 @@ class Mode(Enum):
     SOLO_MEDIUM = auto()  # PlayerOne against CPU
     SOLO_HARD = auto()  # PlayerOne against CPU
     SOLO_MERCILESS = auto()  # PlayerOne against CPU
+    
+
+""" Enum representing the possible players for a game
+"""
+class Participant(Enum):
+    ONE = auto()
+    TWO = auto()
+    CPU = auto()
+    
+
+
+
