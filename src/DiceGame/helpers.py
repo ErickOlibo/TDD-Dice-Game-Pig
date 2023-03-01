@@ -1,13 +1,5 @@
 from enum import Enum, auto
 
-"""Enum to determine the level of proficient of the brain"""
-class Difficulty(Enum):
-    EASY = 1
-    MEDIUM = 2
-    HARD = 3
-    IMPOSSIBLE = 5
-    
-    
 
 """Enum to list the states of a turn in the game"""
 class Turn(Enum):
@@ -16,7 +8,9 @@ class Turn(Enum):
     LOST = auto()
     
 
-"""Enum listing the different strategy the brain can use during a game"""
+""" Enum listing the different strategy the brain can use during a game
+    A Tactic will be randomly assigned at the creation of a Brain per Game
+"""
 class Tactic(Enum):
     TEN = 10 #auto() # Hold at 10  (sum >= 10)[N/A against Optimal Play]
     TWENTY = 20 #auto() # Hold at 20 (sum >= 20) [8% disavantage against Optimal Play]
@@ -34,5 +28,8 @@ class Textual(Enum):
     One player against the CPU
 """
 class Mode(Enum):
-    BATTLE = auto()  # PlayerOne against PlayerTwo
-    SOLO = auto()  # PlayerOne against CPU
+    DUEL = auto()  # PlayerOne against PlayerTwo
+    SOLO_EASY = auto()  # PlayerOne against CPU
+    SOLO_MEDIUM = auto()  # PlayerOne against CPU
+    SOLO_HARD = auto()  # PlayerOne against CPU
+    SOLO_MERCILESS = auto()  # PlayerOne against CPU
