@@ -22,3 +22,17 @@ class Tactic(Enum):
     TWENTY = 20 #auto() # Hold at 20 (sum >= 20) [8% disavantage against Optimal Play]
     TWENTY_FIVE = 25 #auto() # Hold at 25 (sum >= 25) [4.2% disavantage against Optimal Play]
     FOUR_TURNS = auto() # special Tactic [3.3% disavantage against Optimal Play]
+
+
+"""Enum to collect all Static text needed in the application"""
+class Textual(Enum):
+    MENU = 'Here will be the text and layout for the menu'
+    RULES = 'HEre will be the'
+    
+    
+""" Enum representing the different option of playing 2 players or
+    One player against the CPU
+"""
+class Mode(Enum):
+    BATTLE = auto()  # PlayerOne against PlayerTwo
+    SOLO = auto()  # PlayerOne against CPU
