@@ -1,18 +1,28 @@
 from enums import Difficulty, Turn, Tactic
+from player import Player
+from dice import Dice
 
 class Brain:
     """ A sort of Intelligence as the engine for the game
         It is only available to the CPU during a Player vs CPU game
+        and for the Cheat option
+        Each instance of a Brain only controls 1 game.
+        This instance of Brain must be save with the game when paused
     """
     
     def __init__(self):
         self._level = Difficulty.EASY
         self._strategy = Tactic.TEN
-        self._four_turns_counter = 0
-        pass
+        self._cpu = Player('CPU')
+        self._game_name = None
+        self._current_turns = 0
+        self._cpu_dice = Dice()
+        self._max_turns = 4
+        self._target = 100
+
     
     @property
-    def level(self):
+    def level(self) -> Difficulty:
         return self._level
     
     @level.setter
@@ -23,7 +33,7 @@ class Brain:
     
     
     @property
-    def strategy(self):
+    def strategy(self) -> Tactic:
         return self._strategy
     
     @strategy.setter
@@ -33,22 +43,35 @@ class Brain:
         self._strategy = strategy
         
     
-    # Actions
-    def hold_20(self, turn_points: int):
-        return self._hold(20, turn_points)
-    
+    # Actions are defined for the Brain playing as the CPU
+    def action(self) -> Turn:
 
-    def hold_25(self, turn_points: int):
-        return self._hold(25, turn_points)
-    
+        if self.strategy in [Tactic.TEN, Tactic.TWENTY, Tactic.TWENTY_FIVE]:
+            return Turn.HOLD if self._cpu.turn_points >= self.strategy.value else Turn.ROLL
+        
+        if self.strategy == Tactic.FOUR_TURNS:
+            if self._current_turns == 0:
+                if self._cpu.turn_points >= 25:
+                    self._current_turns += 1
+                    return Turn.HOLD
+                else:
+                    return Turn.ROLL
+            else:
+                remain = (self._max_turns - self._current_turns)
+                if remain == 0:
+                    raise ZeroDivisionError('Cannot divid by Zero!')
+                
+                threshold = (self._target - self._cpu.score) // remain
+                return Turn.HOLD if self._cpu.turn_points >= threshold else Turn.ROLL
 
-    def _hold(self, threshold: int, turn_points: int):
-        if not isinstance(turn_points, int):
-            raise TypeError('The turn points must be an Integer!')
-        return Turn.HOLD if turn_points >= threshold else Turn.ROLL
 
-
-    def race_pace(self):
-        pass
+    # Helpers functions
+    def ceiling_division(self, n: int, d: int) -> int:
+        if d == 0:
+            raise ZeroDivisionError('Cannot divid by Zero!')
+        return -(n // -d)
     
-    
+    def floor_division(self, n: int, d: int) -> int:
+        if d == 0:
+            raise ZeroDivisionError('Cannot divid by Zero!')
+        return n // d
