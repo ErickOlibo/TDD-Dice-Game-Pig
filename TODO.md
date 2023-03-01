@@ -31,15 +31,14 @@ Classes to Test and Implement are:
         - Game
     2. Properties:
         - Rules: constant
+        - Menu: constant
         - UID: unique game ID (persistency)
-        - Mode: player vs. CPU OR playerOne vs. playerTwo
-        - Difficulty: Easy (1 roll), Medium (2 rolls), Hard (3 rolls), Impossible (5 rolls)
-        - Game_Type: Class object
-        - Turn: keep track of the player turn. This game only have 2 players (not more)
+        - Mode: Solo_Easy, Solo_Medium, Solo_Hard, Solo_Merciless, Duel
+        - TurnHand: keep track of the player turn. This game only have 2 players (not more)
         - etc...
     3. Methods:
         - Init: starts an instance of the game or restart suspended game with code
-        - Menu: set the mode, difficulty, style, or restart game with code
+        - Menu: set the mode, style, or restart game with code
         - In_Game_Menu: while the game is on-going
         - Start: starts or restarts game
         - Pause: persistantly (generate unique code)
