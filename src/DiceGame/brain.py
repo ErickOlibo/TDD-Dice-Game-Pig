@@ -3,7 +3,8 @@ from player import Player
 from dice import Dice
 
 class Brain:
-    """ A sort of Intelligence as the engine for the game
+    """ 
+        A sort of Intelligence as the engine for the game
         It is only available to the CPU during a Player vs CPU game
         and for the Cheat option
         Each instance of a Brain only controls 1 game.
@@ -16,7 +17,6 @@ class Brain:
         self._cpu = Player('CPU')
         self._game_name = None
         self._current_turns = 0
-        self._cpu_dice = Dice()
         self._max_turns = 4
         self._target = 100
 

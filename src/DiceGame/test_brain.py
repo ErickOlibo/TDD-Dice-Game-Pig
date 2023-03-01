@@ -12,7 +12,7 @@ class TestBrain(unittest.TestCase):
 
     # instantiate a object brain
     def test_brain(self):
-        self.assertIsNotNone(self.mind)
+        self.assertIsNotNone(Brain())
 
 
     def test_level(self):

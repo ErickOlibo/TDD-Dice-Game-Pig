@@ -19,7 +19,6 @@ class TestCPUDice(unittest.TestCase):
         self.assertIsNotNone(self.cpu_dice)
         
 
-
     def test_roll(self):
         self.cpu_dice.level = Difficulty.HARD
         self.assertIsInstance(self.cpu_dice.roll(), int)
