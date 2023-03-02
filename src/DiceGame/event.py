@@ -24,4 +24,5 @@ class Event:
 
     def add_roll(self, value):
         self._rolls.append(value)
+        self.count_points()
         
