@@ -92,13 +92,15 @@ Classes to Test and Implement are:
         - Init
         - roll dice
 
-  - histogram.py & test_histogram.py
+  - event.py & test_event.py
     1. Class name:
         - Histogram
     2. Properties:
-        - 
+        - name
+        - id
     3. Methods:
-        - ect...
+        - add_roll
+        - count_points
 
   - highscore.py & test_highscore.py (streak length + total point earned)
     1. Class name:
