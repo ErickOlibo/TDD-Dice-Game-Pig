@@ -44,13 +44,17 @@ class GUI:
 
     def _shrink_name(self, name: str) -> str:
         return name if len(name) <= 13 else name[0:10] + '...'
+    
+    
+    def display_hand_turn(self):
+        pass
 
     
 
-# gui = GUI()
-# myList = {2,4,6,5,3}
-# gui.display_hand_results(myList, 20)
-# print("\n")
-# scoreboard = gui.display_scoreboard("ErickTerrasson", "Robert", 49, 89)
+gui = GUI()
+myList = {2,4,6,5,3}
+gui.display_hand_results(myList, 20)
+print("\n")
+scoreboard = gui.display_scoreboard("ErickTerrasson", "Robert", 49, 89)
 
-# print(f'\n{gui._shrink_name("ErickTerrasson")}')
+#print(f'\n{gui._shrink_name("ErickTerrasson")}')
