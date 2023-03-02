@@ -104,11 +104,12 @@ Classes to Test and Implement are:
     1. Class name:
         - Highscore
     2. Properties:
-        - streak length
-        - total point 
+        - player name
+        - number of victories in a row 
+        - total point win in streak
     3. Methods:
         - add streak
-        - add point to total
+        - add points to total
 
   - player.py & test_player.py
     1. Class name:
