@@ -44,12 +44,75 @@ class Participant(Enum):
     
 
 
-""" Enum for the Die rank and design
+""" Constant for the Dice rolling faces
+    Copyright Leodanis Pozo Ramos
+    URL: https://realpython.com/python-dice-roll/
 """
-class Dice_Face(Enum):
-    ONE = ''
-    TWO = ''
-    THREE = ''
-    FOUR = ''
-    FIVE = ''
-    SIX = ''
+DICE_FACES = {
+    1: (
+        "┌─────────┐",
+        "│         │",
+        "│    ●    │",
+        "│         │",
+        "└─────────┘",
+    ),
+    2: (
+        "┌─────────┐",
+        "│  ●      │",
+        "│         │",
+        "│      ●  │",
+        "└─────────┘",
+    ),
+    3: (
+        "┌─────────┐",
+        "│  ●      │",
+        "│    ●    │",
+        "│      ●  │",
+        "└─────────┘",
+    ),
+    4: (
+        "┌─────────┐",
+        "│  ●   ●  │",
+        "│         │",
+        "│  ●   ●  │",
+        "└─────────┘",
+    ),
+    5: (
+        "┌─────────┐",
+        "│  ●   ●  │",
+        "│    ●    │",
+        "│  ●   ●  │",
+        "└─────────┘",
+    ),
+    6: (
+        "┌─────────┐",
+        "│  ●   ●  │",
+        "│  ●   ●  │",
+        "│  ●   ●  │",
+        "└─────────┘",
+    ),
+}
+
+DIE_HEIGHT = len(DICE_FACES[1])
+DIE_WIDTH = len(DICE_FACES[1][0])
+DIE_SEP = " "
+
+""" Inspired by the previous art, Score board
+    It will help the GUI by providing a total display of the dice rolled so far
+    And a score board of the current point for each contestant
+"""
+
+SCORE_BOARD = {
+    1: (
+        "         ",
+        "  ┌─────┐",
+        "= │ XXX │",
+        "  └─────┘",
+        "         ",
+    ),
+    2: (
+        "┌──────────────┐┌─────┐ ┌──────────────┐┌─────┐",
+        "│ YYY │ │ ZZZ │",
+        "└──────────────┘└─────┘ └──────────────┘└─────┘",
+    ), 
+}
