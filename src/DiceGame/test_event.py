@@ -9,7 +9,7 @@ class TestEvent(unittest.TestCase):
 
     def test_Count(self):
         e = event.Event(99, "Robert")
-        e._rolls = [1, 5, 7, 2]
+        e._rolls = [5, 7, 2, 1]
         self.assertEqual(e._points, 0)
     
     def test_Rolls(self):
@@ -21,5 +21,5 @@ class TestEvent(unittest.TestCase):
         
 
 
-if __name__ == 'main':
+if __name__ == '__main__':
     unittest.main()
