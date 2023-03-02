@@ -14,7 +14,8 @@ class Game:
         self._rules = Textual.RULES.value
         self._menu = Textual.MENU.value
         self._mode = None
-        self._brain = None
+        self._player_one = None
+        self._player_two = None
         self._participants = None
     
     
@@ -37,23 +38,27 @@ class Game:
         if not isinstance(mode, Mode):
             raise TypeError('Mode must be SOLO or DUEL!')
         self._mode = mode
+        # HERE SHOULD 
         
-        
-    def get_menu(self):
-        return self._menu
+
+    def display_rules(self):
+        print(self._rules)
+ 
     
-    def get_rules(self):
-        return self._rules
-    
-    def start(self, one: Player, two: Player):
+    def start(self):
         if self._mode == None:
             raise TypeError('Mode must be initialized before starting the game!')
         
-        self._prepare_participants(one, two)
+        self._start_menu()
+        self._prepare_participants()
+
+
+    def _start_menu(self):
+        print(self._menu)
         
-        pass
     
-    def _prepare_participants(self, one, two):
-        # Fill in the names and qualities of the players
-        # ask for names, etc...
+    def _prepare_participants(self):
+        # depending on the mode, prepare the GUI-InOut question/Answers
+        # Set the player type and initialize
+        
         pass
