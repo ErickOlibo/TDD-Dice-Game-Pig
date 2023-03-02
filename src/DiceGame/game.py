@@ -17,6 +17,9 @@ class Game:
         self._player_one = None
         self._player_two = None
         self._participants = None
+        self._hand = None
+        self._histogram = [] # set of events during an event
+        self._state = False # (Save and Quit) OR Quit without Saving
     
     
     @property
@@ -62,3 +65,7 @@ class Game:
         # Set the player type and initialize
         
         pass
+
+
+    def exit(self) -> bool:
+        return self._state
