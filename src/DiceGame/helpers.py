@@ -44,4 +44,12 @@ class Participant(Enum):
     
 
 
-
+""" Enum for the Die rank and design
+"""
+class Dice_Face(Enum):
+    ONE = ''
+    TWO = ''
+    THREE = ''
+    FOUR = ''
+    FIVE = ''
+    SIX = ''
