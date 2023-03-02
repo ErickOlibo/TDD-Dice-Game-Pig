@@ -4,13 +4,30 @@
 
 import sys
 from game import Game
+from helpers import Mode
 
 
 def main():
     flag = 2
     while True:
         game = Game()
+        # Ask the Mode
+        # game.show_menu()
+        # START NEW GAME
+        # 1 - duel  (2 players -> names)
+        # 2 - solo Easy (1 player -> name)
+        # 3 - solo medium
+        # 4 - solo hard
+        # 5 - solo merciless
+        # RESUME GAME
+        # 6 - restart (get game code [change name to code])
+        # HIGHTLIGHT
+        # 7 - Show Highscore
+        
     # Show Menu of option
+    # 1 - Resume a game --> ask name of the gamr
+        #GUI <- SOLO EASY
+        game.start(Mode.DUEL)
     # - Mode selection (type of game)
     # - Reload suspended Game
     # - Show Highscore
@@ -19,7 +36,7 @@ def main():
     
     # Enter Players Details (depending of mode)
     
-        if flag == 0:
+        if game.exit() == True:
             break
 
 
