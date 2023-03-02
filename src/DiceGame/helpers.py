@@ -20,19 +20,19 @@ class Tactic(Enum):
 
 """Enum to collect all Static text needed in the application"""
 class Textual(Enum):
-    MENU = 'Here will be the text and layout for the menu'
-    RULES = 'HEre will be the'
+    MENU = 'MENU Gets DISPLAY NOW!'
+    RULES = 'RULES Get DISPLAY NOW!'
     
     
 """ Enum representing the different option of playing 2 players or
     One player against the CPU
 """
 class Mode(Enum):
-    DUEL = auto()  # PlayerOne against PlayerTwo
-    SOLO_EASY = auto()  # PlayerOne against CPU
-    SOLO_MEDIUM = auto()  # PlayerOne against CPU
-    SOLO_HARD = auto()  # PlayerOne against CPU
-    SOLO_MERCILESS = auto()  # PlayerOne against CPU
+    DUEL = auto()  # Duel - Player One vs. Player Two
+    SOLO_EASY = auto()  # Solo - You vs. CPU - [Level: Easy]
+    SOLO_MEDIUM = auto()  # Solo - You vs. CPU - [Level: Medium]
+    SOLO_HARD = auto()  # Solo - You vs. CPU - [Level: Hard]
+    SOLO_MERCILESS = auto()  # Solo - You vs. CPU - [Level: Merciless]
     
 
 """ Enum representing the possible players for a game
