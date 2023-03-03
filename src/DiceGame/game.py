@@ -1,11 +1,14 @@
 import uuid
 from helpers import Textual, Mode
 from player import Player
-
+from event import Event
+from winner import Winner
 class Game:
     """ 
         A instance of a game played. It has all the rules, 
         More to add to the docstring
+        ** --> is there a possibility to simulate the CPU playing:
+            (delay, print choice same line, etc..)
     """
 
     
@@ -17,9 +20,10 @@ class Game:
         self._player_one = None
         self._player_two = None
         self._participants = None
-        self._hand = None
-        self._histogram = [] # set of events during an event
+        self._hand = None # 
+        self._histogram = [] # List of Events. The order is guarantee by Python
         self._state = False # (Save and Quit) OR Quit without Saving
+        self._winner = None  # object of type Winner
     
     
     @property
@@ -51,14 +55,19 @@ class Game:
     def start(self):
         if self._mode == None:
             raise TypeError('Mode must be initialized before starting the game!')
-        
-        self._start_menu()
+
+        mode = self._start_menu()
         self._prepare_participants()
 
 
     def _start_menu(self):
         print(self._menu)
+        # choice from user ()
         
+    
+    def add_to_histogram(self, event: Event):
+        self._histogram.append(event)
+    
     
     def _prepare_participants(self):
         # depending on the mode, prepare the GUI-InOut question/Answers
