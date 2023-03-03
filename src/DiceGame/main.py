@@ -10,8 +10,11 @@ from helpers import Mode
 def main():
     flag = 2
     while True:
+        # start a new instance of game
         game = Game()
-        # Ask the Mode
+        
+        # 
+        # -> game.initiate_
         # game.show_menu()
         # START NEW GAME
         # 1 - duel  (2 players -> names)
