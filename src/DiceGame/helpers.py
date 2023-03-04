@@ -18,6 +18,13 @@ class Tactic(Enum):
     FOUR_TURNS = auto() # special Tactic [3.3% disavantage against Optimal Play]
 
 
+""" Enums keeping the state of the entry_menu
+"""
+class Entry_Menu(Enum):
+    NEW = 1
+    RESUME = 2
+    EXIT = 3
+
 """Enum to collect all Static text needed in the application"""
 class Textual(Enum):
     MENU = 'MENU Gets DISPLAY NOW!'
@@ -116,3 +123,29 @@ SCORE_BOARD = {
         "└──────────────┘└─────┘ └──────────────┘└─────┘",
     ), 
 }
+
+
+CODE_NAMES = [
+    "Taja", "Baby", "Walt", "Dana", "Barb", "Vida", "Hana", "Foch", "Bret", "Vena",
+    "Cori", "Eula", "Theo", "Kobe", "Elin", "Noel", "Yoel", "Jean", "Kami", "Zayn",
+    "Wade", "Jaye", "Nery", "Irva", "Dior", "Lise", "Mena", "Tito", "Matt", "Wirt",
+    "Reva", "Nick", "Hali", "Gael", "Rand", "Wess", "Geno", "Zela", "Harl", "Hill",
+    "Ella", "Fawn", "Olan", "Amil", "Opal", "Lyle", "Sada", "Ferd", "Deon", "Lone",
+    "Zena", "Bree", "Case", "Adel", "Zayd", "Ford", "Murl", "Fran", "Vada", "Iver",
+    "Vicy", "Baby", "Gary", "Keli", "Wava", "Purl", "Ivey", "Neil", "Sing", "Kane",
+    "Dino", "Faye", "Vina", "Knox", "Tobi", "John", "Darl", "Jael", "Xavi", "Jett",
+    "Oley", "Nila", "Pink", "Less", "Verl", "Gena", "Wong", "Irma", "Rolf", "Aron",
+    "Crew", "Jade", "Zack", "Kyle", "Lita", "Yair", "Zada", "Phil", "Ruie", "Lola",
+    "Kirt", "Ares", "Pink", "Burk", "Pete", "Olof", "Tyra", "Rube", "Kira", "Myra",
+    "Yara", "Elna", "Fate", "Adda", "Bose", "Burl", "Chad", "Star", "Vito", "Zoya",
+    "Sage", "Rudy", "Jody", "Shea", "Naya", "Jody", "Niko", "Tory", "Nola", "Geri",
+    "Alta", "Otha", "Cena", "Omer", "Zeke", "Carl", "Hamp", "Tana", "Iker", "Chet",
+    "Bama", "Anna", "Edna", "Cali", "Mimi", "Aili", "Xena", "Gene", "Halo", "Etta",
+    "Neva", "Mack", "Ivah", "Dani", "Wren", "Hays", "Isom", "Greg", "Maud", "Shay",
+    "Page", "Olar", "Iola", "Mima", "Yael", "Lula", "Joan", "Hedy", "Keri", "Fern",
+    "Gale", "Elmo", "Rita", "Cody", "Jose", "Tera", "Zeno", "York", "Kory", "Roma",
+    "Will", "Brea", "Paul", "Gwen", "Asha", "Zula", "Vera", "Gigi", "Hope", "Dell",
+    "Omie", "Male", "Shad", "Vick", "Etha", "Thor", "Shan", "Rosy", "Dona", "Tony",
+    "Octa", "Luka", "Ivan", "Vern", "Dora", "Floy", "Flem", "Luke", "Ella", "Dick",
+    "Isam", "Cuba", "Andy", "Macy", "Shay", "Harm", "Sade", "Nona", "Lesa", "Rock",
+]
