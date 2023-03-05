@@ -1,0 +1,6 @@
+__pycache__
+.vscode
+practice-testing/__pycache__
+scr/__pycache__
+scr/DiceGame/__pycache__
+src/DiceGame/__pycache__/brain.cpython-39.pyc
