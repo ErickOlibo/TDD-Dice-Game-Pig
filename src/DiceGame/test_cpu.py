@@ -2,7 +2,7 @@ import unittest
 from cpu import CPU_Player
 from helpers import Turn, Tactic
 
-
+# CLASS TO DELETE
 class TestCPU_Player(unittest.TestCase):
     
     def setUp(self):

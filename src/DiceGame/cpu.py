@@ -1,6 +1,7 @@
 from brain import Brain
 from helpers import Turn
 
+# CLASS TO DELETE
 class CPU_Player:
     
     def __init__(self):
