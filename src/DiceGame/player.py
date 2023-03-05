@@ -3,6 +3,7 @@ from dice import Dice
 from helpers import Turn
 
 class Player:
+<<<<<<< HEAD
     """
     A Player is a participant to the game. There are 2 types:
         - user: played by an person through the keyboard input
@@ -30,6 +31,31 @@ class Player:
     
     @name.setter
     def name(self, name: str):
+=======
+    """A class representing a player in a game.
+
+    Attributes:
+        name (str): The name of the player.
+        score (int): The total score of the player.
+        turn_points (int): The points accumulated by the player in the current turn.
+
+    """
+
+    def __init__(self, name):
+        """Initializes a new player with the given name."""
+        self.name = name
+        self.score = 0       # Needed in my brain implementation
+        self.turn_points = 0 # each player is aware of his/her hand running points
+
+    @property
+    def name(self):
+        """Returns the player's name."""
+        return self._name
+    
+    @name.setter
+    def name(self, name):
+        """Sets the player's name to the given value."""
+>>>>>>> f1b6668 (Added Docstring to classes)
         self._name = name
 
 

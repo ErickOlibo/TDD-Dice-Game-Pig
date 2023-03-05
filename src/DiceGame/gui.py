@@ -50,6 +50,13 @@ class GUI:
         return input(ask_input)
     
     def display_hand_results(self, numbers: list, points: int):
+        """Display the results of a dice roll to the user, including the
+        individual dice faces and the total points for the roll.
+        
+        Args:
+            numbers (list): A list of integers representing the dice rolls.
+            points (int): An integer representing the total points for the roll.
+        """
         faces = []
         for numb in numbers:
             faces.append(DICE_FACES[numb])
@@ -68,6 +75,14 @@ class GUI:
     
     
     def _get_rolls_points(self, points: int):
+        """Return a string representation of the points for a dice roll.
+        
+        Args:
+            points (int): An integer representing the total points for the roll.
+        
+        Returns:
+            tuple of str: A tuple of strings representing the points for the roll.
+        """
         line1 = ""
         line2 =  "  ┌─────┐"
         line3 = f'{"= │"} {points:>3} │'
@@ -76,6 +91,7 @@ class GUI:
         return (line1, line2, line3, line4, line5)
         
     
+<<<<<<< HEAD
     def display_scoreboard(self, s_one: int, s_two: int, hand: str):
         if None in [self._player_one, self._player_two]:
             raise Exception("Players' names must be initialized before using this method!")
@@ -93,13 +109,40 @@ class GUI:
         line1 = "┌────┬───────────────┐┌─────┐ ┌────┬───────────────┐┌─────┐"
         line2 = f'│ {c[0]} │ {one:<13}    {s_one:>3} │ │ {c[1]} │ {two:<13}    {s_two:>3}{" │"}'
         line3 = "└────┴───────────────┘└─────┘ └────┴───────────────┘└─────┘"
+=======
+    def display_scoreboard(self, name_one: str, name_two: str, s_one: int, s_two: int):
+        """Display the current scores for two players in a scoreboard format.
+        
+        Args:
+            name_one (str): A string representing the name of the first player.
+            name_two (str): A string representing the name of the second player.
+            s_one (int): An integer representing the current score for the first player.
+            s_two (int): An integer representing the current score for the second player.
+        """
+        one = self._shrink_name(name_one)
+        two = self._shrink_name(name_two)
+        line1 = "┌──────────────┐┌─────┐ ┌──────────────┐┌─────┐"
+        line2 = f'{"│ "}{one:<13}   {s_one:>3}{" │ │ "}{two:<13}   {s_two:>3}{" │"}'
+        line3 = "└──────────────┘└─────┘ └──────────────┘└─────┘"
+>>>>>>> f1b6668 (Added Docstring to classes)
         scoreboard = "\n".join([line1, line2, line3])
         print(scoreboard)
 
 
-    def _shrink_name(self, name: str, max_len: int) -> str:
-        return name if len(name) <= max_len else name[0:max_len - 3] + '...'
+    def _shrink_name(self, name: str) -> str:
+        return name if len(name) <= 13 else name[0:10] + '...'
     
+<<<<<<< HEAD
+=======
+    
+    def display_hand_turn(self):
+        """Displays the entry menu for the game and prompts the user for a choice.
+
+        Returns:
+            An integer representing the user's choice: 1 for New Game, 2 for Resume Game, or E for Exit.
+        """
+        pass
+>>>>>>> f1b6668 (Added Docstring to classes)
 
     def get_input_from_shown_menu(self, title: str, question: str, options: list, 
                                   legend = ['Option', 'Actions']
