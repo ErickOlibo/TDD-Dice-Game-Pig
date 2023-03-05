@@ -2,6 +2,7 @@ import time
 import random
 
 
+# CLASS TO REMOVE
 class DiceGame:
     def __init__(self, winning_score=100):
         self.players = {}
