@@ -14,7 +14,7 @@ class TestCPUDice(unittest.TestCase):
     def setUp(self):
         self.cpu_dice = CPUDice(Mode.SOLO_EASY)
     
-    # instantiate an object CPUDice (test init)
+    # instantiate an object CPUDice
     def test_cpudice(self):
         self.assertIsNotNone(self.cpu_dice)
         

@@ -42,7 +42,7 @@ class CPUDice:
             raise TypeError('mode must be of type Mode!')
         self._mode = mode
     
-    
+
     def roll(self) -> int:
         return random.choice(self._items())
     
