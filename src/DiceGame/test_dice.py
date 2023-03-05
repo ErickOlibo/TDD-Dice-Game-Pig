@@ -4,9 +4,9 @@ from helpers import Mode
 
 class TestDice(unittest.TestCase):
     def test_roll(self):
-        d = Dice()                      #Instantiate the dice class
-        roll = d.roll()                 #roll the dice
-        self.assertTrue(1 <= roll <=6)  #Assert that the rolled dice value is between 1 ansd 6
+        d = Dice()
+        roll = d.roll()
+        self.assertTrue(1 <= roll <=6)
 
 
 class TestCPUDice(unittest.TestCase):
