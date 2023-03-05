@@ -1,9 +1,13 @@
 from helpers import *
 
 class GUI:
-    """ This class is responsible for interacting with the user
-        Meaning, any output (text to user), and input (response from user)
-        is handled here
+    """ 
+        This class is responsible for interacting with the user via a simple
+        text graphic. It does not process, but merly gets data and
+        display them according to the method selected.
+        An input from the user is forwarded as string. The mecanism for checking
+        the return string (ValueError, TypeError etc...) must be handled 
+        by the caller.
     """
     
     def display_hand_results(self, numbers: list, points: int):
@@ -33,12 +37,19 @@ class GUI:
         return (line1, line2, line3, line4, line5)
         
     
-    def display_scoreboard(self, name_one: str, name_two: str, s_one: int, s_two: int):
+    def display_scoreboard(self, name_one: str, name_two: str, s_one: int, s_two: int, hand: str):
+        if hand not in [name_one, name_two]:
+            msg = f'"{hand}" does not match any of the players names: [{name_one}, {name_two}]'
+            raise ValueError(msg)
+        
+        c = ['🟩', '🟥']
+        if hand == name_two : c.reverse()
+        
         one = self._shrink_name(name_one)
         two = self._shrink_name(name_two)
-        line1 = "┌──────────────┐┌─────┐ ┌──────────────┐┌─────┐"
-        line2 = f'{"│ "}{one:<13}   {s_one:>3}{" │ │ "}{two:<13}   {s_two:>3}{" │"}'
-        line3 = "└──────────────┘└─────┘ └──────────────┘└─────┘"
+        line1 = "┌────┬───────────────┐┌─────┐ ┌────┬───────────────┐┌─────┐"
+        line2 = f'│ {c[0]} │ {one:<13}    {s_one:>3} │ │ {c[1]} │ {two:<13}    {s_two:>3}{" │"}'
+        line3 = "└────┴───────────────┘└─────┘ └────┴───────────────┘└─────┘"
         scoreboard = "\n".join([line1, line2, line3])
         print(scoreboard)
 
@@ -49,7 +60,7 @@ class GUI:
     def display_hand_turn(self):
         pass
 
-    
+    # METHOD TO BE MOVED. IT VIOLATE THE PURPOSE OF THIS GUI CLASS
     def display_entry_menu(self) -> int:
         while True:
             try:
@@ -65,9 +76,10 @@ class GUI:
     
 
 gui = GUI()
-myList = {2,4,6,5,3}
+myList = {1,2,3,4,5,6}
 gui.display_hand_results(myList, 20)
 print("\n")
-scoreboard = gui.display_scoreboard("ErickTerrasson", "Robert", 49, 89)
+scoreboard = gui.display_scoreboard("Erick", "Robert", 149, 189, 'Robert')
+print("\n")
 
 #print(f'\n{gui._shrink_name("ErickTerrasson")}')
