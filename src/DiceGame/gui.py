@@ -10,6 +10,29 @@ class GUI:
         by the caller.
     """
     
+    def __init__(self, player_one: str = None, player_two: str = None):
+        self._player_one = player_one
+        self._player_two = player_two
+        pass
+    
+    @property
+    def player_one(self)-> str:
+        return self._player_one
+    
+    @player_one.setter
+    def player_one(self, name):
+        self._player_one = name
+        
+    
+    @property
+    def player_two(self)-> str:
+        return self._player_two
+    
+    @player_two.setter
+    def player_two(self, name):
+        self._player_two = name
+    
+    
     def display_hand_results(self, numbers: list, points: int):
         faces = []
         for numb in numbers:
@@ -37,28 +60,30 @@ class GUI:
         return (line1, line2, line3, line4, line5)
         
     
-    def display_scoreboard(self, name_one: str, name_two: str, s_one: int, s_two: int, hand: str):
-        if hand not in [name_one, name_two]:
-            msg = f'"{hand}" does not match any of the players names: [{name_one}, {name_two}]'
+    def display_scoreboard(self, s_one: int, s_two: int, hand: str):
+        if None in [self._player_one, self._player_two]:
+            raise Exception("Players' names must be initialized before using this method!")
+        one = self._player_one
+        two = self._player_two
+        if hand not in [one, two]:
+            msg = f'"{hand}" does not match any of the players names: [{one}, {two}]'
             raise ValueError(msg)
         
         c = ['🟩', '🟥']
-        if hand == name_two : c.reverse()
+        if hand == two : c.reverse()
         
-        one = self._shrink_name(name_one)
-        two = self._shrink_name(name_two)
+        one = self._shrink_name(one)
+        two = self._shrink_name(two)
         line1 = "┌────┬───────────────┐┌─────┐ ┌────┬───────────────┐┌─────┐"
         line2 = f'│ {c[0]} │ {one:<13}    {s_one:>3} │ │ {c[1]} │ {two:<13}    {s_two:>3}{" │"}'
         line3 = "└────┴───────────────┘└─────┘ └────┴───────────────┘└─────┘"
         scoreboard = "\n".join([line1, line2, line3])
         print(scoreboard)
 
+
     def _shrink_name(self, name: str) -> str:
         return name if len(name) <= 13 else name[0:10] + '...'
     
-    
-    def display_hand_turn(self):
-        pass
 
     # METHOD TO BE MOVED. IT VIOLATE THE PURPOSE OF THIS GUI CLASS
     def display_entry_menu(self) -> int:
@@ -75,11 +100,17 @@ class GUI:
 
     
 
-gui = GUI()
-myList = {1,2,3,4,5,6}
-gui.display_hand_results(myList, 20)
+gui = GUI("Erick", "Robert")
+myList = {2,6}
+
 print("\n")
-scoreboard = gui.display_scoreboard("Erick", "Robert", 149, 189, 'Robert')
+gui.display_scoreboard(49, 89, 'Robert')
+gui.display_hand_results(myList, 8)
 print("\n")
 
-#print(f'\n{gui._shrink_name("ErickTerrasson")}')
+myList = {2,6,4}
+
+print("\n")
+gui.display_scoreboard(49, 89, 'Erick')
+gui.display_hand_results(myList, 12)
+print("\n")
