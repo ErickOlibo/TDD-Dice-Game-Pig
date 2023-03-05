@@ -1,21 +1,44 @@
 import random
 from helpers import Mode
 class Dice:
+    """
+    Represents a dice that can be rolled to produce a random value from 1 to 6.
+
+    Attributes:
+        value (int): The value of the last roll.
+    """
     def __init__(self):
         self.value = None
 
     def roll(self):
+        """
+        Rolls the dice and returns the result.
+
+        Returns:
+            int: The value of the roll.
+        """
         self.value = random.randint(1, 6)
         return self.value
 
-
-""" This class is a special dice for the computer to use
-    It has a different probability of rolling 1. It depends on the Mode
-    when playing against the CPU
-"""
 class CPUDice:
-    
+    """
+    Represents a dice that the computer can use in the game.
+    The probability of rolling 1 depends on the game mode.
+
+    Attributes:
+        mode (Mode): The game mode that affects the probability of rolling 1.
+    """   
     def __init__(self, mode: Mode) -> None:
+        """
+        Initializes the CPUDice with the given mode.
+
+        Args:
+            mode (Mode): The game mode that affects the probability of rolling 1.
+
+        Raises:
+            TypeError: If the mode is not of type Mode.
+            ValueError: If the mode is DUEL, which does not have a CPU Dice.
+        """
         if not isinstance(mode, Mode):
             raise TypeError('mode must be of type Mode!')
         
@@ -34,20 +57,47 @@ class CPUDice:
 
     @property
     def mode(self) -> Mode:
+        """
+        Gets the game mode that affects the probability of rolling 1.
+
+        Returns:
+            Mode: The game mode.
+        """
         return self._mode
     
     @mode.setter
     def mode(self, mode: Mode):
+        """
+        Sets the game mode that affects the probability of rolling 1.
+
+        Args:
+            mode (Mode): The game mode that affects the probability of rolling 1.
+
+        Raises:
+            TypeError: If the mode is not of type Mode.
+        """
         if not isinstance(mode, Mode):
             raise TypeError('mode must be of type Mode!')
         self._mode = mode
     
 
     def roll(self) -> int:
+        """
+        Rolls the dice and returns the result, using the current game mode.
+
+        Returns:
+            int: The value of the roll.
+        """
         return random.choice(self._items())
     
 
     def _items(self) -> list:
+        """
+        Returns a list of possible values for the dice, based on the current game mode.
+
+        Returns:
+            list: A list of possible values for the dice.
+        """
         items = None
         if self._mode is Mode.SOLO_EASY: items = self._easy
         if self._mode is Mode.SOLO_MEDIUM: items = self._medium
