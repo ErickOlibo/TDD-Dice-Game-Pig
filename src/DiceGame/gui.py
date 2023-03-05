@@ -50,6 +50,19 @@ class GUI:
         pass
 
     
+    def display_entry_menu(self) -> int:
+        while True:
+            try:
+                entry_choice = input('1 - New Game, 2 - Resume Game, E - Exit: ')
+                if entry_choice not in ['1', '2', 'e']: raise ValueError()
+            except ValueError:
+                print('Must be an intege between 1 and 3. Please try again!')
+            except TypeError:
+                print('Must be an intege between 1 and 3. Please try again!')
+            
+            return entry_choice
+
+    
 
 gui = GUI()
 myList = {2,4,6,5,3}
