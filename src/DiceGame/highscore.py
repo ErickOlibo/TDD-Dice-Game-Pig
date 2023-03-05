@@ -1,5 +1,5 @@
 class HighScore:
-    
+    # CLASS TO DELETE
     def __init__(self, name, streak, overall_points):
         self._name = name
         self._streak = streak
