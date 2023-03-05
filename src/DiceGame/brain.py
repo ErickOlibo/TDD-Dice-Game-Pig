@@ -3,8 +3,8 @@ from helpers import  Turn, Tactic
 
 class Brain:
     
-    """A sort of Intelligence for the Player when it represent the Computer
-    
+    """ A sort of Intelligence for the Player when it represent the Computer
+        This brain is only givento players of type CPU
     """
     def __init__(self):
         self._strategy = self._random_strategy()

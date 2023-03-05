@@ -1,6 +1,5 @@
 import unittest
 from helpers import Turn, Tactic
-from player import Player
 from brain import Brain
 
 class TestBrain(unittest.TestCase):
