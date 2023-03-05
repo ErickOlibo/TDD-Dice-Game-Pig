@@ -1,10 +1,26 @@
 from brain import Brain
+from dice import Dice
 from helpers import Turn
 
 class Player:
-    def __init__(self, name: str, brain: Brain = None):
+    """
+    A Player is a participant to the game. There are 2 types:
+        - user: played by an person through the keyboard input
+        - cpu: played internally by the computer
+    Depending on the type, few properties are available
+    
+    Attributes:
+        name: the name of the player.
+        brain (Brain): This brain is available only to the computer to similate
+            an sort of intelligent behaviour
+        dice (Dice): each player rolls with their own dice. A user has a balanced
+            dice, while the computer has an unbalanced one
+    
+    """
+    def __init__(self, name: str, brain: Brain = None, dice: Dice = Dice()):
         self._name = name
         self._brain = brain
+        self._dice = dice
         self._score = 0
 
 
@@ -42,3 +58,6 @@ class Player:
     
     def add_points_to_score(self, points: int):
         self._score += points
+        
+    def roll_dice(self) -> int:
+        return self._dice.roll()
