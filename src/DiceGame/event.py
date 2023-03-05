@@ -3,7 +3,7 @@ class Event:
     """ There is an event when a player has the hand in the game
         The event is Unix Time stamped when the hand starts
         for every roll a total point is calculated till the end of roll [Hold]
-        or a roll of 1
+        or 1 is rolled
     
     """
     

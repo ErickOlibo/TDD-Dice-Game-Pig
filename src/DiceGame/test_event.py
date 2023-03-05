@@ -6,9 +6,15 @@ class TestEvent(unittest.TestCase):
     def setUp(self):
         self.event = Event('Robert')
         
-    def test_Init(self):
-        e = Event("Robert")
-        self.assertEqual(e.name, "Robert")
+    def test_event(self):
+        event = Event("Robert")
+        self.assertEqual(event.name, "Robert")
+        
+    def test_name(self):
+        self.assertIs(self.event.name, 'Robert')
+        
+    def test_points(self):
+        self.assertEqual(self.event.points, 0)
 
     def test_add_roll(self):
         self.event.add_roll(5)
