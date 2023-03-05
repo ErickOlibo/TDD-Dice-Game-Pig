@@ -15,9 +15,9 @@ class TestWinner(unittest.TestCase):
         self.assertIsNotNone(winner)
     
     
-    def test_get_name_score(self):
+    def test_data(self):
         winners = [self.winner1, self.winner2, self.winner3, self.winner4]
-        names_scores = [winner.get_name_score for winner in winners]
+        names_scores = [winner.data for winner in winners]
         self.assertEqual(len(names_scores), 4)
     
 if __name__ == '__main__':
