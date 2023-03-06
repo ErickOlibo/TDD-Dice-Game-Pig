@@ -1,3 +1,4 @@
+import os
 from helpers import *
 
 class GUI:
@@ -31,6 +32,10 @@ class GUI:
     @player_two.setter
     def player_two(self, name):
         self._player_two = name
+    
+    
+    def clear_terminal(self):
+        os.system('clear')
     
     
     def display_info(self, text: str, title: str, width = 40):
@@ -124,20 +129,21 @@ class GUI:
         return f" {title} ".center(width, "~")
     
     
-    def display_highscore(self, scores: list):
+    def display_highscore(self, scores: list, size: int):
         scores.sort(key=lambda row: (-row[1], -row[2]))
         line1 = "┌──────┬──────────────────────┬────────┬────────┐"
         line2 = f'│ {"Rank":^4} │ {"Names":^20} │ {"Streak":^6} │ {"Points":^6} │' 
         line3 = "├──────┼──────────────────────┼────────┼────────┤"
         end = "└──────┴──────────────────────┴────────┴────────┘"
-        header = self._set_menu_header('HIGH-SCORE', len(line1))
+        header = self._set_menu_header(f'HIGH-SCORE TOP[{size}]', len(line1))
         center = []
-        for i in range(len(scores)):
+        top = scores[0:size]
+        for i in range(len(top)):
             name = scores[i][0]
             streak = scores[i][1]
             points = scores[i][2]
             row = f'│ {i+1:^4} │ {name:^20} │ {streak:^6} │ {points:>6} │'
-            if i != len(scores) - 1:
+            if i != len(top) - 1:
                 row += f'\n│ {"":^4} │ {"":^20} │ {"":^6} │ {"":>6} │'
             center.append(row)
         highscore = "\n".join([header, line1, line2, line3] + center + [end])
