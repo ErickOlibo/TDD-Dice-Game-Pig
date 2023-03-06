@@ -33,6 +33,13 @@ class GUI:
         self._player_two = name
     
     
+    def display_info(self, text: str, title: str, width = 40):
+        header = self._set_menu_header(title, width)
+        info = "".join([header, text])
+        print(info)
+        pass
+    
+    
     def display_hand_results(self, numbers: list, points: int):
         faces = []
         for numb in numbers:
@@ -72,8 +79,8 @@ class GUI:
         c = ['🟩', '🟥']
         if hand == two : c.reverse()
         
-        one = self._shrink_name(one)
-        two = self._shrink_name(two)
+        one = self._shrink_name(one, 13)
+        two = self._shrink_name(two, 13)
         line1 = "┌────┬───────────────┐┌─────┐ ┌────┬───────────────┐┌─────┐"
         line2 = f'│ {c[0]} │ {one:<13}    {s_one:>3} │ │ {c[1]} │ {two:<13}    {s_two:>3}{" │"}'
         line3 = "└────┴───────────────┘└─────┘ └────┴───────────────┘└─────┘"
@@ -81,36 +88,85 @@ class GUI:
         print(scoreboard)
 
 
-    def _shrink_name(self, name: str) -> str:
-        return name if len(name) <= 13 else name[0:10] + '...'
+    def _shrink_name(self, name: str, max_len: int) -> str:
+        return name if len(name) <= max_len else name[0:max_len - 3] + '...'
     
 
-    # METHOD TO BE MOVED. IT VIOLATE THE PURPOSE OF THIS GUI CLASS
-    def display_entry_menu(self) -> int:
-        while True:
-            try:
-                entry_choice = input('1 - New Game, 2 - Resume Game, E - Exit: ')
-                if entry_choice not in ['1', '2', 'e']: raise ValueError()
-            except ValueError:
-                print('Must be an intege between 1 and 3. Please try again!')
-            except TypeError:
-                print('Must be an intege between 1 and 3. Please try again!')
-            
-            return entry_choice
-
+    def get_input_from_shown_menu(self, title: str, question: str, options: list, 
+                                  legend = ['Option', 'Actions']
+                                  ) -> str:
+        menu = self._get_menu_layout(title,options, legend)
+        menu += f"\n{question}"
+        return input(menu)
+        
     
+    def _get_menu_layout(self, title: str, opt: list, legend) -> str:
+        leg1 = legend[0]
+        leg2 = legend[1]
+        line1 = "┌────────┬──────────────────────┐"
+        line2 = f'│ {leg1:^6} │ {leg2:^20}{" │"}'
+        line3 = "├────────┼──────────────────────┤"
+        end = "└────────┴──────────────────────┘"
+        center = []
+        for i in range(len(opt)):
+            row = f'│ {opt[i][0]:^6} │ {opt[i][1]:<20}{" │"}'
+            if i != len(opt) - 1:
+                row += f'\n│ {"":^6} │ {"":^20}{" │"}'
+            center.append(row)
 
-gui = GUI("Erick", "Robert")
-myList = {2,6}
+        start = [line1, line2, line3]
+        header = self._set_menu_header(title, len(line1))
+        menu = "\n".join([header] + start + center + [end])
+        return menu
+    
+    
+    def _set_menu_header(self, title: str, width = 40) -> str:
+        return f" {title} ".center(width, "~")
+    
+    
+    def display_highscore(self, scores: list):
+        scores.sort(key=lambda row: (-row[1], -row[2]))
+        line1 = "┌──────┬──────────────────────┬────────┬────────┐"
+        line2 = f'│ {"Rank":^4} │ {"Names":^20} │ {"Streak":^6} │ {"Points":^6} │' 
+        line3 = "├──────┼──────────────────────┼────────┼────────┤"
+        end = "└──────┴──────────────────────┴────────┴────────┘"
+        header = self._set_menu_header('HIGH-SCORE', len(line1))
+        center = []
+        for i in range(len(scores)):
+            name = scores[i][0]
+            streak = scores[i][1]
+            points = scores[i][2]
+            row = f'│ {i+1:^4} │ {name:^20} │ {streak:^6} │ {points:>6} │'
+            if i != len(scores) - 1:
+                row += f'\n│ {"":^4} │ {"":^20} │ {"":^6} │ {"":>6} │'
+            center.append(row)
+        highscore = "\n".join([header, line1, line2, line3] + center + [end])
+        print(highscore)
+        pass
+        
+    def display_any_key_continues(self):
+        input('Press any keys to contiue: ')
 
-print("\n")
-gui.display_scoreboard(49, 89, 'Robert')
-gui.display_hand_results(myList, 8)
-print("\n")
+    def insert_line_breaks(self, numb: int):
+        [print() for _ in range(numb)]
 
-myList = {2,6,4}
 
-print("\n")
-gui.display_scoreboard(49, 89, 'Erick')
-gui.display_hand_results(myList, 12)
-print("\n")
+# TO DELETE WHAT'S UNDER TESTING
+
+# gui = GUI("ErickTerrasson", "Robert")
+# gui.display_info(Textual.RULES.value, 'RULES')
+# print()
+# title = 'START UP'
+# options = [['N', 'New game'], ['R', 'Resume game'], ['E', 'Exit']]
+# legend = ['Option', 'Actions']
+# question = 'What would you like to do? Pick an option: '
+
+# gui.get_input_from_shown_menu(title, question, options, legend)
+
+# gui.display_scoreboard(34,20, 'Robert')
+# rolls = [2,3,4]
+# gui.display_hand_results(rolls, 9)
+
+#scores = [["Erick", 2005, 222512], ["Robert", 2, 203], ["Steve", 5, 514]]
+
+#gui.display_highscore(scores)
