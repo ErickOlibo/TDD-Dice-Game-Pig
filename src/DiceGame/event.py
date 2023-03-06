@@ -1,12 +1,5 @@
 import time
 class Event:
-<<<<<<< HEAD
-    """ There is an event when a player has the hand in the game
-        The event is Unix Time stamped when the hand starts
-        for every roll a total point is calculated till the end of roll [Hold]
-        or 1 is rolled
-    
-=======
     """Represents an event when a player has the hand in the game.
     The event is Unix Time stamped when the hand starts for every roll. A total point
     is calculated till the end of roll [Hold] or a roll of 1.
@@ -20,7 +13,6 @@ class Event:
     _points (int): The total points accumulated during the event.
     _rolls (list): A list of the rolls made during the event.
 
->>>>>>> f1b6668 (Added Docstring to classes)
     """
     
     def __init__(self, name):
