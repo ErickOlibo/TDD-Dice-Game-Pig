@@ -27,26 +27,18 @@ One player against the CPU
 class Mode(Enum):
     DUEL = ['1', 'Duel']
     SOLO_EASY = ['2', 'Solo - Easy']
-    SOLO_MEDIUM = '3'
-    SOLO_HARD = '4'
-    SOLO_MERCILESS = '5'
-    
-
-class New_Game(Enum):
-    DUEL = '1'
-    EASY = '2'
-    MEDIUM = '3'
-    HARD = '4'
-    MERCILESS = '5'
-    BACK = ['B', 'b']
+    SOLO_MEDIUM = ['3', 'Solo - Medium']
+    SOLO_HARD = ['4', 'Solo - Hard']
+    SOLO_MERCILESS = ['5', 'Solo - Merciless']
+    BACK = ['B', '↩ Back']
     
 
 class Start_Up(Enum):
-    NEW_GAME = '1'
-    RESUME_GAME = '2'
-    HIGH_SCORE = '3'
-    RULES = '4'
-    EXIT = ['E', 'e']
+    NEW_GAME = ['1', 'New game']
+    RESUME_GAME = ['2', 'Resume game']
+    HIGH_SCORE = ['3', 'High-score']
+    RULES = ['4', 'Rules']
+    EXIT = ['E', 'Exit']
 
 """ 
 Constant for the Dice rolling faces

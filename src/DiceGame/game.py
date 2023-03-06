@@ -4,6 +4,8 @@ from player import Player
 from event import Event
 from winner import Winner
 from gui import GUI
+from brain import Brain
+from dice import Dice
 import time
 class Game:
     """ 
@@ -18,18 +20,22 @@ class Game:
         self._time_stamp = round(time.time())  # sorting Games chronologically
         self._gui = GUI()
         self._codename = None # Only for game in a suspended state
-        self._mode = Mode.SOLO_EASY  # default
+        self._mode = None
         self._participants = list[Player]
         self._hand = None # (name of the player)
-        self._histogram = list[Event] # List of Events. The order is guarantee by Python
-        self._is_game_over = False # set once a winner is declared
+        #self._histogram = list[Event] # List of Events. The order is guarantee by Python
+        #self._is_game_over = False # set once a winner is declared
         self._winner = None  # object of type Winner
-        self._startup_options = [['1', 'New game'], ['2', 'Resume game'],
-                                 ['3', 'High-score'], ['4', 'Rules'], ['E', 'Exit']]
-        self._new_game_options = [
-            ['1', 'Duel'], ['2', 'Solo - Easy'], ['3', 'Solo - Medium'], 
-            ['4', 'Solo - Hard'], ['5', 'Solo - Merciless'], ['B', '↩ Back']]
+        # self._startup_options = [['1', 'New game'], ['2', 'Resume game'],
+        #                          ['3', 'High-score'], ['4', 'Rules'], ['E', 'Exit']]
+        # self._new_game_options = [
+        #     ['1', 'Duel'], ['2', 'Solo - Easy'], ['3', 'Solo - Medium'], 
+        #     ['4', 'Solo - Hard'], ['5', 'Solo - Merciless'], ['B', '↩ Back']]
+        self._startup_options = [start.value for start in Start_Up]
+        self._startup_options_dict = {start.value[0]:start for start in Start_Up}
         
+        self._new_game_options = [mode.value for mode in Mode]
+        self._new_game_options_dict = {mode.value[0]:mode for mode in Mode}
 
     
     @property
@@ -64,22 +70,24 @@ class Game:
         self._gui.clear_terminal()
         self._gui.display_highscore(scores, size)
 
-    def show_startup_menu(self) -> str:
+    def show_startup_menu(self) -> Start_Up:
         self._gui.clear_terminal()
         title = 'START UP'
         legend = ['Option', 'Actions']
         question = 'What would you like to do? Pick an option: '
         options = self._startup_options
-        return self._get_input_from_user(title, question, options, legend)
+        response = self._get_input_from_user(title, question, options, legend)
+        return self._startup_options_dict[response.upper()]
     
     
-    def show_new_game_menu(self) -> str:
+    def show_new_game_menu(self) -> Mode:
         self._gui.clear_terminal()
         title = 'NEW GAME'
         legend = ['Option', 'Actions']
         question = 'Pick an option: '
         options = self._new_game_options
-        return self._get_input_from_user(title, question, options, legend)
+        response = self._get_input_from_user(title, question, options, legend)
+        return self._new_game_options_dict[response.upper()]
         
     
     def _get_input_from_user(self, title, ask, options, legend) -> str:
@@ -99,7 +107,7 @@ class Game:
     
     def menu_transition(self):
         self._gui.clear_terminal()
-        time.sleep(0.5)
+        time.sleep(0.3)
     
     def press_any_keys_to_continue(self):
         self._gui.display_any_key_continues()
@@ -119,18 +127,26 @@ class Game:
 
     def set_solo_player(self, mode: Mode):
         self.menu_transition()
-        self._mode = Mode.DUEL
+        self._mode = mode
+        ask = 'Enter your name: '
+        one = Player(self._gui.get_simple_answer_from_user(ask, 'PLAYER'))
+        cpu = Player('CPU', Brain(), Dice(mode))
+        
 
     def play(self, codename = None):
         if codename is None:
             #play new Game
-            print('NO CODENAME - NEW PARTY')
+            print('NO CODENAME - NEW GAME')
         else:
             print(f'CODE NAME IS {codename}')
-        time.sleep(2)
+        time.sleep(4)
         
     
-    
+    def request_codename_from_user(self):
+        self.menu_transition()
+        ask = "Please Enter the Game's Code Name: "
+        codename = self._gui.get_simple_answer_from_user(ask, 'CODE NAME')
+        return codename
     
     # def exit(self) -> bool:
     #     return self._state
