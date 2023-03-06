@@ -52,6 +52,7 @@ class Game:
 
 
     def display_rules(self):
+        self._gui.clear_terminal()
         self._gui.insert_line_breaks(1)
         self._gui.display_info(Textual.RULES.value, 'RULES', 70)
  
@@ -77,9 +78,14 @@ class Game:
         # depending on the mode, prepare the GUI-InOut question/Answers
         # Set the player type and initialize
         pass
-
+    
+    def show_highscore(self, scores, size = 10):
+        self._gui.clear_terminal()
+        self._gui.insert_line_breaks(1)
+        self._gui.display_highscore(scores, size)
 
     def show_startup_menu(self) -> str:
+        self._gui.clear_terminal()
         self._gui.insert_line_breaks(1)
         title = 'START UP'
         legend = ['Option', 'Actions']
@@ -99,6 +105,7 @@ class Game:
     def press_any_keys_to_continue(self):
         self._gui.display_any_key_continues()
         self._gui.insert_line_breaks(1)
+        self._gui.clear_terminal()
 
     # def exit(self) -> bool:
     #     return self._state
