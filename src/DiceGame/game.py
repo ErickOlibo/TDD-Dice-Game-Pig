@@ -3,6 +3,7 @@ from helpers import Textual, Mode
 from player import Player
 from event import Event
 from winner import Winner
+from gui import GUI
 import time
 class Game:
     """ 
@@ -15,13 +16,18 @@ class Game:
     
     def __init__(self):
         self._time_stamp = round(time.time())  # sorting Games chronologically
+        self._gui = GUI()
         self._codename = None # Only for game in a suspended state
         self._mode = Mode.SOLO_EASY  # default
-        self._participants = [] # Can be 2 players or 1 player and cpu
+        self._participants = list[Player]
         self._hand = None # (name of the player)
         self._histogram = list[Event] # List of Events. The order is guarantee by Python
         self._is_game_over = False # set once a winner is declared
         self._winner = None  # object of type Winner
+        self._startup_options = [['1', 'New game'], ['2', 'Resume game'],
+                                 ['3', 'High-score'], ['4', 'Rules'], ['E', 'Exit']]
+        
+
     
     
     @property
@@ -46,7 +52,8 @@ class Game:
 
 
     def display_rules(self):
-        print(self._rules)
+        self._gui.insert_line_breaks(1)
+        self._gui.display_info(Textual.RULES.value, 'RULES', 70)
  
     
     def start(self):
@@ -69,9 +76,45 @@ class Game:
     def _prepare_participants(self):
         # depending on the mode, prepare the GUI-InOut question/Answers
         # Set the player type and initialize
-        
         pass
 
 
-    def exit(self) -> bool:
-        return self._state
+    def show_startup_menu(self) -> str:
+        self._gui.insert_line_breaks(1)
+        title = 'START UP'
+        legend = ['Option', 'Actions']
+        question = 'What would you like to do? Pick an option: '
+        choices = [k[0] for k in self._startup_options]
+        choices = set(choices + [ k[0].lower() for k in self._startup_options])
+        while True:
+            try:
+                entry_choice = self._gui.get_input_from_shown_menu(
+                    title, question, self._startup_options, legend)
+                if entry_choice not in choices: raise ValueError()
+            except ValueError:
+                print('This is not a valid option. Please try again!\n')
+            else:
+                return entry_choice
+    
+    def press_any_keys_to_continue(self):
+        self._gui.display_any_key_continues()
+        self._gui.insert_line_breaks(1)
+
+    # def exit(self) -> bool:
+    #     return self._state
+    
+    
+    # def display_entry_menu(self) -> int:
+    #     while True:
+    #         try:
+    #             entry_choice = input('1 - New Game, 2 - Resume Game, E - Exit: ')
+    #             if entry_choice not in ['1', '2', 'e']: raise ValueError()
+    #         except ValueError:
+    #             print('Must be an intege between 1 and 3. Please try again!')
+    #         except TypeError:
+    #             print('Must be an intege between 1 and 3. Please try again!')
+            
+    #         return entry_choice
+    
+    # def rules_text(self):
+    #     rules = ""
