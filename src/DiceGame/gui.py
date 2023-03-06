@@ -91,7 +91,6 @@ class GUI:
         return (line1, line2, line3, line4, line5)
         
     
-<<<<<<< HEAD
     def display_scoreboard(self, s_one: int, s_two: int, hand: str):
         if None in [self._player_one, self._player_two]:
             raise Exception("Players' names must be initialized before using this method!")
@@ -109,7 +108,6 @@ class GUI:
         line1 = "┌────┬───────────────┐┌─────┐ ┌────┬───────────────┐┌─────┐"
         line2 = f'│ {c[0]} │ {one:<13}    {s_one:>3} │ │ {c[1]} │ {two:<13}    {s_two:>3}{" │"}'
         line3 = "└────┴───────────────┘└─────┘ └────┴───────────────┘└─────┘"
-=======
     def display_scoreboard(self, name_one: str, name_two: str, s_one: int, s_two: int):
         """Display the current scores for two players in a scoreboard format.
         
@@ -124,7 +122,6 @@ class GUI:
         line1 = "┌──────────────┐┌─────┐ ┌──────────────┐┌─────┐"
         line2 = f'{"│ "}{one:<13}   {s_one:>3}{" │ │ "}{two:<13}   {s_two:>3}{" │"}'
         line3 = "└──────────────┘└─────┘ └──────────────┘└─────┘"
->>>>>>> f1b6668 (Added Docstring to classes)
         scoreboard = "\n".join([line1, line2, line3])
         print(scoreboard)
 
@@ -132,8 +129,6 @@ class GUI:
     def _shrink_name(self, name: str) -> str:
         return name if len(name) <= 13 else name[0:10] + '...'
     
-<<<<<<< HEAD
-=======
     
     def display_hand_turn(self):
         """Displays the entry menu for the game and prompts the user for a choice.
@@ -142,7 +137,6 @@ class GUI:
             An integer representing the user's choice: 1 for New Game, 2 for Resume Game, or E for Exit.
         """
         pass
->>>>>>> f1b6668 (Added Docstring to classes)
 
     def get_input_from_shown_menu(self, title: str, question: str, options: list, 
                                   legend = ['Option', 'Actions']
