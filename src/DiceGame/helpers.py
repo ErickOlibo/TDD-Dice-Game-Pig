@@ -31,15 +31,47 @@ class Mode(Enum):
     SOLO_HARD = ['4', 'Solo - Hard']
     SOLO_MERCILESS = ['5', 'Solo - Merciless']
     BACK = ['B', '↩ Back']
+    MENU = auto()
     
 
 class Start_Up(Enum):
-    NEW_GAME = ['1', 'New game']
-    RESUME_GAME = ['2', 'Resume game']
+    """At the start of a Game this gives the user a choice to pick an option
+
+    Args:
+        Enum (list[str]): Used to display the Start_up menu to the user
+    """
+    NEW_GAME = ['1', 'New Game']
+    RESUME_GAME = ['2', 'Resume Game']
     HIGH_SCORE = ['3', 'High-score']
     RULES = ['4', 'Rules']
     EXIT = ['E', 'Exit']
+    MENU = auto()
 
+
+
+class Settings(Enum):
+    """During the course of a game a user can display a setting view with 
+    additional options
+
+    Args:
+        Enum (list[str]): Used to display the Start_up menu to the user
+    """
+    SCREEN_NAME = ['1', 'Change Name']
+    SUSPEND = ['2', 'Suspend Game']
+    QUIT = ['3', 'Quit Game']
+    RETURN = ['R', 'Return to Game']
+    CHEAT_MODE = ['C', 'Enter Cheat Mode']
+    MENU = auto()
+
+
+class Menu_Type(Enum):
+    START_UP = auto()
+    MODE = auto()
+    SETTINGS = auto()
+    
+    
+    
+    
 """ 
 Constant for the Dice rolling faces
 Copyright Leodanis Pozo Ramos

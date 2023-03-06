@@ -177,9 +177,12 @@ class GUI:
         pass
         
     def display_any_key_continues(self):
-        input('Press any keys to contiue: ')
+        input('Press any key to contiue: ')
+    
+    def display_message_and_continues(self, mgs: str):
+        input(f'{mgs}')
 
-    def insert_line_breaks(self, numb: int):
+    def insert_line_breaks(self, numb = 1):
         [print() for _ in range(numb)]
 
 

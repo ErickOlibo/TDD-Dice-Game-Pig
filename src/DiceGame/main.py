@@ -19,7 +19,7 @@ def main():
         db = Database()
         
         # 2 - Get the option from the user for the Start Up menu
-        start_choice = game.show_startup_menu()
+        start_choice = game.show_menu('START UP', Start_Up.MENU)
         
         # 3 - Handle Chosen Option
         game.menu_transition()
@@ -27,7 +27,7 @@ def main():
             break 
         
         if start_choice == Start_Up.NEW_GAME:
-            new_game_choice = game.show_new_game_menu()
+            new_game_choice = game.show_menu('NEW GAME MODE', Mode.MENU)
             if new_game_choice == Mode.BACK:
                 game.menu_transition()
                 continue
