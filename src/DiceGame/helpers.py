@@ -25,13 +25,28 @@ Enum representing the different option of playing 2 players or
 One player against the CPU
 """
 class Mode(Enum):
-    DUEL = auto()  # Duel - Player One vs. Player Two
-    SOLO_EASY = auto()  # Solo - You vs. CPU - [Level: Easy]
-    SOLO_MEDIUM = auto()  # Solo - You vs. CPU - [Level: Medium]
-    SOLO_HARD = auto()  # Solo - You vs. CPU - [Level: Hard]
-    SOLO_MERCILESS = auto()  # Solo - You vs. CPU - [Level: Merciless]
+    DUEL = ['1', 'Duel']
+    SOLO_EASY = ['2', 'Solo - Easy']
+    SOLO_MEDIUM = '3'
+    SOLO_HARD = '4'
+    SOLO_MERCILESS = '5'
     
 
+class New_Game(Enum):
+    DUEL = '1'
+    EASY = '2'
+    MEDIUM = '3'
+    HARD = '4'
+    MERCILESS = '5'
+    BACK = ['B', 'b']
+    
+
+class Start_Up(Enum):
+    NEW_GAME = '1'
+    RESUME_GAME = '2'
+    HIGH_SCORE = '3'
+    RULES = '4'
+    EXIT = ['E', 'e']
 
 """ 
 Constant for the Dice rolling faces

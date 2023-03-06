@@ -42,8 +42,12 @@ class GUI:
         header = self._set_menu_header(title, width)
         info = "".join([header, text])
         print(info)
-        pass
-    
+
+
+    def get_simple_answer_from_user(self, ask: str, title: str, width = 40) -> str:
+        header = self._set_menu_header(title, width)
+        ask_input = "\n".join([header, ask])
+        return input(ask_input)
     
     def display_hand_results(self, numbers: list, points: int):
         faces = []

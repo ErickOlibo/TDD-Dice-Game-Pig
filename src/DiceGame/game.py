@@ -1,5 +1,5 @@
 import uuid
-from helpers import Textual, Mode
+from helpers import *
 from player import Player
 from event import Event
 from winner import Winner
@@ -26,9 +26,11 @@ class Game:
         self._winner = None  # object of type Winner
         self._startup_options = [['1', 'New game'], ['2', 'Resume game'],
                                  ['3', 'High-score'], ['4', 'Rules'], ['E', 'Exit']]
+        self._new_game_options = [
+            ['1', 'Duel'], ['2', 'Solo - Easy'], ['3', 'Solo - Medium'], 
+            ['4', 'Solo - Hard'], ['5', 'Solo - Merciless'], ['B', '↩ Back']]
         
 
-    
     
     @property
     def winner(self) -> Winner:
@@ -56,57 +58,80 @@ class Game:
         self._gui.insert_line_breaks(1)
         self._gui.display_info(Textual.RULES.value, 'RULES', 70)
  
-    
-    def start(self):
-        if self._mode == None:
-            raise TypeError('Mode must be initialized before starting the game!')
 
-        mode = self._start_menu()
-        self._prepare_participants()
-
-
-    def _start_menu(self):
-        print(self._menu)
-        # choice from user ()
-        
-    
-    def add_to_histogram(self, event: Event):
-        self._histogram.append(event)
-    
-    
-    def _prepare_participants(self):
-        # depending on the mode, prepare the GUI-InOut question/Answers
-        # Set the player type and initialize
-        pass
     
     def show_highscore(self, scores, size = 10):
         self._gui.clear_terminal()
-        self._gui.insert_line_breaks(1)
         self._gui.display_highscore(scores, size)
 
     def show_startup_menu(self) -> str:
         self._gui.clear_terminal()
-        self._gui.insert_line_breaks(1)
         title = 'START UP'
         legend = ['Option', 'Actions']
         question = 'What would you like to do? Pick an option: '
-        choices = [k[0] for k in self._startup_options]
-        choices = set(choices + [ k[0].lower() for k in self._startup_options])
+        options = self._startup_options
+        return self._get_input_from_user(title, question, options, legend)
+    
+    
+    def show_new_game_menu(self) -> str:
+        self._gui.clear_terminal()
+        title = 'NEW GAME'
+        legend = ['Option', 'Actions']
+        question = 'Pick an option: '
+        options = self._new_game_options
+        return self._get_input_from_user(title, question, options, legend)
+        
+    
+    def _get_input_from_user(self, title, ask, options, legend) -> str:
+        choices = [k[0] for k in options]
+        choices = set(choices + [ k[0].lower() for k in options])
         while True:
             try:
-                entry_choice = self._gui.get_input_from_shown_menu(
-                    title, question, self._startup_options, legend)
-                if entry_choice not in choices: raise ValueError()
+                choice = self._gui.get_input_from_shown_menu(
+                    title, ask, options, legend)
+                if choice not in choices: raise ValueError()
             except ValueError:
-                print('This is not a valid option. Please try again!\n')
+                print('\nThis is not a valid option. Please try again!\n')
+                time.sleep(2)
+                self.menu_transition()
             else:
-                return entry_choice
+                return choice
+    
+    def menu_transition(self):
+        self._gui.clear_terminal()
+        time.sleep(0.5)
     
     def press_any_keys_to_continue(self):
         self._gui.display_any_key_continues()
-        self._gui.insert_line_breaks(1)
-        self._gui.clear_terminal()
+        self.menu_transition()
 
+
+    def set_duel_players(self):
+        self.menu_transition()
+        self._mode = Mode.DUEL
+        ask = 'Enter Player One name: '
+        one = Player(self._gui.get_simple_answer_from_user(ask, 'PLAYER ONE'))
+        self.menu_transition()
+        ask = 'Enter Player Two name: '
+        two = Player(self._gui.get_simple_answer_from_user(ask, 'PLAYER TWO'))
+        self._participants = list([one, two])
+        
+
+    def set_solo_player(self, mode: Mode):
+        self.menu_transition()
+        self._mode = Mode.DUEL
+
+    def play(self, codename = None):
+        if codename is None:
+            #play new Game
+            print('NO CODENAME - NEW PARTY')
+        else:
+            print(f'CODE NAME IS {codename}')
+        time.sleep(2)
+        
+    
+    
+    
     # def exit(self) -> bool:
     #     return self._state
     
