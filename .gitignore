@@ -6,4 +6,5 @@ scr/DiceGame/__pycache__
 src/DiceGame/__pycache__/brain.cpython-39.pyc
 src/.DS_Store
 src/DiceGame/__pycache__/helpers.cpython-39.pyc
-.gitignore
+
+.DS_Store
