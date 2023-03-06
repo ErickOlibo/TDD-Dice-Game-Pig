@@ -8,8 +8,9 @@ class Turn(Enum):
     LOST = auto()
     
 
-""" Enum listing the different strategy the brain can use during a game
-    A Tactic will be randomly assigned at the creation of a Brain per Game
+""" 
+Enum listing the different strategy the brain can use during a game
+A Tactic will be randomly assigned at the creation of a Brain per Game
 """
 class Tactic(Enum):
     TEN = 10 #auto() # Hold at 10  (sum >= 10)[N/A against Optimal Play]
@@ -18,21 +19,10 @@ class Tactic(Enum):
     FOUR_TURNS = auto() # special Tactic [3.3% disavantage against Optimal Play]
 
 
-""" Enums keeping the state of the entry_menu
-"""
-class Entry_Menu(Enum):
-    NEW = 1
-    RESUME = 2
-    EXIT = 3
 
-"""Enum to collect all Static text needed in the application"""
-class Textual(Enum):
-    MENU = 'MENU Gets DISPLAY NOW!'
-    RULES = 'RULES Get DISPLAY NOW!'
-    
-    
-""" Enum representing the different option of playing 2 players or
-    One player against the CPU
+""" 
+Enum representing the different option of playing 2 players or
+One player against the CPU
 """
 class Mode(Enum):
     DUEL = auto()  # Duel - Player One vs. Player Two
@@ -42,18 +32,11 @@ class Mode(Enum):
     SOLO_MERCILESS = auto()  # Solo - You vs. CPU - [Level: Merciless]
     
 
-""" Enum representing the possible players for a game
-"""
-class Participant(Enum):
-    ONE = auto()
-    TWO = auto()
-    CPU = auto()
-    
 
-
-""" Constant for the Dice rolling faces
-    Copyright Leodanis Pozo Ramos
-    URL: https://realpython.com/python-dice-roll/
+""" 
+Constant for the Dice rolling faces
+Copyright Leodanis Pozo Ramos
+URL: https://realpython.com/python-dice-roll/
 """
 DICE_FACES = {
     1: (
@@ -104,12 +87,6 @@ DIE_HEIGHT = len(DICE_FACES[1])
 DIE_WIDTH = len(DICE_FACES[1][0])
 DIE_SEP = " "
 
-""" Inspired by the previous art, Score board
-    It will help the GUI by providing a total display of the dice rolled so far
-    And a score board of the current point for each contestant
-"""
-
-
 
 CODE_NAMES = [
     "Taja", "Baby", "Walt", "Dana", "Barb", "Vida", "Hana", "Foch", "Bret", "Vena",
@@ -135,3 +112,31 @@ CODE_NAMES = [
     "Octa", "Luka", "Ivan", "Vern", "Dora", "Floy", "Flem", "Luke", "Ella", "Dick",
     "Isam", "Cuba", "Andy", "Macy", "Shay", "Harm", "Sade", "Nona", "Lesa", "Rock",
 ]
+
+
+"""Enum to collect all Static text needed in the application"""
+class Textual(Enum):
+    MENU = 'MENU Gets DISPLAY NOW!'
+    RULES = """
+
+Pig is a simple dice game. Players take turns to roll a single dice as many times as they wish, adding all roll results to a running total, but losing their gained score for the turn if they roll a 1.
+    
+    GAMEPLAY:
+    Each turn, a player repeatedly rolls a die until either a 1 is rolled or the player decides to "hold":
+        ⏺ If the player rolls a 1, they score nothing and it becomes the next player's turn.
+        ⏺ If the player rolls any other number, it is added to their turn total and the player's turn continues.
+        ⏺ If a player chooses to "hold", their turn total is added to their score, and it becomes the next player's turn.
+        
+    The first player to score 100 or more points wins.
+    
+    MODES:
+    The game has various playing modes. They each have their difficulties:
+        ⏺ DUEL, where you battle with a friend.
+        ⏺ SOLO-EASY, where you compete against the Computer in an even playing field
+        ⏺ SOLO-MEDIUM, where the odds are slightly against you
+        ⏺ SOLO-HARD, where the odds are definitly against you
+        ⏺ SOLO-MERCILESS, Well I'll be honest, your chances of winning are ridiculously low.
+    
+    Good Luck!
+    """
+    
