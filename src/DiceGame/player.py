@@ -3,35 +3,6 @@ from dice import Dice
 from helpers import Turn
 
 class Player:
-<<<<<<< HEAD
-    """
-    A Player is a participant to the game. There are 2 types:
-        - user: played by an person through the keyboard input
-        - cpu: played internally by the computer
-    Depending on the type, few properties are available
-    
-    Attributes:
-        name: the name of the player.
-        brain (Brain): This brain is available only to the computer to similate
-            an sort of intelligent behaviour
-        dice (Dice): each player rolls with their own dice. A user has a balanced
-            dice, while the computer has an unbalanced one
-    
-    """
-    def __init__(self, name: str, brain: Brain = None, dice: Dice = Dice()):
-        self._name = name
-        self._brain = brain
-        self._dice = dice
-        self._score = 0
-
-
-    @property
-    def name(self) -> str:
-        return self._name
-    
-    @name.setter
-    def name(self, name: str):
-=======
     """A class representing a player in a game.
 
     Attributes:
@@ -55,7 +26,6 @@ class Player:
     @name.setter
     def name(self, name):
         """Sets the player's name to the given value."""
->>>>>>> f1b6668 (Added Docstring to classes)
         self._name = name
 
 
