@@ -108,27 +108,9 @@ class GUI:
         line1 = "┌────┬───────────────┐┌─────┐ ┌────┬───────────────┐┌─────┐"
         line2 = f'│ {c[0]} │ {one:<13}    {s_one:>3} │ │ {c[1]} │ {two:<13}    {s_two:>3}{" │"}'
         line3 = "└────┴───────────────┘└─────┘ └────┴───────────────┘└─────┘"
-    def display_scoreboard(self, name_one: str, name_two: str, s_one: int, s_two: int):
-        """Display the current scores for two players in a scoreboard format.
-        
-        Args:
-            name_one (str): A string representing the name of the first player.
-            name_two (str): A string representing the name of the second player.
-            s_one (int): An integer representing the current score for the first player.
-            s_two (int): An integer representing the current score for the second player.
-        """
-        one = self._shrink_name(name_one)
-        two = self._shrink_name(name_two)
-        line1 = "┌──────────────┐┌─────┐ ┌──────────────┐┌─────┐"
-        line2 = f'{"│ "}{one:<13}   {s_one:>3}{" │ │ "}{two:<13}   {s_two:>3}{" │"}'
-        line3 = "└──────────────┘└─────┘ └──────────────┘└─────┘"
-        scoreboard = "\n".join([line1, line2, line3])
-        print(scoreboard)
-
 
     def _shrink_name(self, name: str) -> str:
         return name if len(name) <= 13 else name[0:10] + '...'
-    
     
     def display_hand_turn(self):
         """Displays the entry menu for the game and prompts the user for a choice.
