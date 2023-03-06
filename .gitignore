@@ -5,3 +5,5 @@ scr/__pycache__
 scr/DiceGame/__pycache__
 src/.DS_Store
 .DS_Store
+__to_delete__
+.gitignore
