@@ -14,7 +14,7 @@ class GUI:
     def __init__(self, player_one: str = None, player_two: str = None):
         self._player_one = player_one
         self._player_two = player_two
-        pass
+
     
     @property
     def player_one(self)-> str:
@@ -108,21 +108,24 @@ class GUI:
         line1 = "┌────┬───────────────┐┌─────┐ ┌────┬───────────────┐┌─────┐"
         line2 = f'│ {c[0]} │ {one:<13}    {s_one:>3} │ │ {c[1]} │ {two:<13}    {s_two:>3}{" │"}'
         line3 = "└────┴───────────────┘└─────┘ └────┴───────────────┘└─────┘"
+        scoreboard = "\n".join([line1, line2, line3])
+        print(scoreboard)
 
-    def _shrink_name(self, name: str) -> str:
-        return name if len(name) <= 13 else name[0:10] + '...'
+
+    def _shrink_name(self, name: str, max_len: int) -> str:
+        return name if len(name) <= max_len else name[0:max_len - 3] + '...'
     
-    def display_hand_turn(self):
-        """Displays the entry menu for the game and prompts the user for a choice.
+    # TO DELETE
+    # def display_hand_turn(self):
+    #     """Displays the entry menu for the game and prompts the user for a choice.
 
-        Returns:
-            An integer representing the user's choice: 1 for New Game, 2 for Resume Game, or E for Exit.
-        """
-        pass
+    #     Returns:
+    #         An integer representing the user's choice: 1 for New Game, 2 for Resume Game, or E for Exit.
+    #     """
+    #     pass
 
     def get_input_from_shown_menu(self, title: str, question: str, options: list, 
-                                  legend = ['Option', 'Actions']
-                                  ) -> str:
+                                  legend = ['Option', 'Actions'] ) -> str:
         menu = self._get_menu_layout(title,options, legend)
         menu += f"\n{question}"
         return input(menu)
@@ -183,6 +186,11 @@ class GUI:
 # TO DELETE WHAT'S UNDER TESTING
 
 # gui = GUI("ErickTerrasson", "Robert")
+# gui.display_scoreboard(34,20, 'Robert')
+# rolls = [2,3,4]
+# gui.display_hand_results(rolls, 9)
+
+
 # gui.display_info(Textual.RULES.value, 'RULES')
 # print()
 # title = 'START UP'
@@ -192,9 +200,7 @@ class GUI:
 
 # gui.get_input_from_shown_menu(title, question, options, legend)
 
-# gui.display_scoreboard(34,20, 'Robert')
-# rolls = [2,3,4]
-# gui.display_hand_results(rolls, 9)
+
 
 #scores = [["Erick", 2005, 222512], ["Robert", 2, 203], ["Steve", 5, 514]]
 

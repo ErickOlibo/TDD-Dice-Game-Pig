@@ -16,8 +16,8 @@ class Event:
     """
     
     def __init__(self, name):
-        self._time_stamp = round(time.time())  # sorting event chronologically
-        self._name = name # Player's name
+        self._time_stamp = round(time.time())
+        self._name = name
         self._points = 0
         self._rolls = []
         pass
