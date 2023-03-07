@@ -6,18 +6,18 @@ import sys
 from game import Game
 from helpers import *
 from database import Database
+#from db_persistant import Persistant
 from gui import GUI
 import time
 
 
 def main():
 
-    game = Game()
-    game.training_game()
+    #Game().training_game()
     
     # A GAME PLAYED gives you a Winner object or a codename for Database
     while True:
-        break
+        
         # 1 - Start an instance of Game
         game = Game()
         db = Database()
@@ -53,8 +53,7 @@ def main():
         
         
         if start_choice == Start_Up.HIGH_SCORE:
-            scores = db.get_highscore()
-            game.show_highscore(scores)
+            game.show_highscore(db.highscore)
             game.press_any_keys_to_continue()
 
 
@@ -64,12 +63,7 @@ def main():
             
 
 
-def new_game(game: Game):
-    print('New Game')
 
-
-def resume_game(game: Game):
-    print('Resume Game')
 
 
 
