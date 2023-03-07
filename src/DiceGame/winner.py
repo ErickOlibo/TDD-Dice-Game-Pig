@@ -14,4 +14,7 @@ class Winner:
     @property
     def data(self) -> list: 
         return self._data
-        
+    
+    @property
+    def to_string(self) -> str:
+        return f'{self._time_stamp} | {self._winner} - {self._score}'
