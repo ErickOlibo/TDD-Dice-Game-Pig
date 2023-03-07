@@ -1,6 +1,5 @@
 from helpers import *
 from player import Player
-from event import Event
 from winner import Winner
 from gui import GUI
 from brain import Brain
@@ -19,7 +18,8 @@ class Game:
     """
 
     
-    def __init__(self):
+    def __init__(self, db):
+        self._database = db
         self._time_stamp = round(time.time())  # sorting Games chronologically
         self._gui = GUI()
         self._codename = None # Only for game in a suspended state
@@ -27,8 +27,11 @@ class Game:
         self._p1 = None
         self._p2 = None
         self._hand = None
-        self._target = 6 #100
+        self._target = 100 #100
         self._winner = False
+        self._back_from_settings = False
+        self._has_quit = False
+        #self._is_paused = False
         
         self._startup_options = [su.value for su in Start_Up if su.name != 'MENU']
         self._startup_options_dict = {su.value[0]:su for su in Start_Up if su.name != 'MENU'}
@@ -41,6 +44,14 @@ class Game:
     
 
     ## PROPERTIES
+    # @property
+    # def is_paused(self) -> bool:
+    #     return self._is_paused
+    
+    # @is_paused.setter
+    # def is_paused(self, state: bool):
+    #     self._is_paused = state
+    
     @property
     def mode(self) -> Mode:
         return self._mode
@@ -140,7 +151,7 @@ class Game:
             self._play_new_game()
         else:
             print(f'CODE NAME IS {codename}')
-        time.sleep(4)
+        #time.sleep(4)
         
     
     def request_codename_from_user(self):
@@ -178,7 +189,10 @@ class Game:
         # RUN GAME TILL SOMEONE REACHES TARGET
         
         while not self._winner:
-            self._playing_round()
+            if not self._has_quit:
+                self._playing_a_turn()
+            else:
+                break
             
         # Declare the winner (save to winner list)
         # Send back a Winner object or game codename to Main.py
@@ -192,9 +206,11 @@ class Game:
     
 
 
-    def _playing_round(self):
+    def _playing_a_turn(self):
         self.menu_transition()
-        self._hand.roll_dice()
+        if not self._back_from_settings:
+            self._hand.roll_dice()
+        self._back_from_settings = False
         rolls = self._hand.rolls
         self._gui.display_scoreboard(
             self._p1.name, self._p1.score, self._p2.name, 
@@ -222,26 +238,69 @@ class Game:
                 elif resp == Turn.ROLL.value:
                     break
                 elif resp == Turn.SETTINGS.value:
-                    pass
+                    choice = self.show_menu('IN-GAME SETTINGS', Settings.MENU)
+                    if choice == Settings.BACK:
+                        self._back_from_settings = True
+                        break
+                    
+                    if choice == Settings.CHEAT:
+                        cheat_points = self._target - (self._hand.score + 1)
+                        self._hand.add_points_to_score(cheat_points)
+                        self._back_from_settings = True
+                        break
+                    
+                    if choice == Settings.QUIT:
+                        self._has_quit = True
+                        self.menu_transition()
+                        msg = '\nSad to see you go!. Came back again anytime!\n\n'
+                        self._gui.print_to_display(msg)
+                        break
+                    
+                    if choice == Settings.PAUSE:
+                        self._has_quit = True
+                        self.menu_transition()
+                        code = self._database.store_game(self)
+                        self.menu_transition()
+                        self._gui.display_paused_game_message(code)
+                        break
+                    
+                    if choice == Settings.NAME:
+                        self.menu_transition()
+                        old_name = self._hand.name
+                        question = 'Enter your new name: '
+                        label = f'CHANGING {old_name.upper()} TO'
+                        new_name = self._gui.get_simple_answer_from_user(question, label)
+                        self._hand.name = new_name
+                        self._database.update_winner_name(old_name, new_name)
+                        self._back_from_settings = True
+                        break
+
                 else:
                     self._gui.print_to_display(f'\n[{resp}] Not a valid option. Try Again!')
                     
 
+
+
+    def _settings_options(self, opt: Settings):
+        
+        pass
+    
     def _hold_for_win(self):
         self.menu_transition()
         msg = self._we_have_winner_message()
         self._winner = True
         self._gui.display_message_and_continues(msg)
         
-        # Save winner to database
-        victor = Winner(self._hand.name, self._hand.score)
         
+        victor = Winner(self._hand.name, self._hand.score)
+        self._database.add_winner(victor)
         
     
     
     def _choose_hold(self):
+        sum_rolls = sum(self._hand.rolls)
         self._hand.reset_rolls()
-        msg = self._hold_message(sum(self._hand.rolls))
+        msg = self._hold_message(sum_rolls)
         self._gui.display_message_and_continues(msg)
         
     
@@ -259,7 +318,7 @@ class Game:
     
     def _intro_message(self,) -> str:
         msg = Textual.NEW_START.value
-        msg += f'\n\nWe have tossed a coin and {self._hand.name} is starting.!'
+        msg += f'\n\nWe have tossed a coin and [ {self._hand.name} ] is starting.!'
         msg += f'\n\nPress any key to start rolling! '
         return msg
     
@@ -286,13 +345,11 @@ class Game:
     
     
 
-    def _reset_game_same_settings():
-        pass
     
     def _we_have_winner_message(self) -> str:
         lines = []
         line = "┌───┐"
-        line += f" A WINNER!! ".center(28, "~")
+        line += f" THE WINNER IS !! ".center(28, "~")
         line += "┌───┐"
         lines.append(line)
         line = f"│ ● │                            │ ● │"
