@@ -22,6 +22,7 @@ class Player:
         self._brain = brain
         self._dice = dice
         self._score = 0
+        self._rolls = []
 
 
     @property
@@ -48,6 +49,10 @@ class Player:
     def score(self) -> int:
         return self._score
     
+    @property
+    def rolls(self) -> list[int]:
+        return self._rolls
+    
     
     def playing_choice(self, score, turn_points) -> Turn:
         if self._brain != None:
@@ -60,4 +65,9 @@ class Player:
         self._score += points
         
     def roll_dice(self) -> int:
-        return self._dice.roll()
+        roll = self._dice.roll()
+        self._rolls.append(roll)
+        return roll
+
+    def reset_rolls(self):
+        self._rolls = []
