@@ -12,8 +12,12 @@ import time
 
 def main():
 
+    game = Game()
+    game.training_game()
+    
+    # A GAME PLAYED gives you a Winner object or a codename for Database
     while True:
-
+        break
         # 1 - Start an instance of Game
         game = Game()
         db = Database()
