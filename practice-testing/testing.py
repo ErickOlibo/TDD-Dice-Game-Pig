@@ -1,13 +1,19 @@
 import random
 
-# for i in range(9400, 10000):
-#     print(f'{i}) - {chr(i)}')
+rolls = [1,2,3,4,5,6,7,8,9,10]
+ck = 3
+#myLists = zip([rolls[i::ck] for i in range(ck)])
+#print(myLists)
 
-# str = '│  ● ┌─  └─  ─┘  ─┐'
+aList = []
+# for i in range(0, len(rolls), ck):
+#     print(i)
+#     print(rolls)
+#     print(rolls[i:ck+i])
+#     aList.append(rolls[i:ck+i])
+    
+# print(aList)
 
-# print('\n\n')
-# for c in str:
-#     print(f'{c}) - {ord(c)}')
+roll_split = [rolls[i:ck+i] for i in range(0, len(rolls), ck)]
 
-people = ['Erick', 'Robert', 'Jennifer', 'Ciara', 'CPU']
-print(random.sample(people, 2))
+print(roll_split)
