@@ -1,8 +1,9 @@
 import os
 from helpers import *
+#from player import Player
 
 class GUI:
-    """ 
+    """ ********** THIS CLASS CANNOT RAISE ISSUES *******
         This class is responsible for interacting with the user via a simple
         text graphic. It does not process, but merly gets data and
         display them according to the method selected.
@@ -11,29 +12,10 @@ class GUI:
         by the caller.
     """
     
-    def __init__(self, player_one: str = None, player_two: str = None):
-        self._player_one = player_one
-        self._player_two = player_two
+    def __init__(self):
+        pass
 
-    
-    @property
-    def player_one(self)-> str:
-        return self._player_one
-    
-    @player_one.setter
-    def player_one(self, name):
-        self._player_one = name
-        
-    
-    @property
-    def player_two(self)-> str:
-        return self._player_two
-    
-    @player_two.setter
-    def player_two(self, name):
-        self._player_two = name
-    
-    
+
     def clear_terminal(self):
         os.system('clear')
     
@@ -70,8 +52,35 @@ class GUI:
                 row_cells.append(face[idx])
             row_line = DIE_SEP.join(row_cells)
             faces_rows.append(row_line)
-            display = "\n".join(faces_rows)
+        display = "\n".join(faces_rows)
         print(display)
+    
+    
+    def display_hand_results_split(self, numbers: list, points: int, split = 4):
+        chunk = [numbers[i:split+i] for i in range(0, len(numbers), split)]
+        rows = []
+        for int_list in chunk:
+            faces = []
+            for numb in int_list:
+                faces.append(DICE_FACES[numb])
+            if int_list == chunk[-1]:
+                fap = faces + [self._get_rolls_points(points)]
+            else:
+                fap = faces + []
+            faces_rows = []
+            for idx in range(DIE_HEIGHT):
+                row_cells = []
+                for face in fap:
+                    row_cells.append(face[idx])
+                row_line = DIE_SEP.join(row_cells)
+                faces_rows.append(row_line)
+            display = "\n".join(faces_rows)
+            rows.append(display)
+            
+        lines = "\n".join(rows)
+        print(lines)
+
+        pass
     
     
     def _get_rolls_points(self, points: int):
@@ -91,26 +100,22 @@ class GUI:
         return (line1, line2, line3, line4, line5)
         
     
-    def display_scoreboard(self, s_one: int, s_two: int, hand: str):
-        if None in [self._player_one, self._player_two]:
-            raise Exception("Players' names must be initialized before using this method!")
-        one = self._player_one
-        two = self._player_two
-        if hand not in [one, two]:
-            msg = f'"{hand}" does not match any of the players names: [{one}, {two}]'
-            raise ValueError(msg)
-        
+    def display_scoreboard(self, n1: str, s1: int, n2: str, s2: int, hand: str):
+
         c = ['🟩', '🟥']
-        if hand == two : c.reverse()
+        if hand == n2 : c.reverse()
         
-        one = self._shrink_name(one, 13)
-        two = self._shrink_name(two, 13)
+        n1 = self._shrink_name(n1, 13)
+        n2 = self._shrink_name(n2, 13)
         line1 = "┌────┬───────────────┐┌─────┐ ┌────┬───────────────┐┌─────┐"
-        line2 = f'│ {c[0]} │ {one:<13}    {s_one:>3} │ │ {c[1]} │ {two:<13}    {s_two:>3}{" │"}'
+        line2 = f'│ {c[0]} │ {n1:<13}    {s1:>3} │ │ {c[1]} │ {n2:<13}    {s2:>3}{" │"}'
         line3 = "└────┴───────────────┘└─────┘ └────┴───────────────┘└─────┘"
         scoreboard = "\n".join([line1, line2, line3])
         print(scoreboard)
 
+
+    def display_get_input_from_hold_roll_message(self, msg: str) -> Turn:
+        pass
 
     def _shrink_name(self, name: str, max_len: int) -> str:
         return name if len(name) <= max_len else name[0:max_len - 3] + '...'
@@ -152,7 +157,8 @@ class GUI:
     
     
     def _set_menu_header(self, title: str, width = 40) -> str:
-        return f" {title} ".center(width, "~")
+        header = f" {title} ".center(width, "~")
+        return f'\n{header}'
     
     
     def display_highscore(self, scores: list, size: int):
@@ -179,11 +185,17 @@ class GUI:
     def display_any_key_continues(self):
         input('Press any key to contiue: ')
     
-    def display_message_and_continues(self, mgs: str):
-        input(f'{mgs}')
+    def display_message_and_continues(self, msg: str):
+        input(f'{msg}')
 
     def insert_line_breaks(self, numb = 1):
         [print() for _ in range(numb)]
+
+
+    def print_to_display(self, msg: str):
+        print(msg)
+        
+    
 
 
 # TO DELETE WHAT'S UNDER TESTING
