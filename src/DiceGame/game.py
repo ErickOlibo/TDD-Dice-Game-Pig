@@ -39,17 +39,8 @@ class Game:
         self._settings_options = [s.value for s in Settings if s.name != 'MENU']
         self._settings_options_dict = {s.value[0]:s for s in Settings if s.name != 'MENU'}
     
-    
-    # @property
-    # def winner(self) -> Winner:
-    #     return self._winner
-    
-    # @winner.setter
-    # def winner(self, winner: Winner):
-    #     if not isinstance(winner, Winner):
-    #         raise TypeError('name must be a string!')
-    #     self._winner= winner
-        
+
+    ## PROPERTIES
     @property
     def mode(self) -> Mode:
         return self._mode
@@ -59,15 +50,29 @@ class Game:
         if not isinstance(mode, Mode):
             raise TypeError('Mode must be SOLO or DUEL!')
         self._mode = mode
+        
+    @property
+    def codename(self) -> str:
+        return self._codename
+    
+    @codename.setter
+    def codename(self, code: str):
+        self._codename = code
 
 
+    #### PUBLIC METHODS
+    def game_for_test(self, p1: Player, p2: Player, mode: Mode):
+        self._p1 = p1
+        self._p2 = p2
+        self._mode = mode
+    
+    
     def display_rules(self):
         self._gui.clear_terminal()
         self._gui.insert_line_breaks(1)
         self._gui.display_info(Textual.RULES.value, 'RULES', 70)
  
 
-    
     def show_highscore(self, scores, size = 10):
         self._gui.clear_terminal()
         self._gui.display_highscore(scores, size)
@@ -92,22 +97,7 @@ class Game:
         resp = self._get_input_from_user(title, question, opt, legend)
         return opt_dict[resp.upper()]
 
-    
-    def _get_input_from_user(self, title, ask, options, legend) -> str:
-        choices = [k[0] for k in options]
-        choices = set(choices + [ k[0].lower() for k in options])
-        while True:
-            try:
-                choice = self._gui.get_input_from_shown_menu(
-                    title, ask, options, legend)
-                if choice not in choices: raise ValueError()
-            except ValueError:
-                print('\nThis is not a valid option. Please try again!\n')
-                time.sleep(2)
-                self.menu_transition()
-            else:
-                return choice
-    
+
     def menu_transition(self):
         self._gui.clear_terminal()
         time.sleep(0.2)
@@ -158,6 +148,23 @@ class Game:
         ask = "Please Enter the Game's Code Name: "
         codename = self._gui.get_simple_answer_from_user(ask, 'CODE NAME')
         return codename
+    
+    
+    #### PRIVATE METHODS
+    def _get_input_from_user(self, title, ask, options, legend) -> str:
+        choices = [k[0] for k in options]
+        choices = set(choices + [ k[0].lower() for k in options])
+        while True:
+            try:
+                choice = self._gui.get_input_from_shown_menu(
+                    title, ask, options, legend)
+                if choice not in choices: raise ValueError()
+            except ValueError:
+                print('\nThis is not a valid option. Please try again!\n')
+                time.sleep(2)
+                self.menu_transition()
+            else:
+                return choice
     
     
     def _play_new_game(self):
