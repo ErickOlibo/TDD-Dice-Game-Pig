@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>src &#8212; TDD-Dice-Game-Pig 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DiceGame package" href="DiceGame.html" />
+    <link rel="prev" title="Welcome to TDD-Dice-Game-Pig’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="src">
+<h1>src<a class="headerlink" href="#src" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="DiceGame.html">DiceGame package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-brain-module">DiceGame.brain module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-database-module">DiceGame.database module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-dice-module">DiceGame.dice module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#module-DiceGame.event">DiceGame.event module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DiceGame.html#DiceGame.event.Event"><code class="docutils literal notranslate"><span class="pre">Event</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.event.Event.add_roll"><code class="docutils literal notranslate"><span class="pre">Event.add_roll()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.event.Event.name"><code class="docutils literal notranslate"><span class="pre">Event.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.event.Event.points"><code class="docutils literal notranslate"><span class="pre">Event.points</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-game-module">DiceGame.game module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-gui-module">DiceGame.gui module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#module-DiceGame.helpers">DiceGame.helpers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.CODE_NAMES"><code class="docutils literal notranslate"><span class="pre">CODE_NAMES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Mode"><code class="docutils literal notranslate"><span class="pre">Mode</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Mode.BACK"><code class="docutils literal notranslate"><span class="pre">Mode.BACK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Mode.DUEL"><code class="docutils literal notranslate"><span class="pre">Mode.DUEL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Mode.MENU"><code class="docutils literal notranslate"><span class="pre">Mode.MENU</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Mode.SOLO_EASY"><code class="docutils literal notranslate"><span class="pre">Mode.SOLO_EASY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Mode.SOLO_HARD"><code class="docutils literal notranslate"><span class="pre">Mode.SOLO_HARD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Mode.SOLO_MEDIUM"><code class="docutils literal notranslate"><span class="pre">Mode.SOLO_MEDIUM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Mode.SOLO_MERCILESS"><code class="docutils literal notranslate"><span class="pre">Mode.SOLO_MERCILESS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Settings"><code class="docutils literal notranslate"><span class="pre">Settings</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Settings.CHEAT_MODE"><code class="docutils literal notranslate"><span class="pre">Settings.CHEAT_MODE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Settings.MENU"><code class="docutils literal notranslate"><span class="pre">Settings.MENU</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Settings.QUIT"><code class="docutils literal notranslate"><span class="pre">Settings.QUIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Settings.RETURN"><code class="docutils literal notranslate"><span class="pre">Settings.RETURN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Settings.SCREEN_NAME"><code class="docutils literal notranslate"><span class="pre">Settings.SCREEN_NAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Settings.SUSPEND"><code class="docutils literal notranslate"><span class="pre">Settings.SUSPEND</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Start_Up"><code class="docutils literal notranslate"><span class="pre">Start_Up</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Start_Up.EXIT"><code class="docutils literal notranslate"><span class="pre">Start_Up.EXIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Start_Up.HIGH_SCORE"><code class="docutils literal notranslate"><span class="pre">Start_Up.HIGH_SCORE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Start_Up.MENU"><code class="docutils literal notranslate"><span class="pre">Start_Up.MENU</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Start_Up.NEW_GAME"><code class="docutils literal notranslate"><span class="pre">Start_Up.NEW_GAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Start_Up.RESUME_GAME"><code class="docutils literal notranslate"><span class="pre">Start_Up.RESUME_GAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Start_Up.RULES"><code class="docutils literal notranslate"><span class="pre">Start_Up.RULES</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Tactic"><code class="docutils literal notranslate"><span class="pre">Tactic</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Tactic.FOUR_TURNS"><code class="docutils literal notranslate"><span class="pre">Tactic.FOUR_TURNS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Tactic.TEN"><code class="docutils literal notranslate"><span class="pre">Tactic.TEN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Tactic.TWENTY"><code class="docutils literal notranslate"><span class="pre">Tactic.TWENTY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Tactic.TWENTY_FIVE"><code class="docutils literal notranslate"><span class="pre">Tactic.TWENTY_FIVE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Textual"><code class="docutils literal notranslate"><span class="pre">Textual</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Textual.MENU"><code class="docutils literal notranslate"><span class="pre">Textual.MENU</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Textual.NEW_START"><code class="docutils literal notranslate"><span class="pre">Textual.NEW_START</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Textual.RULES"><code class="docutils literal notranslate"><span class="pre">Textual.RULES</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Turn"><code class="docutils literal notranslate"><span class="pre">Turn</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Turn.HOLD"><code class="docutils literal notranslate"><span class="pre">Turn.HOLD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Turn.LOSS"><code class="docutils literal notranslate"><span class="pre">Turn.LOSS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Turn.ROLL"><code class="docutils literal notranslate"><span class="pre">Turn.ROLL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.helpers.Turn.SETTINGS"><code class="docutils literal notranslate"><span class="pre">Turn.SETTINGS</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-main-module">DiceGame.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-player-module">DiceGame.player module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-test-brain-module">DiceGame.test_brain module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-test-database-module">DiceGame.test_database module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-test-dice-module">DiceGame.test_dice module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-test-event-module">DiceGame.test_event module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-test-game-module">DiceGame.test_game module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-test-gui-module">DiceGame.test_gui module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-test-player-module">DiceGame.test_player module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#dicegame-test-winner-module">DiceGame.test_winner module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#module-DiceGame.winner">DiceGame.winner module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="DiceGame.html#DiceGame.winner.Winner"><code class="docutils literal notranslate"><span class="pre">Winner</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="DiceGame.html#DiceGame.winner.Winner.data"><code class="docutils literal notranslate"><span class="pre">Winner.data</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html#module-DiceGame">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">TDD-Dice-Game-Pig</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">src</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="DiceGame.html">DiceGame package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to TDD-Dice-Game-Pig’s documentation!</a></li>
+      <li>Next: <a href="DiceGame.html" title="next chapter">DiceGame package</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Erick Olibo, Robert Nesta Nuhu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/modules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

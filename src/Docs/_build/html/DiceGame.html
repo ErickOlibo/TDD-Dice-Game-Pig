@@ -1,0 +1,426 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>DiceGame package &#8212; TDD-Dice-Game-Pig 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="src" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="dicegame-package">
+<h1>DiceGame package<a class="headerlink" href="#dicegame-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-brain-module">
+<h2>DiceGame.brain module<a class="headerlink" href="#dicegame-brain-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-database-module">
+<h2>DiceGame.database module<a class="headerlink" href="#dicegame-database-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-dice-module">
+<h2>DiceGame.dice module<a class="headerlink" href="#dicegame-dice-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-DiceGame.event">
+<span id="dicegame-event-module"></span><h2>DiceGame.event module<a class="headerlink" href="#module-DiceGame.event" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DiceGame.event.Event">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiceGame.event.</span></span><span class="sig-name descname"><span class="pre">Event</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiceGame/event.html#Event"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiceGame.event.Event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represents an event when a player has the hand in the game.
+The event is Unix Time stamped when the hand starts for every roll. A total point
+is calculated till the end of roll [Hold] or a roll of 1.</p>
+<p>Args:
+name (str): The player’s name.</p>
+<p>Attributes:
+_time_stamp (float): The Unix timestamp of the event.
+_name (str): The player’s name.
+_points (int): The total points accumulated during the event.
+_rolls (list): A list of the rolls made during the event.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DiceGame.event.Event.add_roll">
+<span class="sig-name descname"><span class="pre">add_roll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiceGame/event.html#Event.add_roll"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiceGame.event.Event.add_roll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a roll value to the event and updates the total points.</p>
+<p>Args:
+value (int): The value of the roll to add.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="DiceGame.event.Event.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#DiceGame.event.Event.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The player’s name.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="DiceGame.event.Event.points">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">points</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#DiceGame.event.Event.points" title="Permalink to this definition">¶</a></dt>
+<dd><p>The total points accumulated during the event.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="dicegame-game-module">
+<h2>DiceGame.game module<a class="headerlink" href="#dicegame-game-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-gui-module">
+<h2>DiceGame.gui module<a class="headerlink" href="#dicegame-gui-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-DiceGame.helpers">
+<span id="dicegame-helpers-module"></span><h2>DiceGame.helpers module<a class="headerlink" href="#module-DiceGame.helpers" title="Permalink to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="DiceGame.helpers.CODE_NAMES">
+<span class="sig-prename descclassname"><span class="pre">DiceGame.helpers.</span></span><span class="sig-name descname"><span class="pre">CODE_NAMES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['Taja',</span> <span class="pre">'Baby',</span> <span class="pre">'Walt',</span> <span class="pre">'Dana',</span> <span class="pre">'Barb',</span> <span class="pre">'Vida',</span> <span class="pre">'Hana',</span> <span class="pre">'Foch',</span> <span class="pre">'Bret',</span> <span class="pre">'Vena',</span> <span class="pre">'Cori',</span> <span class="pre">'Eula',</span> <span class="pre">'Theo',</span> <span class="pre">'Kobe',</span> <span class="pre">'Elin',</span> <span class="pre">'Noel',</span> <span class="pre">'Yoel',</span> <span class="pre">'Jean',</span> <span class="pre">'Kami',</span> <span class="pre">'Zayn',</span> <span class="pre">'Wade',</span> <span class="pre">'Jaye',</span> <span class="pre">'Nery',</span> <span class="pre">'Irva',</span> <span class="pre">'Dior',</span> <span class="pre">'Lise',</span> <span class="pre">'Mena',</span> <span class="pre">'Tito',</span> <span class="pre">'Matt',</span> <span class="pre">'Wirt',</span> <span class="pre">'Reva',</span> <span class="pre">'Nick',</span> <span class="pre">'Hali',</span> <span class="pre">'Gael',</span> <span class="pre">'Rand',</span> <span class="pre">'Wess',</span> <span class="pre">'Geno',</span> <span class="pre">'Zela',</span> <span class="pre">'Harl',</span> <span class="pre">'Hill',</span> <span class="pre">'Ella',</span> <span class="pre">'Fawn',</span> <span class="pre">'Olan',</span> <span class="pre">'Amil',</span> <span class="pre">'Opal',</span> <span class="pre">'Lyle',</span> <span class="pre">'Sada',</span> <span class="pre">'Ferd',</span> <span class="pre">'Deon',</span> <span class="pre">'Lone',</span> <span class="pre">'Zena',</span> <span class="pre">'Bree',</span> <span class="pre">'Case',</span> <span class="pre">'Adel',</span> <span class="pre">'Zayd',</span> <span class="pre">'Ford',</span> <span class="pre">'Murl',</span> <span class="pre">'Fran',</span> <span class="pre">'Vada',</span> <span class="pre">'Iver',</span> <span class="pre">'Vicy',</span> <span class="pre">'Baby',</span> <span class="pre">'Gary',</span> <span class="pre">'Keli',</span> <span class="pre">'Wava',</span> <span class="pre">'Purl',</span> <span class="pre">'Ivey',</span> <span class="pre">'Neil',</span> <span class="pre">'Sing',</span> <span class="pre">'Kane',</span> <span class="pre">'Dino',</span> <span class="pre">'Faye',</span> <span class="pre">'Vina',</span> <span class="pre">'Knox',</span> <span class="pre">'Tobi',</span> <span class="pre">'John',</span> <span class="pre">'Darl',</span> <span class="pre">'Jael',</span> <span class="pre">'Xavi',</span> <span class="pre">'Jett',</span> <span class="pre">'Oley',</span> <span class="pre">'Nila',</span> <span class="pre">'Pink',</span> <span class="pre">'Less',</span> <span class="pre">'Verl',</span> <span class="pre">'Gena',</span> <span class="pre">'Wong',</span> <span class="pre">'Irma',</span> <span class="pre">'Rolf',</span> <span class="pre">'Aron',</span> <span class="pre">'Crew',</span> <span class="pre">'Jade',</span> <span class="pre">'Zack',</span> <span class="pre">'Kyle',</span> <span class="pre">'Lita',</span> <span class="pre">'Yair',</span> <span class="pre">'Zada',</span> <span class="pre">'Phil',</span> <span class="pre">'Ruie',</span> <span class="pre">'Lola',</span> <span class="pre">'Kirt',</span> <span class="pre">'Ares',</span> <span class="pre">'Pink',</span> <span class="pre">'Burk',</span> <span class="pre">'Pete',</span> <span class="pre">'Olof',</span> <span class="pre">'Tyra',</span> <span class="pre">'Rube',</span> <span class="pre">'Kira',</span> <span class="pre">'Myra',</span> <span class="pre">'Yara',</span> <span class="pre">'Elna',</span> <span class="pre">'Fate',</span> <span class="pre">'Adda',</span> <span class="pre">'Bose',</span> <span class="pre">'Burl',</span> <span class="pre">'Chad',</span> <span class="pre">'Star',</span> <span class="pre">'Vito',</span> <span class="pre">'Zoya',</span> <span class="pre">'Sage',</span> <span class="pre">'Rudy',</span> <span class="pre">'Jody',</span> <span class="pre">'Shea',</span> <span class="pre">'Naya',</span> <span class="pre">'Jody',</span> <span class="pre">'Niko',</span> <span class="pre">'Tory',</span> <span class="pre">'Nola',</span> <span class="pre">'Geri',</span> <span class="pre">'Alta',</span> <span class="pre">'Otha',</span> <span class="pre">'Cena',</span> <span class="pre">'Omer',</span> <span class="pre">'Zeke',</span> <span class="pre">'Carl',</span> <span class="pre">'Hamp',</span> <span class="pre">'Tana',</span> <span class="pre">'Iker',</span> <span class="pre">'Chet',</span> <span class="pre">'Bama',</span> <span class="pre">'Anna',</span> <span class="pre">'Edna',</span> <span class="pre">'Cali',</span> <span class="pre">'Mimi',</span> <span class="pre">'Aili',</span> <span class="pre">'Xena',</span> <span class="pre">'Gene',</span> <span class="pre">'Halo',</span> <span class="pre">'Etta',</span> <span class="pre">'Neva',</span> <span class="pre">'Mack',</span> <span class="pre">'Ivah',</span> <span class="pre">'Dani',</span> <span class="pre">'Wren',</span> <span class="pre">'Hays',</span> <span class="pre">'Isom',</span> <span class="pre">'Greg',</span> <span class="pre">'Maud',</span> <span class="pre">'Shay',</span> <span class="pre">'Page',</span> <span class="pre">'Olar',</span> <span class="pre">'Iola',</span> <span class="pre">'Mima',</span> <span class="pre">'Yael',</span> <span class="pre">'Lula',</span> <span class="pre">'Joan',</span> <span class="pre">'Hedy',</span> <span class="pre">'Keri',</span> <span class="pre">'Fern',</span> <span class="pre">'Gale',</span> <span class="pre">'Elmo',</span> <span class="pre">'Rita',</span> <span class="pre">'Cody',</span> <span class="pre">'Jose',</span> <span class="pre">'Tera',</span> <span class="pre">'Zeno',</span> <span class="pre">'York',</span> <span class="pre">'Kory',</span> <span class="pre">'Roma',</span> <span class="pre">'Will',</span> <span class="pre">'Brea',</span> <span class="pre">'Paul',</span> <span class="pre">'Gwen',</span> <span class="pre">'Asha',</span> <span class="pre">'Zula',</span> <span class="pre">'Vera',</span> <span class="pre">'Gigi',</span> <span class="pre">'Hope',</span> <span class="pre">'Dell',</span> <span class="pre">'Omie',</span> <span class="pre">'Male',</span> <span class="pre">'Shad',</span> <span class="pre">'Vick',</span> <span class="pre">'Etha',</span> <span class="pre">'Thor',</span> <span class="pre">'Shan',</span> <span class="pre">'Rosy',</span> <span class="pre">'Dona',</span> <span class="pre">'Tony',</span> <span class="pre">'Octa',</span> <span class="pre">'Luka',</span> <span class="pre">'Ivan',</span> <span class="pre">'Vern',</span> <span class="pre">'Dora',</span> <span class="pre">'Floy',</span> <span class="pre">'Flem',</span> <span class="pre">'Luke',</span> <span class="pre">'Ella',</span> <span class="pre">'Dick',</span> <span class="pre">'Isam',</span> <span class="pre">'Cuba',</span> <span class="pre">'Andy',</span> <span class="pre">'Macy',</span> <span class="pre">'Shay',</span> <span class="pre">'Harm',</span> <span class="pre">'Sade',</span> <span class="pre">'Nona',</span> <span class="pre">'Lesa',</span> <span class="pre">'Rock']</span></em><a class="headerlink" href="#DiceGame.helpers.CODE_NAMES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enum to collect all Static text needed in the application</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiceGame.helpers.Mode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiceGame.helpers.</span></span><span class="sig-name descname"><span class="pre">Mode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiceGame/helpers.html#Mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiceGame.helpers.Mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Mode.BACK">
+<span class="sig-name descname"><span class="pre">BACK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['B',</span> <span class="pre">'↩</span> <span class="pre">Back']</span></em><a class="headerlink" href="#DiceGame.helpers.Mode.BACK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Mode.DUEL">
+<span class="sig-name descname"><span class="pre">DUEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['1',</span> <span class="pre">'Duel']</span></em><a class="headerlink" href="#DiceGame.helpers.Mode.DUEL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Mode.MENU">
+<span class="sig-name descname"><span class="pre">MENU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#DiceGame.helpers.Mode.MENU" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Mode.SOLO_EASY">
+<span class="sig-name descname"><span class="pre">SOLO_EASY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['2',</span> <span class="pre">'Solo</span> <span class="pre">-</span> <span class="pre">Easy']</span></em><a class="headerlink" href="#DiceGame.helpers.Mode.SOLO_EASY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Mode.SOLO_HARD">
+<span class="sig-name descname"><span class="pre">SOLO_HARD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['4',</span> <span class="pre">'Solo</span> <span class="pre">-</span> <span class="pre">Hard']</span></em><a class="headerlink" href="#DiceGame.helpers.Mode.SOLO_HARD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Mode.SOLO_MEDIUM">
+<span class="sig-name descname"><span class="pre">SOLO_MEDIUM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['3',</span> <span class="pre">'Solo</span> <span class="pre">-</span> <span class="pre">Medium']</span></em><a class="headerlink" href="#DiceGame.helpers.Mode.SOLO_MEDIUM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Mode.SOLO_MERCILESS">
+<span class="sig-name descname"><span class="pre">SOLO_MERCILESS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['5',</span> <span class="pre">'Solo</span> <span class="pre">-</span> <span class="pre">Merciless']</span></em><a class="headerlink" href="#DiceGame.helpers.Mode.SOLO_MERCILESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiceGame.helpers.Settings">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiceGame.helpers.</span></span><span class="sig-name descname"><span class="pre">Settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiceGame/helpers.html#Settings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiceGame.helpers.Settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>During the course of a game a user can display a setting view with 
+additional options</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>Enum (list[str]): Used to display the Start_up menu to the user</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Settings.CHEAT_MODE">
+<span class="sig-name descname"><span class="pre">CHEAT_MODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['C',</span> <span class="pre">'Enter</span> <span class="pre">Cheat</span> <span class="pre">Mode']</span></em><a class="headerlink" href="#DiceGame.helpers.Settings.CHEAT_MODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Settings.MENU">
+<span class="sig-name descname"><span class="pre">MENU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#DiceGame.helpers.Settings.MENU" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Settings.QUIT">
+<span class="sig-name descname"><span class="pre">QUIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['3',</span> <span class="pre">'Quit</span> <span class="pre">Game']</span></em><a class="headerlink" href="#DiceGame.helpers.Settings.QUIT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Settings.RETURN">
+<span class="sig-name descname"><span class="pre">RETURN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['R',</span> <span class="pre">'Return</span> <span class="pre">to</span> <span class="pre">Game']</span></em><a class="headerlink" href="#DiceGame.helpers.Settings.RETURN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Settings.SCREEN_NAME">
+<span class="sig-name descname"><span class="pre">SCREEN_NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['1',</span> <span class="pre">'Change</span> <span class="pre">Name']</span></em><a class="headerlink" href="#DiceGame.helpers.Settings.SCREEN_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Settings.SUSPEND">
+<span class="sig-name descname"><span class="pre">SUSPEND</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['2',</span> <span class="pre">'Suspend</span> <span class="pre">Game']</span></em><a class="headerlink" href="#DiceGame.helpers.Settings.SUSPEND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiceGame.helpers.Start_Up">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiceGame.helpers.</span></span><span class="sig-name descname"><span class="pre">Start_Up</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiceGame/helpers.html#Start_Up"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiceGame.helpers.Start_Up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>At the start of a Game this gives the user a choice to pick an option</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>Enum (list[str]): Used to display the Start_up menu to the user</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Start_Up.EXIT">
+<span class="sig-name descname"><span class="pre">EXIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['E',</span> <span class="pre">'Exit']</span></em><a class="headerlink" href="#DiceGame.helpers.Start_Up.EXIT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Start_Up.HIGH_SCORE">
+<span class="sig-name descname"><span class="pre">HIGH_SCORE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['3',</span> <span class="pre">'High-score']</span></em><a class="headerlink" href="#DiceGame.helpers.Start_Up.HIGH_SCORE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Start_Up.MENU">
+<span class="sig-name descname"><span class="pre">MENU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#DiceGame.helpers.Start_Up.MENU" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Start_Up.NEW_GAME">
+<span class="sig-name descname"><span class="pre">NEW_GAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['1',</span> <span class="pre">'New</span> <span class="pre">Game']</span></em><a class="headerlink" href="#DiceGame.helpers.Start_Up.NEW_GAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Start_Up.RESUME_GAME">
+<span class="sig-name descname"><span class="pre">RESUME_GAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['2',</span> <span class="pre">'Resume</span> <span class="pre">Game']</span></em><a class="headerlink" href="#DiceGame.helpers.Start_Up.RESUME_GAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Start_Up.RULES">
+<span class="sig-name descname"><span class="pre">RULES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['4',</span> <span class="pre">'Rules']</span></em><a class="headerlink" href="#DiceGame.helpers.Start_Up.RULES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiceGame.helpers.Tactic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiceGame.helpers.</span></span><span class="sig-name descname"><span class="pre">Tactic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiceGame/helpers.html#Tactic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiceGame.helpers.Tactic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Tactic.FOUR_TURNS">
+<span class="sig-name descname"><span class="pre">FOUR_TURNS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">26</span></em><a class="headerlink" href="#DiceGame.helpers.Tactic.FOUR_TURNS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Tactic.TEN">
+<span class="sig-name descname"><span class="pre">TEN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#DiceGame.helpers.Tactic.TEN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Tactic.TWENTY">
+<span class="sig-name descname"><span class="pre">TWENTY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">20</span></em><a class="headerlink" href="#DiceGame.helpers.Tactic.TWENTY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Tactic.TWENTY_FIVE">
+<span class="sig-name descname"><span class="pre">TWENTY_FIVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">25</span></em><a class="headerlink" href="#DiceGame.helpers.Tactic.TWENTY_FIVE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiceGame.helpers.Textual">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiceGame.helpers.</span></span><span class="sig-name descname"><span class="pre">Textual</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiceGame/helpers.html#Textual"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiceGame.helpers.Textual" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Textual.MENU">
+<span class="sig-name descname"><span class="pre">MENU</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MENU</span> <span class="pre">Gets</span> <span class="pre">DISPLAY</span> <span class="pre">NOW!'</span></em><a class="headerlink" href="#DiceGame.helpers.Textual.MENU" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Textual.NEW_START">
+<span class="sig-name descname"><span class="pre">NEW_START</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">~~~~~~~~~~~~~~~~~~~~~~~~~\n</span>&#160;&#160;&#160; <span class="pre">Welcome</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">Start</span> <span class="pre">of</span> <span class="pre">this</span> <span class="pre">Game</span> <span class="pre">of</span> <span class="pre">PIG.</span> <span class="pre">It</span> <span class="pre">is</span> <span class="pre">simple:\n</span>&#160;&#160;&#160; <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">First</span> <span class="pre">player</span> <span class="pre">to</span> <span class="pre">reach</span> <span class="pre">100</span> <span class="pre">or</span> <span class="pre">more</span> <span class="pre">points,</span> <span class="pre">WINS!\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">[</span> <span class="pre">🟩</span> <span class="pre">]</span> <span class="pre">&lt;--</span> <span class="pre">Means</span> <span class="pre">it</span> <span class="pre">is</span> <span class="pre">your</span> <span class="pre">turn</span> <span class="pre">to</span> <span class="pre">play.\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">[</span> <span class="pre">🟥</span> <span class="pre">]</span> <span class="pre">&lt;--</span> <span class="pre">Means</span> <span class="pre">it</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">your</span> <span class="pre">turn...\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">ROLL</span> <span class="pre">[2]-[3]-[4]-[5]-[6],</span> <span class="pre">you</span> <span class="pre">are</span> <span class="pre">safe!\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">ROLL</span> <span class="pre">[1],</span> <span class="pre">you</span> <span class="pre">loose</span> <span class="pre">all</span> <span class="pre">cummulated</span> <span class="pre">points</span> <span class="pre">of</span> <span class="pre">your</span> <span class="pre">turn.\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">HOLD</span> <span class="pre">before</span> <span class="pre">getting</span> <span class="pre">[1]</span> <span class="pre">and</span> <span class="pre">you</span> <span class="pre">add</span> <span class="pre">points</span> <span class="pre">to</span> <span class="pre">your</span> <span class="pre">total\n</span>&#160;&#160;&#160; <span class="pre">\n</span>&#160;&#160;&#160; <span class="pre">Good</span> <span class="pre">Luck..!\n</span>&#160;&#160;&#160; <span class="pre">~~~~~~~~~~~~~~~~~~~~~~~~~\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#DiceGame.helpers.Textual.NEW_START" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Textual.RULES">
+<span class="sig-name descname"><span class="pre">RULES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n\nPig</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">simple</span> <span class="pre">dice</span> <span class="pre">game.</span> <span class="pre">Players</span> <span class="pre">take</span> <span class="pre">turns</span> <span class="pre">to</span> <span class="pre">roll</span> <span class="pre">a</span> <span class="pre">single</span> <span class="pre">dice</span> <span class="pre">as</span> <span class="pre">many</span> <span class="pre">times</span> <span class="pre">as</span> <span class="pre">they</span> <span class="pre">wish,</span> <span class="pre">adding</span> <span class="pre">all</span> <span class="pre">roll</span> <span class="pre">results</span> <span class="pre">to</span> <span class="pre">a</span> <span class="pre">running</span> <span class="pre">total,</span> <span class="pre">but</span> <span class="pre">losing</span> <span class="pre">their</span> <span class="pre">gained</span> <span class="pre">score</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">turn</span> <span class="pre">if</span> <span class="pre">they</span> <span class="pre">roll</span> <span class="pre">a</span> <span class="pre">1.\n</span>&#160;&#160;&#160; <span class="pre">\n</span>&#160;&#160;&#160; <span class="pre">GAMEPLAY:\n</span>&#160;&#160;&#160; <span class="pre">Each</span> <span class="pre">turn,</span> <span class="pre">a</span> <span class="pre">player</span> <span class="pre">repeatedly</span> <span class="pre">rolls</span> <span class="pre">a</span> <span class="pre">die</span> <span class="pre">until</span> <span class="pre">either</span> <span class="pre">a</span> <span class="pre">1</span> <span class="pre">is</span> <span class="pre">rolled</span> <span class="pre">or</span> <span class="pre">the</span> <span class="pre">player</span> <span class="pre">decides</span> <span class="pre">to</span> <span class="pre">&quot;hold&quot;:\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">If</span> <span class="pre">the</span> <span class="pre">player</span> <span class="pre">rolls</span> <span class="pre">a</span> <span class="pre">1,</span> <span class="pre">they</span> <span class="pre">score</span> <span class="pre">nothing</span> <span class="pre">and</span> <span class="pre">it</span> <span class="pre">becomes</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">player\'s</span> <span class="pre">turn.\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">If</span> <span class="pre">the</span> <span class="pre">player</span> <span class="pre">rolls</span> <span class="pre">any</span> <span class="pre">other</span> <span class="pre">number,</span> <span class="pre">it</span> <span class="pre">is</span> <span class="pre">added</span> <span class="pre">to</span> <span class="pre">their</span> <span class="pre">turn</span> <span class="pre">total</span> <span class="pre">and</span> <span class="pre">the</span> <span class="pre">player\'s</span> <span class="pre">turn</span> <span class="pre">continues.\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">If</span> <span class="pre">a</span> <span class="pre">player</span> <span class="pre">chooses</span> <span class="pre">to</span> <span class="pre">&quot;hold&quot;,</span> <span class="pre">their</span> <span class="pre">turn</span> <span class="pre">total</span> <span class="pre">is</span> <span class="pre">added</span> <span class="pre">to</span> <span class="pre">their</span> <span class="pre">score,</span> <span class="pre">and</span> <span class="pre">it</span> <span class="pre">becomes</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">player\'s</span> <span class="pre">turn.\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">\n</span>&#160;&#160;&#160; <span class="pre">The</span> <span class="pre">first</span> <span class="pre">player</span> <span class="pre">to</span> <span class="pre">score</span> <span class="pre">100</span> <span class="pre">or</span> <span class="pre">more</span> <span class="pre">points</span> <span class="pre">wins.\n</span>&#160;&#160;&#160; <span class="pre">\n</span>&#160;&#160;&#160; <span class="pre">MODES:\n</span>&#160;&#160;&#160; <span class="pre">The</span> <span class="pre">game</span> <span class="pre">has</span> <span class="pre">various</span> <span class="pre">playing</span> <span class="pre">modes.</span> <span class="pre">They</span> <span class="pre">each</span> <span class="pre">have</span> <span class="pre">their</span> <span class="pre">difficulties:\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">DUEL,</span> <span class="pre">where</span> <span class="pre">you</span> <span class="pre">battle</span> <span class="pre">with</span> <span class="pre">a</span> <span class="pre">friend.\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">SOLO-EASY,</span> <span class="pre">where</span> <span class="pre">you</span> <span class="pre">compete</span> <span class="pre">against</span> <span class="pre">the</span> <span class="pre">Computer</span> <span class="pre">in</span> <span class="pre">an</span> <span class="pre">even</span> <span class="pre">playing</span> <span class="pre">field\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">SOLO-MEDIUM,</span> <span class="pre">where</span> <span class="pre">the</span> <span class="pre">odds</span> <span class="pre">are</span> <span class="pre">slightly</span> <span class="pre">against</span> <span class="pre">you\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">SOLO-HARD,</span> <span class="pre">where</span> <span class="pre">the</span> <span class="pre">odds</span> <span class="pre">are</span> <span class="pre">definitly</span> <span class="pre">against</span> <span class="pre">you\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">⏺</span> <span class="pre">SOLO-MERCILESS,</span> <span class="pre">Well</span> <span class="pre">I\'ll</span> <span class="pre">be</span> <span class="pre">honest,</span> <span class="pre">your</span> <span class="pre">chances</span> <span class="pre">of</span> <span class="pre">winning</span> <span class="pre">are</span> <span class="pre">ridiculously</span> <span class="pre">low.\n</span>&#160;&#160;&#160; <span class="pre">\n</span>&#160;&#160;&#160; <span class="pre">Good</span> <span class="pre">Luck!\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#DiceGame.helpers.Textual.RULES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="DiceGame.helpers.Turn">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiceGame.helpers.</span></span><span class="sig-name descname"><span class="pre">Turn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiceGame/helpers.html#Turn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiceGame.helpers.Turn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Turn.HOLD">
+<span class="sig-name descname"><span class="pre">HOLD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'H'</span></em><a class="headerlink" href="#DiceGame.helpers.Turn.HOLD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Turn.LOSS">
+<span class="sig-name descname"><span class="pre">LOSS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'L'</span></em><a class="headerlink" href="#DiceGame.helpers.Turn.LOSS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Turn.ROLL">
+<span class="sig-name descname"><span class="pre">ROLL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'R'</span></em><a class="headerlink" href="#DiceGame.helpers.Turn.ROLL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="DiceGame.helpers.Turn.SETTINGS">
+<span class="sig-name descname"><span class="pre">SETTINGS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'S'</span></em><a class="headerlink" href="#DiceGame.helpers.Turn.SETTINGS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="dicegame-main-module">
+<h2>DiceGame.main module<a class="headerlink" href="#dicegame-main-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-player-module">
+<h2>DiceGame.player module<a class="headerlink" href="#dicegame-player-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-test-brain-module">
+<h2>DiceGame.test_brain module<a class="headerlink" href="#dicegame-test-brain-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-test-database-module">
+<h2>DiceGame.test_database module<a class="headerlink" href="#dicegame-test-database-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-test-dice-module">
+<h2>DiceGame.test_dice module<a class="headerlink" href="#dicegame-test-dice-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-test-event-module">
+<h2>DiceGame.test_event module<a class="headerlink" href="#dicegame-test-event-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-test-game-module">
+<h2>DiceGame.test_game module<a class="headerlink" href="#dicegame-test-game-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-test-gui-module">
+<h2>DiceGame.test_gui module<a class="headerlink" href="#dicegame-test-gui-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-test-player-module">
+<h2>DiceGame.test_player module<a class="headerlink" href="#dicegame-test-player-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="dicegame-test-winner-module">
+<h2>DiceGame.test_winner module<a class="headerlink" href="#dicegame-test-winner-module" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-DiceGame.winner">
+<span id="dicegame-winner-module"></span><h2>DiceGame.winner module<a class="headerlink" href="#module-DiceGame.winner" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DiceGame.winner.Winner">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">DiceGame.winner.</span></span><span class="sig-name descname"><span class="pre">Winner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">winner</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">score</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stamp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1678182534</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/DiceGame/winner.html#Winner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#DiceGame.winner.Winner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This object will serve as a data structure to save game’s winner stats</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="DiceGame.winner.Winner.data">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span></em><a class="headerlink" href="#DiceGame.winner.Winner.data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-DiceGame">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-DiceGame" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">TDD-Dice-Game-Pig</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DiceGame package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">src</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">src</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, Erick Olibo, Robert Nesta Nuhu.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/DiceGame.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
