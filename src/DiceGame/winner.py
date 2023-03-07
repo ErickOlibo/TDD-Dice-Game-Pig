@@ -4,11 +4,11 @@ class Winner:
     """ This object will serve as a data structure to save game's winner stats
     """
     
-    def __init__(self, winner: str, score: int, stamp = round(time.time())):
-        self._time_stamp = stamp  # sorting Winners chronologically
-        self._winner = winner
+    def __init__(self, name: str, score: int, stamp = round(time.time())):
+        self._stamp = stamp  # sorting Winners chronologically
+        self._name = name
         self._score = score
-        self._data = [self._time_stamp, winner, score]
+        self._data = [self._stamp, self._name, self._score]
 
 
     @property
@@ -16,5 +16,17 @@ class Winner:
         return self._data
     
     @property
+    def name(self) -> str:
+        return self._name
+    
+    @name.setter
+    def name(self, name: str):
+        self._name = name
+    
+    
+    @property
     def to_string(self) -> str:
-        return f'{self._time_stamp} | {self._winner} - {self._score}'
+        return f'{self._stamp} | {self._name} - {self._score}'
+    
+    def get_name(self) -> str:
+        return self._name
