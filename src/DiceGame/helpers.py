@@ -3,9 +3,10 @@ from enum import Enum, auto
 
 """Enum to list the states of a turn in the game"""
 class Turn(Enum):
-    HOLD = auto()
-    ROLL = auto()
-    LOST = auto()
+    HOLD = 'H'
+    ROLL = 'R'
+    LOSS = 'L'
+    SETTINGS = 'S'
     
 
 """ 
@@ -64,12 +65,6 @@ class Settings(Enum):
     MENU = auto()
 
 
-class Menu_Type(Enum):
-    START_UP = auto()
-    MODE = auto()
-    SETTINGS = auto()
-    
-    
     
     
 """ 
@@ -178,4 +173,17 @@ Pig is a simple dice game. Players take turns to roll a single dice as many time
     
     Good Luck!
     """
+    NEW_START = """
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Welcome to the Start of this Game of PIG. It is simple:
     
+        ⏺ First player to reach 100 or more points, WINS!
+        ⏺ [ 🟩 ] <-- Means it is your turn to play.
+        ⏺ [ 🟥 ] <-- Means it is not your turn...
+        ⏺ ROLL [2]-[3]-[4]-[5]-[6], you are safe!
+        ⏺ ROLL [1], you loose all cummulated points of your turn.
+        ⏺ HOLD before getting [1] and you add points to your total
+    
+    Good Luck..!
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    """
