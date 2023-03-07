@@ -1,4 +1,3 @@
-import uuid
 from helpers import *
 from player import Player
 from event import Event
@@ -7,7 +6,10 @@ from gui import GUI
 from brain import Brain
 from dice import Dice
 from typing import TypeVar
+import random
 import time
+
+
 class Game:
     """ 
         A instance of a game played. It has all the rules, 
@@ -22,20 +24,19 @@ class Game:
         self._gui = GUI()
         self._codename = None # Only for game in a suspended state
         self._mode = None
-        self._participants = list[Player]
-        self._hand = None # (name of the player)
+        self._p1 = None
+        self._p2 = None
+        self._hand = None
+        self._target = 20 #100
         
         self._startup_options = [su.value for su in Start_Up if su.name != 'MENU']
         self._startup_options_dict = {su.value[0]:su for su in Start_Up if su.name != 'MENU'}
-        #print(self._startup_options_dict)
         
         self._new_game_options = [m.value for m in Mode if m.name != 'MENU']
         self._new_game_options_dict = {m.value[0]:m for m in Mode if m.name != 'MENU'}
-        #print(self._new_game_options_dict)
         
         self._settings_options = [s.value for s in Settings if s.name != 'MENU']
         self._settings_options_dict = {s.value[0]:s for s in Settings if s.name != 'MENU'}
-        #print(self._settings_options_dict)
     
     
     @property
@@ -69,37 +70,6 @@ class Game:
     def show_highscore(self, scores, size = 10):
         self._gui.clear_terminal()
         self._gui.display_highscore(scores, size)
-
-# POSSIBILITY TO CHANGE ALL BELOW INTO ONE METHOD
-# TO DELETE LATER---
-    # def show_startup_menu(self) -> Start_Up:
-    #     self._gui.clear_terminal()
-    #     title = 'START UP'
-    #     legend = ['Option', 'Actions']
-    #     question = 'Pick an option: '
-    #     options = self._startup_options
-    #     response = self._get_input_from_user(title, question, options, legend)
-    #     return self._startup_options_dict[response.upper()]
-    
-    
-    # def show_new_game_menu(self) -> Mode:
-    #     self._gui.clear_terminal()
-    #     title = 'NEW GAME'
-    #     legend = ['Option', 'Actions']
-    #     question = 'Pick an option: '
-    #     options = self._new_game_options
-    #     response = self._get_input_from_user(title, question, options, legend)
-    #     return self._new_game_options_dict[response.upper()]
-    
-    
-    # def show_in_game_settings(self) -> Settings:
-    #     self._gui.clear_terminal()
-    #     title = 'SETTINGS'
-    #     legend = ['Option', 'Actions']
-    #     question = 'Pick an option: '
-    #     options = self._settings_options
-    #     response = self._get_input_from_user(title, question, options, legend)
-    #     return self._settings_options_dict[response.upper()]
 
 
     T = TypeVar("T")
@@ -139,7 +109,7 @@ class Game:
     
     def menu_transition(self):
         self._gui.clear_terminal()
-        time.sleep(0.3)
+        time.sleep(0.2)
     
     def press_any_keys_to_continue(self):
         self._gui.display_any_key_continues()
@@ -160,23 +130,23 @@ class Game:
                 f'\n[{n_two}] is already taken by the PLAYER ONE.\nTry again by pressing any keys! ')
             self.menu_transition()
 
-        one = Player(n_one)
-        two = Player(n_two)
-        self._participants = list([one, two])
+        self._p1 = Player(n_one)
+        self._p2 = Player(n_two)
         
 
     def set_solo_player(self, mode: Mode):
         self.menu_transition()
         self._mode = mode
         ask = 'Enter your name: '
-        one = Player(self._gui.get_simple_answer_from_user(ask, 'PLAYER'))
-        cpu = Player('CPU', Brain(), Dice(mode))
-        
+        self._p1 = Player(self._gui.get_simple_answer_from_user(ask, 'PLAYER'))
+        self._p2 = Player('CPU', Brain(), Dice(mode))
+
 
     def play(self, codename = None):
         if codename is None:
             #play new Game
             print('NO CODENAME - NEW GAME')
+            self._play_new_game()
         else:
             print(f'CODE NAME IS {codename}')
         time.sleep(4)
@@ -188,3 +158,169 @@ class Game:
         codename = self._gui.get_simple_answer_from_user(ask, 'CODE NAME')
         return codename
     
+    
+    def _play_new_game(self):
+        self.menu_transition()
+        # DISPLAY GAME INTRO
+        self._hand = random.choice([self._p1, self._p2])
+
+        msg = self._intro_message()
+        self._gui.display_message_and_continues(msg)
+        
+        # RUN GAME TILL SOMEONE REACHES TARGET
+        while self._p1.score < self._target or self._p2.score < self._target:
+            self._playing_round()
+            
+        # Declare the winner (save to winner list)
+        # Send back a Winner object or game codename to Main.py
+        # 
+    
+    
+    def _playing_turn(self):
+        self.menu_transition()
+        state = Turn.ROLL
+        while state is Turn.ROLL:
+            self._hand.roll_dice()
+            rolls = self._hand.rolls
+            self._gui.display_scoreboard(self._p1.name, self._p1.score,
+                                         self._p2.name, self._p2.score, 
+                                         self._hand.name)
+
+            pts = sum(rolls) if rolls[-1] != 1 else 0
+            self._gui.display_hand_results_split(self._hand.rolls, pts)
+            
+            if rolls[-1] == 1: 
+                state = self._rolled_one()
+            
+            else:
+                while True:
+                    resp = self._gui.get_simple_answer_from_user(
+                        self._roll_or_hold_message(), 'ROLL or HOLD').upper()
+                    
+                    if resp == Turn.HOLD.value:
+                        state = self._choose_hold()
+                        break
+                    
+                    elif resp == Turn.ROLL.value:
+                        state = Turn.ROLL
+                        break
+                    
+                    elif resp == Turn.SETTINGS.value:
+                        pass
+                    
+                    else:
+                        self._gui.print_to_display(f'\n[{resp}] Not a valid option. Try Again!')
+        
+            #time.sleep(3)
+            #self.menu_transition()
+            
+        
+        
+        
+        pass
+    
+    # def _message_view_prep(self):
+    #     p = self._hand.name
+    #     msg = f"{p} choice: [ S ] Settings ░ [ H ] HOLD ░ [ R ] ROLL ? "
+    #     pass
+    
+    # def _rolls_view_prep(self):
+        
+    #     pass
+    
+    def _change_hand(self):
+        self._hand = self._p1 if self._hand != self._p1 else self._p2
+    
+    # To get to the playing directly
+    def training_game(self):
+        self._mode = Mode.DUEL
+        self._p1 = Player('Erick')
+        self._p2 = Player('Robert')
+        self._play_new_game()
+        pass
+    
+
+    def _playing_round(self):
+        self.menu_transition()
+        self._hand.roll_dice()
+        rolls = self._hand.rolls
+        self._gui.display_scoreboard(
+            self._p1.name, self._p1.score, self._p2.name, 
+            self._p2.score, self._hand.name)
+        
+        pts = sum(rolls) if rolls[-1] != 1 else 0
+        self._gui.display_hand_results_split(self._hand.rolls, pts)
+        
+        if rolls[-1] == 1:
+            self._rolled_one()
+        else:
+            while True:
+                resp = self._gui.get_simple_answer_from_user(
+                    self._roll_or_hold_message(), 'ROLL or HOLD').upper()
+
+                if resp == Turn.HOLD.value:
+                    self._choose_hold()
+                    break
+                
+                elif resp == Turn.ROLL.value:
+                    break
+                
+                elif resp == Turn.SETTINGS.value:
+                    pass
+                
+                else:
+                    self._gui.print_to_display(f'\n[{resp}] Not a valid option. Try Again!')
+                    
+                
+                    
+    
+    
+    
+    def _choose_hold(self) -> Turn:
+        pts = sum(self._hand.rolls)
+        self._hand.add_points_to_score(pts)
+        self._hand.reset_rolls()
+        msg = self._hold_message(pts)
+        self._gui.display_message_and_continues(msg)
+        return Turn.ROLL
+        
+    
+    def _choose_settings(self):
+        pass
+    
+    
+    def _rolled_one(self) -> Turn:
+        self._hand.reset_rolls()
+        loss_msg = self._loss_message()
+        self._gui.display_message_and_continues(loss_msg)
+        return Turn.LOSS
+        
+        
+    
+    def _intro_message(self,) -> str:
+        msg = Textual.NEW_START.value
+        msg += f'\n\nWe have tossed a coin and {self._hand.name} is starting.!'
+        msg += f'\n\nPress any key to start rolling! '
+        return msg
+    
+    
+    def _loss_message(self) -> str:
+        msg = f"\nSorry {self._hand._name}! You rolled a [1]. No points for you."
+        self._change_hand()
+        msg += f"\n\n{self._hand._name}, it's your turn"
+        msg += f"\nPress any key to start Rolling! "
+        return msg
+    
+    def _roll_or_hold_message(self) -> str:
+        msg = f"{self._hand.name}:\n\n▐ [ S ] - Settings\n▐"
+        msg += " [ H ] - HOLD\n▐ [ R ] - ROLL\n\nYour Choice? "
+        return msg
+    
+    
+    def _hold_message(self, pts: int) -> str:
+        msg = f'\nCongratulation {self._hand.name}! {pts} points. TOTAL: {self._hand.score}'
+        self._change_hand()
+        msg += f"\n\n{self._hand.name}, it's your turn"
+        msg += f"\nPress any key to start Rolling! "
+        return msg
+
