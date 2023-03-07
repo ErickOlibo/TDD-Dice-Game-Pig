@@ -3,8 +3,6 @@ import random
 from game import Game
 from winner import Winner
 from helpers import Data_Path as PATH, CODE_NAMES, Mode
-from player import Player
-import time
 import os
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
@@ -14,8 +12,15 @@ class Database:
         self._games = self._load_data(PATH.GAMES) 
         self._winners = self._load_data(PATH.WINNERS)
         self._highscore = self._generate_highscore()
-        # self._store_data(self._winners, PATH.WINNERS)
-        # print(len(self._winners))
+        print(f'Games Paused Size: {len(self._games.keys())}')
+        print(f'Winners Size: {len(self._winners)}')
+        print()
+        print(self._games.keys())
+        
+        sada = self._games['Sada']
+        print(f'{sada._p1.name} - {sada._p2.name}')
+        #self._store_data(self._games, PATH.GAMES)
+        #print(len(self._games))
 
     @property
     def highscore(self) -> list:
@@ -103,16 +108,16 @@ class Database:
 
 
 ######### DUMMY Methods to test the database Loading and Storing abilities
-    def _load_dummy_winners(self) -> list[Winner]:
-        dummies = []
-        size = 10
-        people = ['Erick', 'Robert', 'Jennifer', 'Ciara', 'CPU']
-        for _ in range(size):
-            winner = random.choice(people)
-            points = random.randint(100, 105)
-            stamp = random.randint(20000, 50000)
-            dummies.append(Winner(winner, points, stamp))
-        return dummies
+    # def _load_dummy_winners(self) -> list[Winner]:
+    #     dummies = []
+    #     size = 10
+    #     people = ['Erick', 'Robert', 'Jennifer', 'Ciara', 'CPU']
+    #     for _ in range(size):
+    #         winner = random.choice(people)
+    #         points = random.randint(100, 105)
+    #         stamp = random.randint(20000, 50000)
+    #         dummies.append(Winner(winner, points, stamp))
+    #     return dummies
     
     # def _load_dummy_games(self)-> dict[str : Game]:
     #     dummies = dict()
@@ -133,5 +138,6 @@ class Database:
     #     return dummies
         
         
-        
+## TESTING AREA
+
 db = Database()
