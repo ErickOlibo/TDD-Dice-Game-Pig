@@ -27,7 +27,8 @@ class Game:
         self._p1 = None
         self._p2 = None
         self._hand = None
-        self._target = 20 #100
+        self._target = 6 #100
+        self._winner = False
         
         self._startup_options = [su.value for su in Start_Up if su.name != 'MENU']
         self._startup_options_dict = {su.value[0]:su for su in Start_Up if su.name != 'MENU'}
@@ -39,15 +40,15 @@ class Game:
         self._settings_options_dict = {s.value[0]:s for s in Settings if s.name != 'MENU'}
     
     
-    @property
-    def winner(self) -> Winner:
-        return self._winner
+    # @property
+    # def winner(self) -> Winner:
+    #     return self._winner
     
-    @winner.setter
-    def winner(self, winner: Winner):
-        if not isinstance(winner, Winner):
-            raise TypeError('name must be a string!')
-        self._winner= winner
+    # @winner.setter
+    # def winner(self, winner: Winner):
+    #     if not isinstance(winner, Winner):
+    #         raise TypeError('name must be a string!')
+    #     self._winner= winner
         
     @property
     def mode(self) -> Mode:
@@ -168,68 +169,19 @@ class Game:
         self._gui.display_message_and_continues(msg)
         
         # RUN GAME TILL SOMEONE REACHES TARGET
-        while self._p1.score < self._target or self._p2.score < self._target:
+        
+        while not self._winner:
             self._playing_round()
             
         # Declare the winner (save to winner list)
         # Send back a Winner object or game codename to Main.py
         # 
     
-    
-    def _playing_turn(self):
-        self.menu_transition()
-        state = Turn.ROLL
-        while state is Turn.ROLL:
-            self._hand.roll_dice()
-            rolls = self._hand.rolls
-            self._gui.display_scoreboard(self._p1.name, self._p1.score,
-                                         self._p2.name, self._p2.score, 
-                                         self._hand.name)
 
-            pts = sum(rolls) if rolls[-1] != 1 else 0
-            self._gui.display_hand_results_split(self._hand.rolls, pts)
-            
-            if rolls[-1] == 1: 
-                state = self._rolled_one()
-            
-            else:
-                while True:
-                    resp = self._gui.get_simple_answer_from_user(
-                        self._roll_or_hold_message(), 'ROLL or HOLD').upper()
-                    
-                    if resp == Turn.HOLD.value:
-                        state = self._choose_hold()
-                        break
-                    
-                    elif resp == Turn.ROLL.value:
-                        state = Turn.ROLL
-                        break
-                    
-                    elif resp == Turn.SETTINGS.value:
-                        pass
-                    
-                    else:
-                        self._gui.print_to_display(f'\n[{resp}] Not a valid option. Try Again!')
-        
-            #time.sleep(3)
-            #self.menu_transition()
-            
-        
-        
-        
-        pass
-    
-    # def _message_view_prep(self):
-    #     p = self._hand.name
-    #     msg = f"{p} choice: [ S ] Settings ░ [ H ] HOLD ░ [ R ] ROLL ? "
-    #     pass
-    
-    # def _rolls_view_prep(self):
-        
-    #     pass
     
     def _change_hand(self):
         self._hand = self._p1 if self._hand != self._p1 else self._p2
+    
     
     # To get to the playing directly
     def training_game(self):
@@ -237,7 +189,6 @@ class Game:
         self._p1 = Player('Erick')
         self._p2 = Player('Robert')
         self._play_new_game()
-        pass
     
 
     def _playing_round(self):
@@ -259,30 +210,38 @@ class Game:
                     self._roll_or_hold_message(), 'ROLL or HOLD').upper()
 
                 if resp == Turn.HOLD.value:
-                    self._choose_hold()
-                    break
-                
+                    self._hand.add_points_to_score(sum(self._hand.rolls))
+                    
+                    if self._hand.score >= self._target:
+                        self._hold_for_win()
+                        break
+                    else:
+                        self._choose_hold()
+                        break
                 elif resp == Turn.ROLL.value:
                     break
-                
                 elif resp == Turn.SETTINGS.value:
                     pass
-                
                 else:
                     self._gui.print_to_display(f'\n[{resp}] Not a valid option. Try Again!')
                     
-                
-                    
-    
-    
-    
-    def _choose_hold(self) -> Turn:
-        pts = sum(self._hand.rolls)
-        self._hand.add_points_to_score(pts)
-        self._hand.reset_rolls()
-        msg = self._hold_message(pts)
+
+    def _hold_for_win(self):
+        self.menu_transition()
+        msg = self._we_have_winner_message()
+        self._winner = True
         self._gui.display_message_and_continues(msg)
-        return Turn.ROLL
+        
+        # Save winner to database
+        victor = Winner(self._hand.name, self._hand.score)
+        
+        
+    
+    
+    def _choose_hold(self):
+        self._hand.reset_rolls()
+        msg = self._hold_message(sum(self._hand.rolls))
+        self._gui.display_message_and_continues(msg)
         
     
     def _choose_settings(self):
@@ -323,4 +282,30 @@ class Game:
         msg += f"\n\n{self._hand.name}, it's your turn"
         msg += f"\nPress any key to start Rolling! "
         return msg
+    
+    
 
+    def _reset_game_same_settings():
+        pass
+    
+    def _we_have_winner_message(self) -> str:
+        lines = []
+        line = "┌───┐"
+        line += f" A WINNER!! ".center(28, "~")
+        line += "┌───┐"
+        lines.append(line)
+        line = "│ ● │                            │ ● │"
+        lines.append(line)
+        line = f"│ ● │ {self._hand.name.upper():^26} │ ● │"
+        lines.append(line)
+        line = "│ ● │                            │ ● │"
+        lines.append(line)
+        line = "└───┘~~~~~~~~~~~~~~~~~~~~~~~~~~~~└───┘"
+        lines.append(line)
+        msg = "\n".join(lines)
+        msg += f'\n\nCongratulations!! \n\nPress any key to return to Main Menu'
+        return msg
+    
+
+# game = Game()
+# game._we_have_winner_message('ErickTEsoooooootttttttt')
