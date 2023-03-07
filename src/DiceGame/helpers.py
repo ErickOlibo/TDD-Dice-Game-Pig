@@ -65,6 +65,9 @@ class Settings(Enum):
     MENU = auto()
 
 
+class Data_Path(Enum):
+    WINNERS = 'db/winners.pkl'
+    GAMES = 'db/games.pkl'
     
     
 """ 
@@ -177,12 +180,19 @@ Pig is a simple dice game. Players take turns to roll a single dice as many time
     ~~~~~~~~~~~~~~~~~~~~~~~~~
     Welcome to the Start of this Game of PIG. It is simple:
     
+    
         ⏺ First player to reach 100 or more points, WINS!
+        
         ⏺ [ 🟩 ] <-- Means it is your turn to play.
+        
         ⏺ [ 🟥 ] <-- Means it is not your turn...
+        
         ⏺ ROLL [2]-[3]-[4]-[5]-[6], you are safe!
+        
         ⏺ ROLL [1], you loose all cummulated points of your turn.
+        
         ⏺ HOLD before getting [1] and you add points to your total
+    
     
     Good Luck..!
     ~~~~~~~~~~~~~~~~~~~~~~~~~
