@@ -183,13 +183,7 @@ class Game:
         self._hand = self._p1 if self._hand != self._p1 else self._p2
     
     
-    # To get to the playing directly
-    def training_game(self):
-        self._mode = Mode.DUEL
-        self._p1 = Player('Erick')
-        self._p2 = Player('Robert')
-        self._play_new_game()
-    
+
 
     def _playing_round(self):
         self.menu_transition()
@@ -294,11 +288,11 @@ class Game:
         line += f" A WINNER!! ".center(28, "~")
         line += "┌───┐"
         lines.append(line)
-        line = "│ ● │                            │ ● │"
+        line = f"│ ● │                            │ ● │"
         lines.append(line)
         line = f"│ ● │ {self._hand.name.upper():^26} │ ● │"
         lines.append(line)
-        line = "│ ● │                            │ ● │"
+        line = f"│ ● │                            │ ● │"
         lines.append(line)
         line = "└───┘~~~~~~~~~~~~~~~~~~~~~~~~~~~~└───┘"
         lines.append(line)
@@ -307,5 +301,12 @@ class Game:
         return msg
     
 
-# game = Game()
-# game._we_have_winner_message('ErickTEsoooooootttttttt')
+
+##### GAME PROCESS TRAINING METHODS
+
+    def training_game(self):
+        self._mode = Mode.DUEL
+        self._p1 = Player('Erick')
+        self._p2 = Player('Robert')
+        self._play_new_game()
+    
