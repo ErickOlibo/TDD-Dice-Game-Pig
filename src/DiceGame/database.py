@@ -2,7 +2,8 @@ import pickle
 import random
 from game import Game
 from winner import Winner
-from helpers import Data_Path as PATH, CODE_NAMES
+from helpers import Data_Path as PATH, CODE_NAMES, Mode
+from player import Player
 import time
 import os
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
@@ -10,18 +11,17 @@ os.chdir(os.path.dirname(os.path.realpath(__file__)))
 class Database:
     
     def __init__(self):
-        self._games: dict[str : Game] # paused games
+        self._games = self._load_data(PATH.GAMES) 
         self._winners = self._load_data(PATH.WINNERS)
         self._highscore = self._generate_highscore()
-
-
+        # self._store_data(self._winners, PATH.WINNERS)
+        # print(len(self._winners))
 
     @property
     def highscore(self) -> list:
         return self._highscore
     
-    
-    
+
     ## PUBLIC METHODS
     def load_game(self, code: str) -> Game:
         game = self._games.pop(code, None)
@@ -31,24 +31,41 @@ class Database:
     
     def store_game(self, game: Game) -> str:
         used_codes = self._games.keys()
-        while code := random.choice(CODE_NAMES) not in used_codes:
-            break
+        while True:
+            code = random.choice(CODE_NAMES)
+            if code not in used_codes: break
         self._games[code] = game
+
         self._store_data(self._games, PATH.GAMES)
         return code
     
+
     
     def add_winner(self, winner: Winner):
         self._winners.append(winner)
         self._store_data(self._winners, PATH.WINNERS)
         self._update_highscore()
-        
     
+    
+    def update_winner_name(self, old: str, new: str):
+        winners = []
+        for win in self._winners:
+            [st, n, sc,] = win.data
+            upd_win = Winner(new, sc, st) if n == old else win
+            winners.append(upd_win)
+                
+        self._winners = winners
+        self._store_data(self._winners, PATH.WINNERS)
+
     
     ## PRIVATE METHODS
+    def _get_used_codenames(self) -> list[str]:
+        return [game.codename for game in self._games]
+ 
+    
     def _update_highscore(self):
         self._highscore = self._generate_highscore()
-        pass
+
         
     def _load_data(self, p: PATH):
         file = open(p.value, 'rb')
@@ -85,6 +102,7 @@ class Database:
         return collection
 
 
+######### DUMMY Methods to test the database Loading and Storing abilities
     def _load_dummy_winners(self) -> list[Winner]:
         dummies = []
         size = 10
@@ -96,3 +114,24 @@ class Database:
             dummies.append(Winner(winner, points, stamp))
         return dummies
     
+    # def _load_dummy_games(self)-> dict[str : Game]:
+    #     dummies = dict()
+    #     size = 10
+    #     people = ['Erick', 'Robert', 'Jennifer', 'Ciara', 'CPU']
+    #     codenames = random.sample(CODE_NAMES, k=size)
+    #     modes = [Mode.DUEL, Mode.SOLO_EASY, Mode.SOLO_MEDIUM, Mode.SOLO_MERCILESS]
+    #     for i in range(size):
+    #         [p1, p2] = random.sample(people, k=2)
+    #         mode = random.choice(modes)
+    #         pep1 = Player(p1)
+    #         pep2 = Player(p2)
+    #         codename = codenames[i]
+    #         game = Game()
+    #         game.game_for_test(pep1,pep2,mode)
+    #         game.codename = codename
+    #         dummies[codename] = game
+    #     return dummies
+        
+        
+        
+db = Database()
