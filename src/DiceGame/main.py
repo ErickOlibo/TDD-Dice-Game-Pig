@@ -26,7 +26,7 @@ def main():
         start_choice = game.show_menu('START UP', Start_Up.MENU)
         
         # 3 - Handle Chosen Option
-        game.menu_transition()
+        game.menu_transition() # Clean Terminal Display
         if start_choice == Start_Up.EXIT: 
             break 
         
