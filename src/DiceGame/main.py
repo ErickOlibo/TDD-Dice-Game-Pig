@@ -41,17 +41,18 @@ def main():
             
             if new_game_choice == Mode.DUEL:
                 game.set_duel_players()
+                game.play()
             
             solo_mode = [mode for mode in Mode if mode not in [Mode.DUEL, Mode.BACK]]
             if new_game_choice in solo_mode:
                 game.set_solo_player(new_game_choice)
+                game.play()
 
             # START THE NEW GAME
-            game.play()
+            #game.play()
                 
         if start_choice == Start_Up.RESUME_GAME:
             codename = game.request_codename_from_user()
-            # RESTART A SUPENDED GAME
             game.play(codename)
         
         
