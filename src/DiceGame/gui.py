@@ -73,22 +73,6 @@ class GUI:
         lines = "\n".join(rows)
         print(lines)
 
-    def _get_rolls_points(self, points: int):
-        """Return a string representation of the points for a dice roll.
-
-        Args:
-            points (int): Integer representing the total points for the roll.
-
-        Returns:
-            tuple (str): Tuple of strings representing the points for the roll.
-        """
-        line1 = ""
-        line2 = "  ┌─────┐"
-        line3 = f'{"= │"} {points:>3} │'
-        line4 = "  └─────┘"
-        line5 = ""
-        return (line1, line2, line3, line4, line5)
-
     def display_scoreboard(self, n1: str, s1: int,
                            n2: str, s2: int, hand: str):
         c = ['🟩', '🟥']
@@ -103,37 +87,12 @@ class GUI:
         scoreboard = "\n".join([line1, line2, line3])
         print(scoreboard)
 
-    def _shrink_name(self, name: str, max_len: int) -> str:
-        return name if len(name) <= max_len else name[0:max_len - 3] + '...'
-
     def get_input_from_shown_menu(self, title: str,
                                   question: str, options: list,
                                   legend=['Option', 'Actions']) -> str:
         menu = self._get_menu_layout(title, options, legend)
         menu += f"\n{question}"
         return input(menu)
-
-    def _get_menu_layout(self, title: str, opt: list, legend) -> str:
-        leg1 = legend[0]
-        leg2 = legend[1]
-        line1 = "┌────────┬──────────────────────┐"
-        line2 = f'│ {leg1:^6} │ {leg2:^20}{" │"}'
-        line3 = "├────────┼──────────────────────┤"
-        end = "└────────┴──────────────────────┘"
-        center = []
-        for i in range(len(opt)):
-            row = f'│ {opt[i][0]:^6} │ {opt[i][1]:<20}{" │"}'
-            if i != len(opt) - 1:
-                row += f'\n│ {"":^6} │ {"":^20}{" │"}'
-            center.append(row)
-        start = [line1, line2, line3]
-        header = self._set_menu_header(title, len(line1))
-        menu = "\n".join([header] + start + center + [end])
-        return menu
-
-    def _set_menu_header(self, title: str, width=40) -> str:
-        header = f" {title} ".center(width, "~")
-        return f'\n{header}'
 
     def display_highscore(self, scores: list, size: int):
         scores.sort(key=lambda row: (-row[1], -row[2]))
@@ -183,3 +142,36 @@ class GUI:
         time.sleep(1.5)
         print(msg2)
         time.sleep(0.5)
+
+    def _shrink_name(self, name: str, max_len: int) -> str:
+        return name if len(name) <= max_len else name[0:max_len - 3] + '...'
+
+    def _get_rolls_points(self, points: int):
+        line1 = ""
+        line2 = "  ┌─────┐"
+        line3 = f'{"= │"} {points:>3} │'
+        line4 = "  └─────┘"
+        line5 = ""
+        return (line1, line2, line3, line4, line5)
+
+    def _get_menu_layout(self, title: str, opt: list, legend) -> str:
+        leg1 = legend[0]
+        leg2 = legend[1]
+        line1 = "┌────────┬──────────────────────┐"
+        line2 = f'│ {leg1:^6} │ {leg2:^20}{" │"}'
+        line3 = "├────────┼──────────────────────┤"
+        end = "└────────┴──────────────────────┘"
+        center = []
+        for i in range(len(opt)):
+            row = f'│ {opt[i][0]:^6} │ {opt[i][1]:<20}{" │"}'
+            if i != len(opt) - 1:
+                row += f'\n│ {"":^6} │ {"":^20}{" │"}'
+            center.append(row)
+        start = [line1, line2, line3]
+        header = self._set_menu_header(title, len(line1))
+        menu = "\n".join([header] + start + center + [end])
+        return menu
+
+    def _set_menu_header(self, title: str, width=40) -> str:
+        header = f" {title} ".center(width, "~")
+        return f'\n{header}'
