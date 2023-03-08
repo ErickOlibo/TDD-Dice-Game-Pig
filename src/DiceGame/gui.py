@@ -1,5 +1,6 @@
 import os
 from helpers import *
+import time
 #from player import Player
 
 class GUI:
@@ -30,6 +31,11 @@ class GUI:
         header = self._set_menu_header(title, width)
         ask_input = "\n".join([header, ask])
         return input(ask_input)
+    
+    def get_simple_answer_from_cpu(self, ask: str, title: str, width = 40) -> str:
+        header = self._set_menu_header(title, width)
+        ask_input = "\n".join([header, ask])
+        return ask_input
     
     def display_hand_results(self, numbers: list, points: int):
         """Display the results of a dice roll to the user, including the
@@ -207,6 +213,11 @@ class GUI:
         msg += f'\nPress any key to go back to Start Up menu! '
         input(msg)
     
+    def cpu_question_answer_animation(self, msg1: str, msg2: str):
+        print(msg1, end=' ')
+        time.sleep(1.5)
+        print(msg2)
+        time.sleep(0.5)
     
     
 
