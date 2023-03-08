@@ -1,4 +1,5 @@
 import time
+# DELETE THIS CLASS
 class Event:
     """Represents an event when a player has the hand in the game.
     The event is Unix Time stamped when the hand starts for every roll. A total point

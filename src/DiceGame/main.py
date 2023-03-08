@@ -6,7 +6,6 @@ import sys
 from game import Game
 from helpers import *
 from database import Database
-#from db_persistant import Persistant
 from gui import GUI
 import time
 
@@ -52,7 +51,7 @@ def main():
             #game.play()
                 
         if start_choice == Start_Up.RESUME_GAME:
-            codename = game.request_codename_from_user()
+            codename = game.request_codename_from_user() # CHANGE THIS METHOD NAME 
             game.play(codename)
         
         
