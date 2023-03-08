@@ -12,15 +12,7 @@ class Database:
         self._games = self._load_data(PATH.GAMES) 
         self._winners = self._load_data(PATH.WINNERS)
         self._highscore = self._generate_highscore()
-        print(f'Games Paused Size: {len(self._games.keys())}')
-        print(f'Winners Size: {len(self._winners)}')
-        print()
-        print(self._games.keys())
-        
-        sada = self._games['Sada']
-        print(f'{sada._p1.name} - {sada._p2.name}')
-        #self._store_data(self._games, PATH.GAMES)
-        #print(len(self._games))
+
 
     @property
     def highscore(self) -> list:
@@ -39,6 +31,7 @@ class Database:
         while True:
             code = random.choice(CODE_NAMES)
             if code not in used_codes: break
+        game.codename = code
         self._games[code] = game
 
         self._store_data(self._games, PATH.GAMES)
@@ -105,6 +98,20 @@ class Database:
                 streak = 1
         collection.sort(key=lambda row: (-row[1], -row[2]))
         return collection
+
+
+    def _display_some_info_on_database(self):
+        print(f'Games Paused Size: {len(self._games.keys())}')
+        print(f'Winners Size: {len(self._winners)}')
+        print()
+        print(self._games.keys())
+        
+        sada = self._games['Sada']
+        print(f'{sada._p1.name} - {sada._p2.name}')
+        
+        for gm in self._games.values():
+            print(f'{gm._codename} - {gm._p1.name} - {gm._p2.name}')
+        
 
 
 ######### DUMMY Methods to test the database Loading and Storing abilities
