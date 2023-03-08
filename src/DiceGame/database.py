@@ -12,6 +12,8 @@ class Database:
         self._games = self._load_data(PATH.GAMES) 
         self._winners = self._load_data(PATH.WINNERS)
         self._highscore = self._generate_highscore()
+        
+        #self._display_some_info_on_database()
 
 
     @property
