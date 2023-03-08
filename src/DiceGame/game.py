@@ -13,6 +13,7 @@ import time
 class Game:
 
     def __init__(self, db):
+        """Construct the necessary attributes for the game object."""
         self._database = db
         self._time_stamp = round(time.time())
         self._gui = GUI()
@@ -28,25 +29,37 @@ class Game:
 
         self._startup_options = [
             su.value for su in Start_Up if su.name != 'MENU'
-            ]
+        ]
         self._startup_options_dict = {
             su.value[0]: su for su in Start_Up if su.name != 'MENU'
-            }
+        }
         self._new_game_options = [
             m.value for m in Mode if m.name != 'MENU'
-            ]
+        ]
         self._new_game_options_dict = {
             m.value[0]: m for m in Mode if m.name != 'MENU'
-            }
+        }
         self._settings_options = [
             s.value for s in Settings if s.name != 'MENU'
-            ]
+        ]
         self._settings_options_dict = {
             s.value[0]: s for s in Settings if s.name != 'MENU'
-            }
+        }
 
     @property
     def mode(self) -> Mode:
+        """
+        Function: Returns the current game mode.
+
+        Description:
+        This property returns the current game mode, which is stored as an
+        instance variable named _mode. The game mode determines the
+        behavior of the game, such as the scoring system or the rules of
+        play.
+
+        Returns:
+        - Mode: the current game mode.
+        """
         return self._mode
 
     @mode.setter
@@ -57,29 +70,110 @@ class Game:
 
     @property
     def codename(self) -> str:
+        """
+        Function: Returns the code name of the game.
+
+        This property returns the code name of the game, which is a unique
+        identifier assigned to the game when it is created. The code name
+        is stored as an instance variable named _codename.
+
+        Returns:
+        - str: the code name of the game.
+        """
         return self._codename
 
     @codename.setter
     def codename(self, code: str):
+        """
+        Function: Sets the code name of the game.
+
+        Description:
+        This setter method updates the code name of the game to the
+        specified value. The code name is a unique identifier assigned to
+        the game when it is created, and is stored as an instance variable
+        named _codename.
+
+        Args:
+        - code (str): the new code name to assign to the game.
+        """
         self._codename = code
 
     def game_for_test(self, p1: Player, p2: Player, mode: Mode):
+        """
+        Function: Sets up a game instance for testing purposes.
+
+        Descritpion:
+        This method creates a new game instance with the specified players
+        and mode, and assigns them to the instance variables _p1, _p2, and
+        _mode, respectively. This method is intended for testing purposes
+        only, and should not be used in production code.
+
+        Args:
+        - p1 (Player): the first player of the game.
+        - p2 (Player): the second player of the game.
+        - mode (Mode): the mode of the game.
+        """
         self._p1 = p1
         self._p2 = p2
         self._mode = mode
 
     def display_rules(self):
+        """
+        Function: Clears the terminal and displays the game rules.
+
+        Description:
+        This method clears the terminal and then displays the game rules
+        using the GUI object's `display_info` method. The rules are
+        retrieved from the `Textual` enumeration, which contains the text
+        for various parts of the game. The maximum line length for the
+        displayed text is set to 70 characters.
+
+        """
         self._gui.clear_terminal()
         self._gui.insert_line_breaks(1)
         self._gui.display_info(Textual.RULES.value, 'RULES', 70)
 
     def show_highscore(self, scores, size=10):
+        """
+        Function: Clears the terminal and displays the highscores,
+                  using the given `scores` list.
+                  The `size` parameter determines the number of
+                  highscores to display.
+                  By default,it is set to 10.
+
+        Args:
+            - scores (list): A list of tuples, where each tuple represents
+                             a player's name and their score.
+            - size (int, optional): The number of highscores to display.
+              Defaults to 10.
+        """
         self._gui.clear_terminal()
         self._gui.display_highscore(scores, size)
 
     T = TypeVar("T")
 
     def show_menu(self, title: str, type: T) -> T:
+        """
+        Function: Clears the terminal and displays a menu
+                  with the given `title` and `type` of options.
+                  The `type` parameter must be an instance of one of
+                  the following classes: `Start_Up`,
+                  `Mode`, or `Settings`. The function returns the
+                  user's selection from the options.
+
+        Args:
+            title (str): The title of the menu.
+            type (T): An instance of one of the following
+            classes: `Start_Up`, `Mode`, or `Settings`.
+
+        Returns:
+            T: The user's selection from the options,
+               as specified by the `type` parameter.
+
+        Raises:
+            TypeError: If the `type` parameter is not an instance of
+                      `Start_Up`, `Mode`, or `Settings`.
+        """
         self._gui.clear_terminal()
         legend = ['Option', 'Actions']
         question = 'Pick an option: '
@@ -98,14 +192,33 @@ class Game:
         return opt_dict[resp.upper()]
 
     def menu_transition(self):
+        """
+        Function: Clears the terminal and creates a brief pause to create
+                  a smooth transition between menus.
+        """
         self._gui.clear_terminal()
         time.sleep(0.2)
 
     def press_any_keys_to_continue(self):
+        """
+        Function: Displays a message prompting the user
+                  to press any key to continue,
+                  and waits for the user to do so before clearing the terminal
+                  to continue the program.
+        """
         self._gui.display_any_key_continues()
         self.menu_transition()
 
     def set_duel_players(self):
+        """
+        Function: Set up the game for dueling players.
+
+        Description:
+            This method prompts the user to enter the names of two players,
+            checks that the names are different, and creates two Player
+            objects to represent them. The game mode is set to Mode.DUEL.
+
+        """
         self.menu_transition()
         self._mode = Mode.DUEL
         ask1 = 'Enter Player One name: '
@@ -124,6 +237,18 @@ class Game:
         self._p2 = Player(n_two)
 
     def set_solo_player(self, mode: Mode):
+        """
+        Function: Set up the game for a single player.
+
+        Description:
+            This method prompts the user to enter their name,
+            creates a Player object to represent them,
+            and creates another Player object with the name "CPU".
+            The game mode is set to the specified mode.
+
+        Args:
+            mode (Mode): The game mode to use.
+        """
         self.menu_transition()
         self._mode = mode
         ask = 'Enter your name: '
@@ -131,6 +256,22 @@ class Game:
         self._p2 = Player('CPU', Brain(), Dice(mode))
 
     def play(self, codename=None):
+        """
+        Function: Start playing a game.
+
+        Description:
+            This method starts a new game if no codename is provided,
+            or resumes a paused game by loading its saved state from
+            the database using the provided codename.
+            If a new game is started, it determines whether the
+            game is solo or dueling based on the name of the second player.
+            Then, it starts the game loop by calling the
+            _play_new_game() or _play_paused_game() method as appropriate.
+
+        Args:
+            codename (str, optional): The codename of the saved game to resume.
+            If not provided, a new game is started.
+        """
         if codename is None:
             is_solo = self._p2.name == 'CPU'
             self._play_new_game(is_solo)
@@ -143,6 +284,15 @@ class Game:
             self._play_paused_game()
 
     def request_codename_from_user(self):
+        """
+        Function: Display the current game state.
+
+        Description:
+            This method displays the current state of the game, including the
+            scores of the players, the current hand, and any other relevant
+            information. It uses the _gui object to display the information to
+            the user.
+        """
         self.menu_transition()
         ask = "Please Enter the Game's Code Name: "
         codename = self._gui.get_simple_answer_from_user(ask, 'CODE NAME')
