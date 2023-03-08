@@ -73,3 +73,10 @@ lint: flake8 pylint
 
 test:
 	$(call FOREACH,test)
+# ---------------------------------------------------------
+# Create Documentation with Pydoc 3
+#
+View documentation on terminal:
+	$(call python3 -m pydoc DiceGame) - Generates Documentation in terminal (You must be outside the DiceGame directory)
+	$(call pydoc -w DiceGame)         - Writes Documentation as html format
+	$(call open DiceGame.html)        - View html file in a web browser
