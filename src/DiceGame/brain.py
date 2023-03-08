@@ -1,4 +1,4 @@
-"""This class creates the illution of intelligence for the Computer."""
+"""This module creates the illution of intelligence for the Computer."""
 import random
 from helpers import Turn, Tactic
 
