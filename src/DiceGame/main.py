@@ -12,15 +12,18 @@ import time
 
 
 def main():
+    # db = Database()
+    # game = Game(db)
+    # game.training_game()
 
-    #Game().training_game()
     
     # A GAME PLAYED gives you a Winner object or a codename for Database
     while True:
-        
+        #break
         # 1 - Start an instance of Game
-        game = Game()
         db = Database()
+        game = Game(db)
+        
         
         # 2 - Get the option from the user for the Start Up menu
         start_choice = game.show_menu('START UP', Start_Up.MENU)
