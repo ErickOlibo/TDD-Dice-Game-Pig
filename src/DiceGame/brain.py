@@ -36,11 +36,12 @@ class Brain:
         """
         Returns a random tactic from the Tactic enum.
         """
-        return random.choice(list(Tactic))
+        # random.choice(list(Tactic))
+        return random.choice([Tactic.TWENTY, Tactic.TWENTY_FIVE, Tactic.FOUR_TURNS])
         
         
     # Actions are defined for the Brain playing as the CPU
-    def action(self, score, turn_points) -> Turn:
+    def action(self, score: int, turn_points: int) -> Turn:
         """
         Determines the next move for the computer player based on its current strategy and the game state.
 
@@ -61,7 +62,7 @@ class Brain:
         
         if self._strategy == Tactic.FOUR_TURNS:
             if self._current_turns == 0:
-                if turn_points >= 25:
+                if turn_points >= 30:
                     self._current_turns += 1
                     return Turn.HOLD
                 else:
@@ -72,4 +73,17 @@ class Brain:
                     raise ZeroDivisionError('Cannot divid by Zero!')
                 
                 threshold = (self._target - score) // remain
-                return Turn.HOLD if turn_points >= threshold else Turn.ROLL
+                if turn_points >= threshold:
+                    self._current_turns +=1
+                    return Turn.HOLD
+                else:
+                    return Turn.ROLL
+        
+        # if self._strategy == Tactic.FOUR_TURNS:
+        #     if self._current_turns == 0:
+        #         if turn_points >= 35:
+        #             self._current_turns += 1
+        #             return Turn.HOLD
+        #         else:
+        #             return Turn.ROLL
+            
