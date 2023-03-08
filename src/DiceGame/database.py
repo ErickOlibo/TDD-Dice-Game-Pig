@@ -19,15 +19,55 @@ class Database:
 
     @property
     def highscore(self) -> list:
+        """
+        Function: Returns a list of highscores.
+
+        Description:
+        This property returns a list of highscores sorted by score value in
+        descending order. The list can be accessed but not modified directly.
+
+        Returns:
+        - list: a list of highscore dictionaries.
+        """
         return self._highscore
 
     def load_game(self, code: str) -> Game:
+        """
+        Function: load_game(self, code: str) -> Game
+
+        Description:
+        Loads a game using provided code, updates data,
+        and returns game object.
+
+        Parameters:
+        - self: the object that the method is called on
+        - code (str): the code of the game to load
+
+        Returns:
+        - Game: the loaded game object if found, otherwise None.
+
+        """
         game = self._games.pop(code, None)
         if game is not None:
             self._store_data(self._games, PATH.GAMES)
         return game
 
     def store_game(self, game: Game) -> str:
+        """
+        Function: Stores a game in the data file and returns its assigned code.
+
+        Description:
+        This function generates a unique code name for the game, assigns it,
+        stores it in the dictionary of games,
+        saves the dictionary to the data file,
+        and returns the assigned code
+
+        Parameters:
+        - game (Game): the game object to be stored.
+
+        Returns:
+        - str: the unique code assigned to the game.
+        """
         used_codes = self._games.keys()
         while True:
             code = random.choice(CODE_NAMES)
@@ -39,11 +79,35 @@ class Database:
         return code
 
     def add_winner(self, winner: Winner):
+        """
+        Function: Adds a winner to the list of winners and updates highscore.
+
+        Description:
+        This function adds the provided winner to the list of winners and
+        saves the updated list to the data file. It then updates the list of
+        highscores to include the new winner, and saves the updated list to
+        the data file as well.
+
+        Parameters:
+        - winner (Winner): the winner object to be added.
+        """
         self._winners.append(winner)
         self._store_data(self._winners, PATH.WINNERS)
         self._update_highscore()
 
     def update_winner_name(self, old: str, new: str):
+        """
+        Function: Updates the name of a winner in the list of winners.
+
+        Description:
+        This function searches the list of winners for a winner with the old
+        name, updates its name with the new name, and saves the updated list
+        to the data file.
+
+        Parameters:
+        - old (str): the current name of the winner to be updated.
+        - new (str): the new name to assign to the winner.
+        """
         winners = []
         for win in self._winners:
             [st, n, sc,] = win.data
