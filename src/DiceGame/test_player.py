@@ -18,7 +18,7 @@ class TestPlayer(unittest.TestCase):
         self.assertIsNotNone(cpu)
         self.assertEqual(cpu.score, 0)
         
-        
+
     
     
     def test_name(self):

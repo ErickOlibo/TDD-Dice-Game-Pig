@@ -43,7 +43,7 @@ class TestDice(unittest.TestCase):
                     rolls += 1
             self.assertAlmostEqual(rolls/size, proba[i],2)
 
-        
+
     def test__items(self):
         dice = Dice()
         dice.mode = Mode.SOLO_EASY

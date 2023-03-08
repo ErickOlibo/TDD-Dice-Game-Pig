@@ -1,6 +1,5 @@
 import unittest
 from winner import Winner
-
 class TestWinner(unittest.TestCase):
     
     def setUp(self):

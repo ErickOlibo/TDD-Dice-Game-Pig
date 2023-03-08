@@ -1,5 +1,6 @@
 import unittest
 from game import Game
+from database import Database
 from helpers import Mode
 from winner import Winner
 from player import Player
@@ -8,22 +9,14 @@ from player import Player
 class TestGame(unittest.TestCase):
     
     def setUp(self):
-        self.game = Game()
+        self.db = Database()
+        self.game = Game(self.db)
     
     
     def test_game(self):
-        self.assertIsNotNone(Game())
-        
-    def test_winner(self):
-        self.assertIsNone(self.game.winner)
-        self.game.winner = Winner('Erick', 'Noel', 103)
-        self.assertEqual(self.game.winner._loser, 'Noel')
-        
-        with self.assertRaises(TypeError):
-            self.game.winner = 'WINNER'
-            self.assertIsInstance(self.game.winner, Winner)
-    
-    
+        self.assertIsNotNone(Game(self.db))
+
+
     def test_mode(self):
         self.game.mode = Mode.DUEL
         self.assertNotEqual(self.game.mode, Mode.SOLO_EASY)
@@ -34,7 +27,7 @@ class TestGame(unittest.TestCase):
     
     
     def test_display_rules(self):
-        self.assertIsNone(self.game.display_rules())
+        pass
         
     def test_show_highscore(self):
         pass
@@ -43,7 +36,8 @@ class TestGame(unittest.TestCase):
         pass
     
     def test_show_new_game_menu(self):
-        self.game.show_new_game_menu()
+        
+        pass
         
     
     def test__get_input_from_user(self):

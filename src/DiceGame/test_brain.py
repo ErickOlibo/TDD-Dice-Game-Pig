@@ -21,7 +21,7 @@ class TestBrain(unittest.TestCase):
 
 
     def test_action(self):
-        self.brain.strategy = Tactic.TWENTY_FIVE
+        self.brain._strategy = Tactic.TWENTY_FIVE
         
         my_action = self.brain.action(45, 19)
         self.assertIsInstance(my_action, Turn)

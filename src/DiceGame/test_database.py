@@ -10,9 +10,9 @@ class TestDatabase(unittest.TestCase):
     
     def setUp(self):
         self.db = Database()
-        self.game1 = Game()
-        self.game2 = Game()
-        self.game3 = Game()
+        self.game1 = Game(self.db)
+        self.game2 = Game(self.db)
+        self.game3 = Game(self.db)
         self.games = [self.game1, self.game2, self.game3]
     
     
