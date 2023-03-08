@@ -13,7 +13,7 @@ radon
 # Code style
 black
 
-# Documentation
+# Documentation -> Look into the pyDoc
 pdoc3
 sphinx
 
