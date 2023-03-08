@@ -326,11 +326,12 @@ class GUI:
     def cpu_question_answer_animation(self, msg1: str, msg2: str):
         """
         Function: Print animation to console.
-    
+
         Description:
-        This method takes two message strings as input and prints the first message with a delay of 1.5 seconds
+        This method takes two message strings as input and prints the first,
+        message with a delay of 1.5 seconds,
         and then prints the second message with a delay of 0.5 seconds.
-    
+
         Args:
         - msg1 (str): The first message to be printed.
         - msg2 (str): The second message to be printed.

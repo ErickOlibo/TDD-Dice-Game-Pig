@@ -5,7 +5,20 @@ from database import Database
 
 
 def main():
-    """Control the flow of the application."""
+    """
+
+    Function: Control the flow of the application.
+
+    Description:
+    This function controls the flow of the application,
+    by starting an instance of Game, getting the user's option
+    from the Start Up menu, handling the chosen option, and
+    repeating the process until the user chooses to exit.
+
+    Args:
+    - None
+
+    """
     while True:
         # 1 - Start an instance of Game
         db = Database()
