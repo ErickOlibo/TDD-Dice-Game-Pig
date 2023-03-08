@@ -28,8 +28,8 @@ class Dice:
         r4 = list(range(4,7))
         self._easy = r1
         self._medium = r1 + r2
-        self._hard = r1 + r2 + r3 + r4
-        self._merciless = r1 + r2 + r2 + r3 + r3 + r3 + r3 + r4 + r4
+        self._hard = r2 + r3 + r4
+        self._merciless = r2 + r2 + r3 + r3 + r3 + r3 + r4 + r4
         
         
     def roll(self) -> int:
