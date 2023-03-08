@@ -136,6 +136,7 @@ class Game:
         self._p2 = Player(n_two)
         
 
+
     def set_solo_player(self, mode: Mode):
         self.menu_transition()
         self._mode = mode
@@ -146,7 +147,8 @@ class Game:
 
     def play(self, codename = None):
         if codename is None:
-            self._play_new_game()
+            is_solo = self._p2.name == 'CPU'
+            self._play_new_game(is_solo)
         else:
             pg = self._database.load_game(codename) # paused Game
             
@@ -161,7 +163,7 @@ class Game:
         self.menu_transition()
         
         # RUN GAME TILL SOMEONE REACHES TARGET
-        
+        self._back_from_settings = True # back from Pause set initial roll to NO
         while not self._winner:
             if not self._has_quit:
                 self._playing_a_turn()
@@ -194,10 +196,15 @@ class Game:
                 return choice
     
     
-    def _play_new_game(self):
+    def _play_new_game(self, is_solo = False):
         self.menu_transition()
         # DISPLAY GAME INTRO
-        self._hand = random.choice([self._p1, self._p2])
+        if is_solo:
+            self._hand = self._p1
+            #print(f'1 - Hand: {self._hand.name}')
+            #time.sleep(2)
+        else:
+            self._hand = random.choice([self._p1, self._p2])
 
         msg = self._intro_message()
         self._gui.display_message_and_continues(msg)
@@ -206,6 +213,8 @@ class Game:
         
         while not self._winner:
             if not self._has_quit:
+                #print(f'2 - Hand: {self._hand.name}')
+                #time.sleep(2)
                 self._playing_a_turn()
             else:
                 break
@@ -214,13 +223,35 @@ class Game:
         # Send back a Winner object or game codename to Main.py
         # 
     
+    def _play_new_solo_game(self):
+        self.menu_transition()
+        self._hand = self._p1
+        msg = self._intro_message()
+        self._gui.display_message_and_continues(msg)
+        
+        
 
     
     def _change_hand(self):
         self._hand = self._p1 if self._hand != self._p1 else self._p2
     
     
+    def _is_cpu_hand(self) -> bool:
+        return self._hand.name == 'CPU'
+        
+    
+    def _cpu_chosing(self) -> Turn:
+        msg = self._roll_or_hold_message()
+        msg = self._gui.get_simple_answer_from_cpu(msg, 'ROLL or HOLD')
+        score = self._p2.score
+        pts = sum(self._p2.rolls)
+        turn = self._p2.brain.action(score, pts)
+        self._gui.cpu_question_answer_animation(msg, turn.value)
+        return turn
 
+    # def _cpu_after_hold_turn(self):
+    #     msg = self._hold_message
+    #     pass
 
     def _playing_a_turn(self):
         self.menu_transition()
@@ -239,8 +270,11 @@ class Game:
             self._rolled_one()
         else:
             while True:
-                resp = self._gui.get_simple_answer_from_user(
-                    self._roll_or_hold_message(), 'ROLL or HOLD').upper()
+                if self._is_cpu_hand():
+                    resp = self._cpu_chosing().value
+                else:
+                    resp = self._gui.get_simple_answer_from_user(
+                        self._roll_or_hold_message(), 'ROLL or HOLD').upper()
 
                 if resp == Turn.HOLD.value:
                     self._hand.add_points_to_score(sum(self._hand.rolls))
@@ -317,7 +351,13 @@ class Game:
         sum_rolls = sum(self._hand.rolls)
         self._hand.reset_rolls()
         msg = self._hold_message(sum_rolls)
-        self._gui.display_message_and_continues(msg)
+        
+        ## if CPU here
+        if self._is_cpu_hand():
+            self._gui.print_to_display(msg)
+            time.sleep(2.5)
+        else:
+            self._gui.display_message_and_continues(msg)
         
     
     def _choose_settings(self):
@@ -374,7 +414,9 @@ class Game:
         lines.append(line)
         line = f"│ ● │                            │ ● │"
         lines.append(line)
-        line = "└───┘~~~~~~~~~~~~~~~~~~~~~~~~~~~~└───┘"
+        line = "└───┘"
+        line += f" [ {self._hand.score} points ] ".center(28, "~")
+        line += "└───┘"
         lines.append(line)
         msg = "\n".join(lines)
         msg += f'\n\nCongratulations!! \n\nPress any key to return to Main Menu'
