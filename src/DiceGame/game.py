@@ -146,13 +146,29 @@ class Game:
 
     def play(self, codename = None):
         if codename is None:
-            #play new Game
-            print('NO CODENAME - NEW GAME')
             self._play_new_game()
         else:
-            print(f'CODE NAME IS {codename}')
-        #time.sleep(4)
+            pg = self._database.load_game(codename) # paused Game
+            
+            self._p1 = pg._p1
+            self._p2 = pg._p2
+            self._hand = pg._hand
+            self.mode = pg.mode
+            self._play_paused_game()
+    
+    
+    def _play_paused_game(self):
+        self.menu_transition()
         
+        # RUN GAME TILL SOMEONE REACHES TARGET
+        
+        while not self._winner:
+            if not self._has_quit:
+                self._playing_a_turn()
+            else:
+                break
+    
+
     
     def request_codename_from_user(self):
         self.menu_transition()
