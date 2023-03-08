@@ -57,11 +57,12 @@ class Settings(Enum):
     Args:
         Enum (list[str]): Used to display the Start_up menu to the user
     """
-    SCREEN_NAME = ['1', 'Change Name']
-    SUSPEND = ['2', 'Suspend Game']
+    NAME = ['1', 'Change Name']
+    PAUSE = ['2', 'Pause Game']
     QUIT = ['3', 'Quit Game']
-    RETURN = ['R', 'Return to Game']
-    CHEAT_MODE = ['C', 'Enter Cheat Mode']
+    CHEAT = ['4', 'Enter Cheat Mode']
+    BACK = ['B', '↩ Back']
+    
     MENU = auto()
 
 
