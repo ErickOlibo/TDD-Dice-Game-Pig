@@ -195,7 +195,7 @@ class GUI:
     def print_to_display(self, msg: str):
         print(msg)
     
-    def display_paused_game_message(self, code: str) -> str:
+    def display_paused_game_message(self, code: str):
         msg = '\nYour game session has been saved under the CodeName:\n\n'
         msg += f'       ┌──────┐\n'
         msg += f'       │ {code} │\n'
@@ -203,7 +203,9 @@ class GUI:
         msg += f'\n\nUse this code (case sensitive) to resume your game.'
         
         msg += f'\n\nSee you soon for another game of PIG!!\n'
-        print(msg)
+        
+        msg += f'\nPress any key to go back to Start Up menu! '
+        input(msg)
     
     
     
