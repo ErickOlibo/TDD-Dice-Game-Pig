@@ -1,33 +1,29 @@
+"""This module creates and maintains a database for the application."""
 import pickle
 import random
 from game import Game
 from winner import Winner
-from helpers import Data_Path as PATH, CODE_NAMES, Mode
+from helpers import Data_Path as PATH, CODE_NAMES
 import os
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 class Database:
     
     def __init__(self):
+        """Construct the necessary attributes for the brain object."""
         self._games = self._load_data(PATH.GAMES) 
         self._winners = self._load_data(PATH.WINNERS)
         self._highscore = self._generate_highscore()
-        
-        #self._display_some_info_on_database()
-
 
     @property
     def highscore(self) -> list:
         return self._highscore
-    
 
-    ## PUBLIC METHODS
     def load_game(self, code: str) -> Game:
         game = self._games.pop(code, None)
         if game != None: self._store_data(self._games, PATH.GAMES)
         return game
-    
-    
+
     def store_game(self, game: Game) -> str:
         used_codes = self._games.keys()
         while True:
