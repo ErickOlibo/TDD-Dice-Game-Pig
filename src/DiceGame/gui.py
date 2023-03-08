@@ -194,11 +194,25 @@ class GUI:
 
     def print_to_display(self, msg: str):
         print(msg)
+    
+    def display_paused_game_message(self, code: str) -> str:
+        msg = '\nYour game session has been saved under the CodeName:\n\n'
+        msg += f'       ┌──────┐\n'
+        msg += f'       │ {code} │\n'
+        msg += f'       └──────┘'
+        msg += f'\n\nUse this code (case sensitive) to resume your game.'
         
+        msg += f'\n\nSee you soon for another game of PIG!!\n'
+        print(msg)
+    
+    
     
 
 
 # TO DELETE WHAT'S UNDER TESTING
+# gui = GUI()
+# gui.paused_game_message('Wirt')
+
 
 # gui = GUI("ErickTerrasson", "Robert")
 # gui.display_scoreboard(34,20, 'Robert')
