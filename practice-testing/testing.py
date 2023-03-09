@@ -2,9 +2,10 @@ import random
 import time
 
 
-print('Enter your name: ', end='')
-time.sleep(1)
-print('Erick')
+my_list = [1,2,3,4]
+
+if 1 in my_list:
+    print('Yes')
 
 
 # for line in sys.stdin:
