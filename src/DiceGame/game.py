@@ -11,6 +11,7 @@ import time
 
 
 class Game:
+    """The main engine of the application."""
 
     def __init__(self, db):
         """Construct the necessary attributes for the game object."""
@@ -49,7 +50,7 @@ class Game:
     @property
     def mode(self) -> Mode:
         """
-        Function: Returns the current game mode.
+        Return the current game mode.
 
         Description:
         This property returns the current game mode, which is stored as an
@@ -71,7 +72,7 @@ class Game:
     @property
     def codename(self) -> str:
         """
-        Function: Returns the code name of the game.
+        Return the code name of the game.
 
         This property returns the code name of the game, which is a unique
         identifier assigned to the game when it is created. The code name
@@ -85,7 +86,7 @@ class Game:
     @codename.setter
     def codename(self, code: str):
         """
-        Function: Sets the code name of the game.
+        Set the code name of the game.
 
         Description:
         This setter method updates the code name of the game to the
@@ -100,7 +101,7 @@ class Game:
 
     def game_for_test(self, p1: Player, p2: Player, mode: Mode):
         """
-        Function: Sets up a game instance for testing purposes.
+        Set up a game instance for testing purposes.
 
         Descritpion:
         This method creates a new game instance with the specified players
@@ -119,7 +120,7 @@ class Game:
 
     def display_rules(self):
         """
-        Function: Clears the terminal and displays the game rules.
+        Clear the terminal and displays the game rules.
 
         Description:
         This method clears the terminal and then displays the game rules
@@ -135,11 +136,12 @@ class Game:
 
     def show_highscore(self, scores, size=10):
         """
-        Function: Clears the terminal and displays the highscores,
-                  using the given `scores` list.
-                  The `size` parameter determines the number of
-                  highscores to display.
-                  By default,it is set to 10.
+        Clear the terminal and displays the highscores.
+
+        Using the given `scores` list.
+                The `size` parameter determines the number of
+                highscores to display.
+                By default,it is set to 10.
 
         Args:
             - scores (list): A list of tuples, where each tuple represents
@@ -154,8 +156,9 @@ class Game:
 
     def show_menu(self, title: str, type: T) -> T:
         """
-        Function: Clears the terminal and displays a menu
-                  with the given `title` and `type` of options.
+        Clear the terminal and displays a menu.
+
+                  With the given `title` and `type` of options.
                   The `type` parameter must be an instance of one of
                   the following classes: `Start_Up`,
                   `Mode`, or `Settings`. The function returns the
@@ -192,18 +195,15 @@ class Game:
         return opt_dict[resp.upper()]
 
     def menu_transition(self):
-        """
-        Function: Clears the terminal and creates a brief pause to create
-                  a smooth transition between menus.
-        """
+        """Clear the terminal and creates a smooth transition between menus."""
         self._gui.clear_terminal()
         time.sleep(0.2)
 
     def press_any_keys_to_continue(self):
         """
-        Function: Displays a message prompting the user
-                  to press any key to continue,
-                  and waits for the user to do so before clearing the terminal
+        Display a message prompting the user to press any key to continue.
+
+                  And waits for the user to do so before clearing the terminal
                   to continue the program.
         """
         self._gui.display_any_key_continues()
@@ -211,7 +211,7 @@ class Game:
 
     def set_duel_players(self):
         """
-        Function: Set up the game for dueling players.
+        Set up the game for dueling players.
 
         Description:
             This method prompts the user to enter the names of two players,
@@ -238,7 +238,7 @@ class Game:
 
     def set_solo_player(self, mode: Mode):
         """
-        Function: Set up the game for a single player.
+        Set up the game for a single player.
 
         Description:
             This method prompts the user to enter their name,
@@ -257,7 +257,7 @@ class Game:
 
     def play(self, codename=None):
         """
-        Function: Start playing a game.
+        Start playing a game.
 
         Description:
             This method starts a new game if no codename is provided,
@@ -285,7 +285,7 @@ class Game:
 
     def request_codename_from_user(self):
         """
-        Function: Display the current game state.
+        Display the current game state.
 
         Description:
             This method displays the current state of the game, including the
@@ -508,6 +508,7 @@ class Game:
 
 # GAME PROCESS TRAINING METHODS
     def training_game(self):
+        """Allow a fast track to the a game session."""
         self._mode = Mode.DUEL
         self._p1 = Player('Erick')
         self._p2 = Player('Robert')

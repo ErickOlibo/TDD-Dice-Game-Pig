@@ -5,10 +5,11 @@ import time
 
 
 class GUI:
+    """This class controls how the data is display to user."""
 
     def clear_terminal(self):
         """
-        Function: Clear the terminal window.
+        Clear the terminal window.
 
         Description:
             This method clears the contents of the terminal using the 'clear'
@@ -20,7 +21,7 @@ class GUI:
 
     def display_info(self, text: str, title: str, width=40):
         """
-        Function: Display information to the user.
+        Display information to the user.
 
         Description:
             This method displays the provided text and title to the user,
@@ -40,7 +41,7 @@ class GUI:
     def get_simple_answer_from_user(self, ask: str,
                                     title: str, width=40) -> str:
         """
-        Function: Get a simple user input.
+        Get a simple user input.
 
         Description:
             This method displays a question to the user, along with a
@@ -63,7 +64,7 @@ class GUI:
     def get_simple_answer_from_cpu(self, ask: str,
                                    title: str, width=40) -> str:
         """
-        Function: Get a simple response from the CPU.
+        Get a simple response from the CPU.
 
         Description:
             This method displays a question to the CPU player, along with a
@@ -78,14 +79,13 @@ class GUI:
         Returns:
             str: The CPU's response as a string.
         """
-
         header = self._set_menu_header(title, width)
         ask_input = "\n".join([header, ask])
         return ask_input
 
     def display_hand_results(self, numbers: list, points: int):
         """
-        Function: Display the results of a dice roll.
+        Display the results of a dice roll.
 
         Description:
             This method takes a list of roll results and their point value,
@@ -98,7 +98,6 @@ class GUI:
             points (int): The total point value of the roll.
 
         """
-
         faces = []
         for numb in numbers:
             faces.append(DICE_FACES[numb])
@@ -118,7 +117,7 @@ class GUI:
     def display_hand_results_split(self, numbers: list,
                                    points: int, split=4):
         """
-        Function: Display the results of a hand of dice, split into chunks.
+        Display the results of a hand of dice, split into chunks.
 
         Description:
         This method takes a list of integers representing the dice rolls,
@@ -135,7 +134,6 @@ class GUI:
         - split (int): An optional parameter which determines how many dice
           should be displayed on each line. Defaults to 4.
         """
-
         chunk = [numbers[i:split+i] for i in range(0, len(numbers), split)]
         rows = []
         for int_list in chunk:
@@ -161,8 +159,7 @@ class GUI:
     def display_scoreboard(self, n1: str, s1: int,
                            n2: str, s2: int, hand: str):
         """
-        Function: Display a scoreboard with two players' names, scores,
-                  and current hand.
+        Display a scoreboard with two players' names, scores, and current hand.
 
         Description:
         This method takes in the names and scores of two players,
@@ -195,7 +192,7 @@ class GUI:
                                   question: str, options: list,
                                   legend=['Option', 'Actions']) -> str:
         """
-        Function: Get user input from a shown menu
+        Get user input from a shown menu.
 
         Description:
         This method displays a menu with the given title and options,
@@ -218,7 +215,7 @@ class GUI:
 
     def display_highscore(self, scores: list, size: int):
         """
-        Function: Display high scores in a tabular format.
+        Display high scores in a tabular format.
 
         Description:
         This method takes a list of high scores,
@@ -255,26 +252,21 @@ class GUI:
         print(highscore)
 
     def display_any_key_continues(self):
-        """
-
-        Display a message that prompts the user to press any key to continue.
-
-         """
+        """Prompts the user to press any key to continue."""
         input('Press any key to contiue: ')
 
     def display_message_and_continues(self, msg: str):
         """
-        Displays a message to the user and waits for any key press to continue.
+        Display message and waits for any key to be pressed.
 
         Args:
             msg (str): The message to display to the user.
-
         """
         input(f'{msg}')
 
     def insert_line_breaks(self, numb=1):
         """
-        Function: Inserts one or more line breaks into the console output.
+        Insert one or more line breaks into the console output.
 
         Description:
         This method inserts a specified number of line breaks
@@ -290,7 +282,7 @@ class GUI:
     def print_to_display(self, msg: str):
         """
 
-        Function: Print a message to the console.
+        Print a message to the console.
 
         Description:
         This method takes a message string as input and prints it to the
@@ -304,7 +296,7 @@ class GUI:
 
     def display_paused_game_message(self, code: str):
         """
-        Function: Display a message to the console and prompt for input.
+        Display a message to the console and prompt for input.
 
         Description:
         This method displays a message to the console along with a code,
@@ -325,7 +317,7 @@ class GUI:
 
     def cpu_question_answer_animation(self, msg1: str, msg2: str):
         """
-        Function: Print animation to console.
+        Print animation to console.
 
         Description:
         This method takes two message strings as input and prints the first,

@@ -22,8 +22,7 @@ class Player:
 
     def __init__(self, name: str, brain: Brain = None, dice: Dice = Dice()):
         """
-
-        Function: Initialize a Player object.
+        Initialize a Player object.
 
         Description:
         This method initializes a Player object with a name,
@@ -36,7 +35,6 @@ class Player:
         - dice (Dice): The dice used by the player (optional).
 
         """
-
         self._name = name
         self._brain = brain
         self._dice = dice
@@ -46,8 +44,7 @@ class Player:
     @property
     def name(self) -> str:
         """
-
-        Function: Get player's name.
+        Get player's name.
 
         Description:
         This method returns the player's name.
@@ -61,8 +58,7 @@ class Player:
     @name.setter
     def name(self, name: str):
         """
-
-        Function: Set the name of the player.
+        Set the name of the player.
 
         Args:
         - name (str): The new name for the player.
@@ -73,8 +69,7 @@ class Player:
     @property
     def brain(self) -> Brain:
         """
-
-        Function: Get the current player's brain object.
+        Get the current player's brain object.
 
         Description:
         This method returns the current player's brain object.
@@ -88,8 +83,7 @@ class Player:
     @brain.setter
     def brain(self, brain: Brain):
         """
-
-        Function: Set the brain of a player.
+        Set the brain of a player.
 
         Description:
         This method sets the brain of a player to the specified Brain instance.
@@ -105,8 +99,7 @@ class Player:
     @property
     def score(self) -> int:
         """
-
-        Function: Get the score of the player.
+        Get the score of the player.
 
         Description:
         This method returns the score of the player.
@@ -120,8 +113,7 @@ class Player:
     @property
     def rolls(self) -> list[int]:
         """
-
-        Function: Get the rolls that the player has made.
+        Get the rolls that the player has made.
 
         Returns:
         - list[int]: A list of integers representing the
@@ -132,8 +124,7 @@ class Player:
 
     def playing_choice(self, score, turn_points) -> Turn:
         """
-
-        Function: Determine a player's choice during their turn.
+        Determine a player's choice during their turn.
 
         Description:
         This method takes the player's current score and turn points as inputs,
@@ -156,7 +147,7 @@ class Player:
 
     def add_points_to_score(self, points: int):
         """
-        Method: Add points to player's score.
+        Add points to player's score.
 
         Description:
         This method takes an integer as input and adds it to the
@@ -165,12 +156,11 @@ class Player:
         Args:
         - points (int): The number of points to be added to the player's score.
         """
-
         self._score += points
 
     def roll_dice(self) -> int:
         """
-        Function: Roll a dice and update the list of rolls.
+        Roll a dice and update the list of rolls.
 
         Description:
             This method simulates rolling a dice, using the `_dice` attribute
@@ -191,7 +181,7 @@ class Player:
 
     def reset_rolls(self):
         """
-        Function: Reset the list of rolls to an empty list.
+        Reset the list of rolls to an empty list.
 
         Description:
             This method resets the `_rolls` attribute of the current instance

@@ -6,8 +6,7 @@ from database import Database
 
 def main():
     """
-
-    Function: Control the flow of the application.
+    Control the flow of the application.
 
     Description:
     This function controls the flow of the application,

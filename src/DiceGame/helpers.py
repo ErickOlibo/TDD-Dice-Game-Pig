@@ -68,6 +68,8 @@ class Settings(Enum):
 
 
 class Data_Path(Enum):
+    """The collection of paths to pickled files."""
+
     WINNERS = 'db/winners.pkl'
     GAMES = 'db/games.pkl'
 

@@ -1,9 +1,12 @@
+"""This module creates a 6 faced die to use."""
 import random
 from helpers import Mode
 
 
 class Dice:
     """
+    Create a die with the ability to be weighted, unbalanced.
+
     [Balanced Dice]
         A dice represents a six-sided die that produces randam value
         from 1 to 6. When the mode = None the probability distribution of each
@@ -22,6 +25,7 @@ class Dice:
     """
 
     def __init__(self, mode: Mode = None):
+        """Construct the necessary attributes for the dice object."""
         self._mode = mode
         r1 = list(range(1, 7))
         r2 = list(range(2, 7))
@@ -33,6 +37,12 @@ class Dice:
         self._merciless = r1 + r2 + r2 + r3 + r3 + r3 + r3 + r4 + r4
 
     def roll(self) -> int:
+        """
+        Get the die to roll for a numer..
+
+        Returns:
+            int: The random faces result.
+        """
         if self._mode is None:
             return random.randint(1, 6)
         if self._mode in Mode:
@@ -41,7 +51,7 @@ class Dice:
     @property
     def mode(self) -> Mode:
         """
-        Gets the game mode that affects the probability of rolling 1.
+        Get the game mode that affects the probability of rolling 1.
 
         Returns:
             Mode: The game mode.
@@ -51,7 +61,7 @@ class Dice:
     @mode.setter
     def mode(self, mode: Mode):
         """
-        Sets the game mode that affects the probability of rolling 1.
+        Set the game mode that affects the probability of rolling 1.
 
         Args:
             Mode: The game mode that affects the probability of rolling 1.
@@ -68,8 +78,10 @@ class Dice:
 
     def _items(self) -> list:
         """
-        Returns a list of unbalanced distribution of dice-sizes. Depending on
-        the mode, the probability of rolling a 1 goes from 16.7% to 2.6%
+        Return a list of unbalanced distribution of dice-sizes.
+
+        Depending on the mode, the probability of rolling a 1 goes
+        from 16.7% to 2.6%
 
         Returns:
             list: A list integers from 1 to 6 with unbalanced distribution.
