@@ -206,7 +206,8 @@ class Game:
                   And waits for the user to do so before clearing the terminal
                   to continue the program.
         """
-        self._gui.display_any_key_continues()
+        msg = 'Press any key to contiue: '
+        self._gui.display_message_and_continues(msg)
         self.menu_transition()
 
     def set_duel_players(self):
