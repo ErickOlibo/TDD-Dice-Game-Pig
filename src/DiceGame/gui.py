@@ -189,8 +189,8 @@ class GUI:
         print(scoreboard)
 
     def get_text_to_shown_menu(self, title: str,
-                                  question: str, options: list,
-                                  legend=['Option', 'Actions']) -> str:
+                               question: str, options: list,
+                               legend=['Option', 'Actions']) -> str:
         """
         Get user input from a shown menu.
 
@@ -211,7 +211,7 @@ class GUI:
         """
         menu = self._get_menu_layout(title, options, legend)
         menu += f"\n{question}"
-        
+
         return menu
 
     def display_highscore(self, scores: list, size: int):

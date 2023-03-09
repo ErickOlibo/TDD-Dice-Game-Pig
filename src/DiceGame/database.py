@@ -17,7 +17,7 @@ class Database:
         self._games = self._load_data(PATH.GAMES)
         self._winners = self._load_data(PATH.WINNERS)
         self._highscore = self._generate_highscore()
-        self._display_some_info_on_database()
+        # self._display_some_info_on_database()
 
     @property
     def highscore(self) -> list:
@@ -157,17 +157,17 @@ class Database:
         collection.sort(key=lambda row: (-row[1], -row[2]))
         return collection
 
-    def _display_some_info_on_database(self):
-        print(f'Games Paused Size: {len(self._games.keys())}')
-        print(f'Winners Size: {len(self._winners)}')
-        print()
-        print(self._games.keys())
+    # def _display_some_info_on_database(self):
+    #     print(f'Games Paused Size: {len(self._games.keys())}')
+    #     print(f'Winners Size: {len(self._winners)}')
+    #     print()
+    #     print(self._games.keys())
 
-        sada = self._games['Sada']
-        print(f'{sada._p1.name} - {sada._p2.name}')
+    #     sada = self._games['Sada']
+    #     print(f'{sada._p1.name} - {sada._p2.name}')
 
-        for gm in self._games.values():
-            print(f'{gm._codename} - {gm._p1.name} - {gm._p2.name}')
+    #     for gm in self._games.values():
+    #         print(f'{gm._codename} - {gm._p1.name} - {gm._p2.name}')
 
     # def _load_dummy_winners(self) -> list[Winner]:
     #     dummies = []
@@ -200,4 +200,4 @@ class Database:
     #         game.codename = codename
     #         dummies[codename] = game
     #     return dummies
-db = Database()
+# db = Database()

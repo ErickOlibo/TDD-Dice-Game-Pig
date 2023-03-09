@@ -177,7 +177,6 @@ class Game:
             TypeError: If the `type` parameter is not an instance of
                       `Start_Up`, `Mode`, or `Settings`.
         """
-
         [title, q, opt, leg, opt_dict] = self._show_menu_offload(title, type)
 
         resp = self._get_input_from_user(title, q, opt, leg)
@@ -201,7 +200,7 @@ class Game:
         ask1 = 'Enter Player One name: '
         n_one = self._get_simple_answer(ask1, 'PLAYER ONE')
         self._p1 = Player(n_one)
-    
+
     def set_player_two(self):
         """
         Set up the game for the player two.
@@ -228,9 +227,7 @@ class Game:
             msg = '\nName is already taken by the PLAYER ONE.'
             msg += '\nTry again by pressing any keys! '
             print(msg)
-            
             time.sleep(2)
-
 
     def set_solo_player(self, mode: Mode):
         """
@@ -247,7 +244,6 @@ class Game:
         """
         ask = self._set_solo_player_offload(mode)
         self._p1 = Player(self._get_simple_answer(ask, 'PLAYER'))
-        
 
     def play(self, codename=None):
         """
@@ -316,8 +312,8 @@ class Game:
                     if count >= 2:
                         choice = '1'
                     else:
-                     raise ValueError()
-                    
+                        raise ValueError()
+
             except ValueError:
                 print('\nThis is not a valid option. Please try again!\n')
                 time.sleep(1.5)
@@ -353,11 +349,11 @@ class Game:
 
     def _cpu_chosing(self) -> Turn:
         msg = self._roll_or_hold_message()
-        msg = self._gui.get_simple_answer_from_cpu(msg, 'ROLL or HOLD')  #_DEF_
+        msg = self._gui.get_simple_answer_from_cpu(msg, 'ROLL or HOLD')
         score = self._p2.score
         pts = sum(self._p2.rolls)
         turn = self._p2.brain.action(score, pts)
-        self._gui.cpu_question_answer_animation(msg, turn.value)  #_DEF_
+        self._gui.cpu_question_answer_animation(msg, turn.value)
         return turn
 
     # SLITTING Playing a turn
@@ -369,9 +365,9 @@ class Game:
         rolls = self._hand.rolls
         self._gui.display_scoreboard(
             self._p1.name, self._p1.score, self._p2.name,
-            self._p2.score, self._hand.name)  #_DEF_
+            self._p2.score, self._hand.name)
         pts = sum(rolls) if rolls[-1] != 1 else 0
-        self._gui.display_hand_results_split(self._hand.rolls, pts)  #_DEF_
+        self._gui.display_hand_results_split(self._hand.rolls, pts)
 
     def _resp_is_turn_hold_value(self):
         self._hand.add_points_to_score(sum(self._hand.rolls))
@@ -388,14 +384,14 @@ class Game:
             cheat_points = self._target - (self._hand.score + 1)
             self._hand.add_points_to_score(cheat_points)
             self._back_from_settings = True
-        
+
         if set_value == Settings.QUIT:
             self._has_quit = True
             self.menu_transition()
             msg = '\nSad to see you go!.'
             msg += 'Came back again anytime!\n\n'
             self._gui.print_to_display(msg)
-        
+
         if set_value == Settings.PAUSE:
             self._has_quit = True
             self.menu_transition()
@@ -418,44 +414,15 @@ class Game:
         else:
             while True:
                 resp = self._resolve_hand_response()
-                # if self._is_cpu_hand():
-                #     resp = self._cpu_chosing().value
-                # else:
-                #     resp = self._get_simple_answer(
-                #         self._roll_or_hold_message(), 'ROLL or HOLD').upper()
-
                 if resp == Turn.HOLD.value:
                     self._resp_is_turn_hold_value()
                     break
                 elif resp == Turn.ROLL.value:
                     break
-                
+
                 elif resp == Turn.SETTINGS.value:
                     choice = self.show_menu('IN-GAME SETTINGS', Settings.MENU)
                     self._resolve_show_settings_menu(choice)
-                    # if choice == Settings.BACK:
-                    #     self._resp_is_turn_settings(Settings.BACK)
-
-                    # if choice == Settings.CHEAT:
-                    #     self._resp_is_turn_settings(Settings.CHEAT)
-
-                    # if choice == Settings.QUIT:
-                    #     self._resp_is_turn_settings(Settings.QUIT)
-
-                    # if choice == Settings.PAUSE:
-                    #     code = self._resp_is_turn_settings(Settings.PAUSE)
-                    #     msg = self._gui.display_paused_game_message(code)
-                    #     input(msg)
-
-                    # if choice == Settings.NAME:
-                    #     [question, label] = self._resp_is_turn_settings(
-                    #         Settings.NAME)
-                    #     new_name = self._get_simple_answer(
-                    #         question, label)
-                    #     self._hand.name = new_name
-                    #     self._database.update_winner_name(
-                    #         self._hand.name, new_name)
-                        
                     break
                 else:
                     msg = f'\n[{resp}] Not a valid option. Try Again!'
@@ -485,7 +452,6 @@ class Game:
             self._database.update_winner_name(
                 self._hand.name, new_name)
 
-
     def _resolve_hand_response(self) -> str:
         if self._is_cpu_hand():
             resp = self._cpu_chosing().value
@@ -494,7 +460,6 @@ class Game:
                 self._roll_or_hold_message(), 'ROLL or HOLD').upper()
         return resp
 
-        
     def _hold_for_win(self):
         self.menu_transition()
         msg = self._we_have_winner_message()
@@ -576,7 +541,7 @@ class Game:
     # Deconstructing this large file. NOT THE BEST WAY. (PRIVATE METHODS)
     # But Time is of the essence.
     T = TypeVar("T")
-    
+
     def _show_menu_offload(self, title: str, type: T):
         self._gui.clear_terminal()
         legend = ['Option', 'Actions']
@@ -599,12 +564,12 @@ class Game:
         ask = 'Enter your name: '
         self._p2 = Player('CPU', Brain(), Dice(mode))
         return ask
-    
+
     def _get_simple_answer(self, ask: str, title: str, width=40) -> str:
         header = self._set_header(title, width)
         ask_input = "\n".join([header, ask])
         return input(ask_input)
-    
+
     def _set_header(self, title: str, width: int) -> str:
         header = f" {title} ".center(width, "~")
         return f'\n{header}'

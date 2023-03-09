@@ -1,6 +1,5 @@
 """This file is the entry point of the program."""
 from game import Game
-from gui import GUI
 from helpers import Start_Up, Mode
 from database import Database
 
@@ -23,7 +22,6 @@ def main():
         # 1 - Start an instance of Game
         db = Database()
         game = Game(db)
-        gui = GUI()
 
         # 2 - Get the option from the user for the Start Up menu
         start_choice = game.show_menu('START UP', Start_Up.MENU)
