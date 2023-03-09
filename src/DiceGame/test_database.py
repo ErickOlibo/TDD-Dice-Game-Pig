@@ -43,23 +43,10 @@ class TestDatabase(unittest.TestCase):
     
 
     def test_update_winner_name(self):
-        pass
-        
-    def test__get_used_codenames(self):
-        pass
-    
-    def test__update_highscore(self):
-        pass
-    
-    def test__load_data(self):
-        pass
-    
-    def test__store_data(self):
-        pass
-    
-    def test__generate_highscore(self):
-        pass
+        resp = self.db.update_winner_name('Bablaba', 'Simona')
+        self.assertIsNone(resp)
 
+    
 
         
 

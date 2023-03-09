@@ -3,13 +3,14 @@ import pickle
 import random
 from game import Game
 from winner import Winner
-from player import Player
-from helpers import Data_Path as PATH, CODE_NAMES, Mode
+# from player import Player
+from helpers import Data_Path as PATH, CODE_NAMES
 import os
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 
 class Database:
+    """Manage the storing and retrieving of winners and paused games."""
 
     def __init__(self):
         """Construct the necessary attributes for the database object."""
@@ -33,7 +34,7 @@ class Database:
 
     def load_game(self, code: str) -> Game:
         """
-        Function: load_game(self, code: str) -> Game
+        Get a game object from a codename.
 
         Description:
         Loads a game using provided code, updates data,
@@ -54,7 +55,7 @@ class Database:
 
     def store_game(self, game: Game) -> str:
         """
-        Function: Stores a game in the data file and returns its assigned code.
+        Store a game in the data file and returns its assigned code.
 
         Description:
         This function generates a unique code name for the game, assigns it,
@@ -80,7 +81,7 @@ class Database:
 
     def add_winner(self, winner: Winner):
         """
-        Function: Adds a winner to the list of winners and updates highscore.
+        Add a winner to the list of winners and updates highscore.
 
         Description:
         This function adds the provided winner to the list of winners and
@@ -97,7 +98,7 @@ class Database:
 
     def update_winner_name(self, old: str, new: str):
         """
-        Function: Updates the name of a winner in the list of winners.
+        Update the name of a winner in the list of winners.
 
         Description:
         This function searches the list of winners for a winner with the old
@@ -115,9 +116,6 @@ class Database:
             winners.append(upd_win)
         self._winners = winners
         self._store_data(self._winners, PATH.WINNERS)
-
-    def _get_used_codenames(self) -> list[str]:
-        return [game.codename for game in self._games]
 
     def _update_highscore(self):
         self._highscore = self._generate_highscore()
@@ -154,46 +152,46 @@ class Database:
         collection.sort(key=lambda row: (-row[1], -row[2]))
         return collection
 
-    def _display_some_info_on_database(self):
-        print(f'Games Paused Size: {len(self._games.keys())}')
-        print(f'Winners Size: {len(self._winners)}')
-        print()
-        print(self._games.keys())
+    # def _display_some_info_on_database(self):
+    #     print(f'Games Paused Size: {len(self._games.keys())}')
+    #     print(f'Winners Size: {len(self._winners)}')
+    #     print()
+    #     print(self._games.keys())
 
-        sada = self._games['Sada']
-        print(f'{sada._p1.name} - {sada._p2.name}')
+    #     sada = self._games['Sada']
+    #     print(f'{sada._p1.name} - {sada._p2.name}')
 
-        for gm in self._games.values():
-            print(f'{gm._codename} - {gm._p1.name} - {gm._p2.name}')
+    #     for gm in self._games.values():
+    #         print(f'{gm._codename} - {gm._p1.name} - {gm._p2.name}')
 
-    def _load_dummy_winners(self) -> list[Winner]:
-        dummies = []
-        size = 10
-        people = ['Erick', 'Robert', 'Jennifer', 'Ciara', 'CPU']
-        for _ in range(size):
-            winner = random.choice(people)
-            points = random.randint(100, 105)
-            stamp = random.randint(20000, 50000)
-            dummies.append(Winner(winner, points, stamp))
-        return dummies
+    # def _load_dummy_winners(self) -> list[Winner]:
+    #     dummies = []
+    #     size = 10
+    #     people = ['Erick', 'Robert', 'Jennifer', 'Ciara', 'CPU']
+    #     for _ in range(size):
+    #         winner = random.choice(people)
+    #         points = random.randint(100, 105)
+    #         stamp = random.randint(20000, 50000)
+    #         dummies.append(Winner(winner, points, stamp))
+    #     return dummies
 
-    def _load_dummy_games(self) -> dict[str: Game]:
-        dummies = dict()
-        size = 10
-        people = ['Erick', 'Robert', 'Jennifer', 'Ciara', 'CPU']
-        codenames = random.sample(CODE_NAMES, k=size)
-        modes = [
-            Mode.DUEL, Mode.SOLO_EASY,
-            Mode.SOLO_MEDIUM, Mode.SOLO_MERCILESS
-            ]
-        for i in range(size):
-            [p1, p2] = random.sample(people, k=2)
-            mode = random.choice(modes)
-            pep1 = Player(p1)
-            pep2 = Player(p2)
-            codename = codenames[i]
-            game = Game()
-            game.game_for_test(pep1, pep2, mode)
-            game.codename = codename
-            dummies[codename] = game
-        return dummies
+    # def _load_dummy_games(self) -> dict[str: Game]:
+    #     dummies = dict()
+    #     size = 10
+    #     people = ['Erick', 'Robert', 'Jennifer', 'Ciara', 'CPU']
+    #     codenames = random.sample(CODE_NAMES, k=size)
+    #     modes = [
+    #         Mode.DUEL, Mode.SOLO_EASY,
+    #         Mode.SOLO_MEDIUM, Mode.SOLO_MERCILESS
+    #         ]
+    #     for i in range(size):
+    #         [p1, p2] = random.sample(people, k=2)
+    #         mode = random.choice(modes)
+    #         pep1 = Player(p1)
+    #         pep2 = Player(p2)
+    #         codename = codenames[i]
+    #         game = Game()
+    #         game.game_for_test(pep1, pep2, mode)
+    #         game.codename = codename
+    #         dummies[codename] = game
+    #     return dummies
