@@ -57,11 +57,11 @@ def main():
 
         if start_choice == Start_Up.HIGH_SCORE:
             game.show_highscore(db.highscore)
-            gui.display_message_and_continues(msg)
+            input(msg)
 
         if start_choice == Start_Up.RULES:
             game.display_rules()
-            gui.display_message_and_continues(msg)
+            input(msg)
 
 
 if __name__ == "__main__":

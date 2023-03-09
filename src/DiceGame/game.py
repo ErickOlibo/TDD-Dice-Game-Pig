@@ -221,7 +221,7 @@ class Game:
                 break
             msg = f'\n[{n_two}] is already taken by the PLAYER ONE.'
             msg += '\nTry again by pressing any keys! '
-            self._gui.display_message_and_continues(msg)
+            input(msg)
             self.menu_transition()
         self._p1 = Player(n_one)
         self._p2 = Player(n_two)
@@ -304,7 +304,7 @@ class Game:
         while True:
             try:
                 choice = self._gui.get_input_from_shown_menu(
-                    title, ask, options, legend)
+                    title, ask, options, legend)  #_DEF_
                 if choice not in choices:
                     raise ValueError()
             except ValueError:
@@ -321,7 +321,7 @@ class Game:
         else:
             self._hand = random.choice([self._p1, self._p2])
         msg = self._intro_message()
-        self._gui.display_message_and_continues(msg)
+        input(msg)
         while not self._winner:
             if not self._has_quit:
                 self._playing_a_turn()
@@ -332,7 +332,7 @@ class Game:
         self.menu_transition()
         self._hand = self._p1
         msg = self._intro_message()
-        self._gui.display_message_and_continues(msg)
+        input(msg)
 
     def _change_hand(self):
         self._hand = self._p1 if self._hand != self._p1 else self._p2
@@ -342,11 +342,11 @@ class Game:
 
     def _cpu_chosing(self) -> Turn:
         msg = self._roll_or_hold_message()
-        msg = self._gui.get_simple_answer_from_cpu(msg, 'ROLL or HOLD')
+        msg = self._gui.get_simple_answer_from_cpu(msg, 'ROLL or HOLD')  #_DEF_
         score = self._p2.score
         pts = sum(self._p2.rolls)
         turn = self._p2.brain.action(score, pts)
-        self._gui.cpu_question_answer_animation(msg, turn.value)
+        self._gui.cpu_question_answer_animation(msg, turn.value)  #_DEF_
         return turn
 
     def _playing_a_turn(self):
@@ -357,9 +357,9 @@ class Game:
         rolls = self._hand.rolls
         self._gui.display_scoreboard(
             self._p1.name, self._p1.score, self._p2.name,
-            self._p2.score, self._hand.name)
+            self._p2.score, self._hand.name)  #_DEF_
         pts = sum(rolls) if rolls[-1] != 1 else 0
-        self._gui.display_hand_results_split(self._hand.rolls, pts)
+        self._gui.display_hand_results_split(self._hand.rolls, pts)  #_DEF_
         if rolls[-1] == 1:
             self._rolled_one()
         else:
@@ -368,7 +368,7 @@ class Game:
                     resp = self._cpu_chosing().value
                 else:
                     resp = self._gui.get_simple_answer_from_user(
-                        self._roll_or_hold_message(), 'ROLL or HOLD').upper()
+                        self._roll_or_hold_message(), 'ROLL or HOLD').upper()  #_DEF_
 
                 if resp == Turn.HOLD.value:
                     self._hand.add_points_to_score(sum(self._hand.rolls))
@@ -381,7 +381,7 @@ class Game:
                 elif resp == Turn.ROLL.value:
                     break
                 elif resp == Turn.SETTINGS.value:
-                    choice = self.show_menu('IN-GAME SETTINGS', Settings.MENU)
+                    choice = self.show_menu('IN-GAME SETTINGS', Settings.MENU)  #_DEF_
                     if choice == Settings.BACK:
                         self._back_from_settings = True
                         break
@@ -405,7 +405,7 @@ class Game:
                         self.menu_transition()
                         code = self._database.store_game(self)
                         self.menu_transition()
-                        self._gui.display_paused_game_message(code)
+                        self._gui.display_paused_game_message(code)  #_DEF_
                         break
 
                     if choice == Settings.NAME:
@@ -414,7 +414,7 @@ class Game:
                         question = 'Enter your new name: '
                         label = f'CHANGING {old_name.upper()} TO'
                         new_name = self._gui.get_simple_answer_from_user(
-                            question, label)
+                            question, label)  #_DEF_
                         self._hand.name = new_name
                         self._database.update_winner_name(old_name, new_name)
                         self._back_from_settings = True
@@ -427,7 +427,7 @@ class Game:
         self.menu_transition()
         msg = self._we_have_winner_message()
         self._winner = True
-        self._gui.display_message_and_continues(msg)
+        input(msg)
         victor = Winner(self._hand.name, self._hand.score)
         self._database.add_winner(victor)
 
@@ -440,15 +440,20 @@ class Game:
             self._gui.print_to_display(msg)
             time.sleep(2.5)
         else:
-            self._gui.display_message_and_continues(msg)
+            input(msg)
 
     def _rolled_one(self) -> Turn:
         self._hand.reset_rolls()
         loss_msg = self._loss_message()
-        self._gui.display_message_and_continues(loss_msg)
+
+        if self._is_cpu_hand():
+            self._gui.print_to_display(loss_msg)
+            time.sleep(2.5)
+        else:
+            input(loss_msg)
         return Turn.LOSS
 
-    def _intro_message(self,) -> str:
+    def _intro_message(self) -> str:
         msg = Textual.NEW_START.value
         msg += f'\n\nWe have tossed a coin and [ {self._hand.name} ]'
         msg += ' is starting.!\n\nPress any key to start rolling! '

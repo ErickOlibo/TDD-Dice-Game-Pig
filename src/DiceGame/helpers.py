@@ -7,6 +7,7 @@ class Turn(Enum):
 
     HOLD = 'H'
     ROLL = 'R'
+    LOSS = 'L'
     SETTINGS = 'S'
 
 
