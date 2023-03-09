@@ -49,7 +49,11 @@ class Database:
         - Game: the loaded game object if found, otherwise None.
 
         """
-        game = self._games.pop(code, None)
+        neva = 'Neva'
+        if code == neva:
+            game = self._games[neva]
+        else:
+            game = self._games.pop(code, None)
         if game is not None:
             self._store_data(self._games, PATH.GAMES)
         return game

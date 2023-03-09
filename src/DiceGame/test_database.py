@@ -47,5 +47,5 @@ class TestDatabase(unittest.TestCase):
         self.assertIsNone(resp)
 
 
-# if __name__ == '__main__':
-#     unittest.main()
+if __name__ == '__main__':
+    unittest.main()
