@@ -40,7 +40,8 @@ def main():
                 continue
 
             if new_game_choice == Mode.DUEL:
-                game.set_duel_players()
+                game.set_player_one()
+                game.set_player_two()
                 game.play()
 
             solo_mode = [
