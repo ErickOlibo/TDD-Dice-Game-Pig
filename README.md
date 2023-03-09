@@ -12,7 +12,7 @@ This project is a simple implementation of the dice game pig, created by Erick O
 To install this project, you can either download the repository as a ZIP file or clone it using Git.
 
 ### Download as ZIP
-1. Go to the repository page (https://https://github.com/ErickOlibo/TDD-Dice-Game-Pig).
+1. Go to the repository page (https://github.com/ErickOlibo/TDD-Dice-Game-Pig).
 2. Click on the "Code" button and select "Download ZIP".
 3. Once downloaded, extract the ZIP file to your desired location.
 
@@ -20,7 +20,7 @@ To install this project, you can either download the repository as a ZIP file or
 1. Open a terminal or command prompt.
 2. Navigate to the directory where you want to clone the repository.
 3. Run the following command:
-git clone https://https://github.com/ErickOlibo/TDD-Dice-Game-Pig.git
+git clone https://github.com/ErickOlibo/TDD-Dice-Game-Pig.git
 
 
 ## Usage
