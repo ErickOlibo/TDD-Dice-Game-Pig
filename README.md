@@ -31,7 +31,7 @@ To install this project, you can either download the repository as a ZIP file or
 1. Open a terminal or command prompt.
 2. Navigate to the directory where you want to clone the repository.
 3. Run the following command:
-git clone https://github.com/[Your Username]/[Your Repository Name].git
+git clone https://https://github.com/ErickOlibo/TDD-Dice-Game-Pig.git
 
 
 ## Usage
