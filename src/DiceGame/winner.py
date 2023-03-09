@@ -61,11 +61,3 @@ class Winner:
 
         """
         return f'{self._stamp} | {self._name} - {self._score}'
-
-    def get_name(self) -> str:
-        """
-        Function: Returns the name of the object.
-
-        Return : A string representing the name of the object.
-        """
-        return self._name

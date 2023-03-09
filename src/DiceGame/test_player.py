@@ -17,6 +17,8 @@ class TestPlayer(unittest.TestCase):
         cpu = Player('CPU', Brain(), Dice(Mode.SOLO_MERCILESS))
         self.assertIsNotNone(cpu)
         self.assertEqual(cpu.score, 0)
+        self.jen.reset_rolls()
+        self.assertEqual(len(self.jen.rolls), 0)
         
 
     
