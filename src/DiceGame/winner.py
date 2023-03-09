@@ -47,11 +47,7 @@ class Winner:
 
     @property
     def name(self) -> str:
-        """
-        Function: Returns the name of the object.
-
-        Return : A string representing the name of the object.
-        """
+        """Return string representing the name of the object."""
         return self._name
 
     @name.setter
@@ -67,11 +63,5 @@ class Winner:
 
     @property
     def to_string(self) -> str:
-        """
-
-        Function: Returns a string representation of the object.
-
-        Return: A string representing the object's properties.
-
-        """
+        """Return a string representing the object's properties."""
         return f'{self._stamp} | {self._name} - {self._score}'
