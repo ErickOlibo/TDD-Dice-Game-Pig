@@ -43,5 +43,5 @@ class TestBrain(unittest.TestCase):
             self.assertEqual(self.brain.action(45, 31), Turn.HOLD)
 
 
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()

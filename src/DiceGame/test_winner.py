@@ -26,6 +26,7 @@ class TestWinner(unittest.TestCase):
     def test_to_string(self):
         win = Winner('Erick', 99)
         self.assertEqual(win.to_string[13:], 'Erick - 99')
-    
-if __name__ == '__main__':
-    unittest.main()
+
+
+# if __name__ == '__main__':
+#     unittest.main()

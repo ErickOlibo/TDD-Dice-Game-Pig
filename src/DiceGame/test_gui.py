@@ -2,12 +2,6 @@ from unittest.mock import patch
 import unittest
 from gui import GUI
 
-# Simulates input from user after prompt
-def get_input(text: str) -> str:
-    return input(text)
-
-def answer():
-    return 'R'
 
 class TestGUI(unittest.TestCase):
     
@@ -79,5 +73,5 @@ class TestGUI(unittest.TestCase):
 
 
 
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()

@@ -63,7 +63,7 @@ class TestPlayer(unittest.TestCase):
         cpu = Player('CPU', Brain())
     
 
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()
 
     

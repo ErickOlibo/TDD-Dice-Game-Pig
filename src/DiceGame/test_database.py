@@ -46,9 +46,6 @@ class TestDatabase(unittest.TestCase):
         resp = self.db.update_winner_name('Bablaba', 'Simona')
         self.assertIsNone(resp)
 
-    
 
-        
-
-if __name__ == '__main__':
-    unittest.main()
+# if __name__ == '__main__':
+#     unittest.main()

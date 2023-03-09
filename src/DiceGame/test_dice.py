@@ -63,8 +63,6 @@ class TestDice(unittest.TestCase):
         self.assertEqual(len(list_items), 38)
 
 
+# if __name__ == '__main__':
+#     unittest.main()
 
-
-if __name__ == '__main__':
-    unittest.main()
-        
