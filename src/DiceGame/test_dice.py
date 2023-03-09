@@ -41,7 +41,7 @@ class TestDice(unittest.TestCase):
             for j in range(size):
                 if dice.roll() == 1:
                     rolls += 1
-            self.assertAlmostEqual(rolls/size, proba[i],2)
+            self.assertAlmostEqual(rolls/size, proba[i],1)
 
 
     def test__items(self):

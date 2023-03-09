@@ -12,8 +12,10 @@ class TestWinner(unittest.TestCase):
     def test_winner(self):
         winner = Winner('Steve', 100)
         self.assertIsNotNone(winner)
-        name = winner._name
+        name = winner.name
         self.assertEqual(name, 'Steve')
+        winner.name = 'Erick'
+        self.assertNotEqual('Steve', winner.name)
     
     
     def test_data(self):

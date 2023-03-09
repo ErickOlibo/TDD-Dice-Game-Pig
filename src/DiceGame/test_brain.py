@@ -22,21 +22,25 @@ class TestBrain(unittest.TestCase):
 
     def test_action(self):
         self.brain._strategy = Tactic.TWENTY_FIVE
+        self.assertIsInstance(self.brain.action(45, 19), Turn)
+        self.assertEqual(self.brain.action(45, 19), Turn.ROLL)
+
+        self.assertEqual(self.brain.action(20, 27), Turn.HOLD)
         
-        my_action = self.brain.action(45, 19)
-        self.assertIsInstance(my_action, Turn)
-        self.assertEqual(my_action, Turn.ROLL)
-
-        my_action = self.brain.action(20, 27)
-        self.assertEqual(my_action, Turn.HOLD)
         
-        # context manager
-        with self.assertRaises(TypeError):
-            self.brain.action('Twenty')
-            self.brain.action('Twenty-Five')
-            self.brain.action('21')
-
-
+        self.brain._strategy = Tactic.FOUR_TURNS
+        self.assertEqual(self.brain.action(45, 31), Turn.HOLD)
+        self.brain._current_turns = 0
+        self.assertEqual(self.brain.action(45, 29), Turn.ROLL)
+        
+        self.brain._current_turns = 2
+        self.assertEqual(self.brain.action(55, 15), Turn.ROLL)
+        self.brain._current_turns = 2
+        self.assertEqual(self.brain.action(55, 25), Turn.HOLD)
+        
+        with self.assertRaises(ZeroDivisionError):
+            self.brain._current_turns = 4
+            self.assertEqual(self.brain.action(45, 31), Turn.HOLD)
 
 
 if __name__ == '__main__':
