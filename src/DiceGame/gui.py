@@ -251,10 +251,6 @@ class GUI:
         highscore = "\n".join([header, line1, line2, line3] + center + [end])
         print(highscore)
 
-    def display_any_key_continues(self):
-        """Prompts the user to press any key to continue."""
-        input('Press any key to contiue: ')
-
     def display_message_and_continues(self, msg: str):
         """
         Display message and waits for any key to be pressed.
