@@ -27,8 +27,7 @@ class Winner:
     @property
     def data(self) -> list:
         """
-
-        Function: Get the data stored in the instance.
+        Get the data stored in the instance.
 
         Description:
             This property returns the value of the `_data` attribute of the
