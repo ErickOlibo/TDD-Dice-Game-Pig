@@ -191,24 +191,13 @@ class Game:
             opt = self._settings_options
             opt_dict = self._settings_options_dict
 
-        resp = self._get_input_from_user(title, question, opt, legend)
+        resp = self._get_input_from_user(title, question, opt, legend)  #_DEF_
         return opt_dict[resp.upper()]
 
     def menu_transition(self):
         """Clear the terminal and creates a smooth transition between menus."""
         self._gui.clear_terminal()
         time.sleep(0.2)
-
-    def press_any_keys_to_continue(self):
-        """
-        Display a message prompting the user to press any key to continue.
-
-                  And waits for the user to do so before clearing the terminal
-                  to continue the program.
-        """
-        msg = 'Press any key to contiue: '
-        self._gui.display_message_and_continues(msg)
-        self.menu_transition()
 
     def set_duel_players(self):
         """
@@ -224,10 +213,10 @@ class Game:
         self._mode = Mode.DUEL
         ask1 = 'Enter Player One name: '
         ask2 = 'Enter Player Two name: '
-        n_one = self._gui.get_simple_answer_from_user(ask1, 'PLAYER ONE')
+        n_one = self._gui.get_simple_answer_from_user(ask1, 'PLAYER ONE')  #_DEF_
         self.menu_transition()
         while True:
-            n_two = self._gui.get_simple_answer_from_user(ask2, 'PLAYER TWO')
+            n_two = self._gui.get_simple_answer_from_user(ask2, 'PLAYER TWO')  #_DEF_
             if n_two.lower() != n_one.lower():
                 break
             msg = f'\n[{n_two}] is already taken by the PLAYER ONE.'
@@ -253,7 +242,7 @@ class Game:
         self.menu_transition()
         self._mode = mode
         ask = 'Enter your name: '
-        self._p1 = Player(self._gui.get_simple_answer_from_user(ask, 'PLAYER'))
+        self._p1 = Player(self._gui.get_simple_answer_from_user(ask, 'PLAYER'))  #_DEF_
         self._p2 = Player('CPU', Brain(), Dice(mode))
 
     def play(self, codename=None):
@@ -296,7 +285,7 @@ class Game:
         """
         self.menu_transition()
         ask = "Please Enter the Game's Code Name: "
-        codename = self._gui.get_simple_answer_from_user(ask, 'CODE NAME')
+        codename = self._gui.get_simple_answer_from_user(ask, 'CODE NAME')  #_DEF_
         return codename
 
     # PRIVATE METHODS
@@ -508,9 +497,9 @@ class Game:
         return msg
 
 # GAME PROCESS TRAINING METHODS
-    def training_game(self):
-        """Allow a fast track to the a game session."""
-        self._mode = Mode.DUEL
-        self._p1 = Player('Erick')
-        self._p2 = Player('Robert')
-        self._play_new_game()
+    # def training_game(self):
+    #     """Allow a fast track to the a game session."""
+    #     self._mode = Mode.DUEL
+    #     self._p1 = Player('Erick')
+    #     self._p2 = Player('Robert')
+    #     self._play_new_game()

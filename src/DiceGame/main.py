@@ -1,5 +1,6 @@
 """This file is the entry point of the program."""
 from game import Game
+from gui import GUI
 from helpers import Start_Up, Mode
 from database import Database
 
@@ -22,6 +23,7 @@ def main():
         # 1 - Start an instance of Game
         db = Database()
         game = Game(db)
+        gui = GUI()
 
         # 2 - Get the option from the user for the Start Up menu
         start_choice = game.show_menu('START UP', Start_Up.MENU)
@@ -48,17 +50,18 @@ def main():
                 game.set_solo_player(new_game_choice)
                 game.play()
 
+        msg = 'Press any key to contiue: '
         if start_choice == Start_Up.RESUME_GAME:
             codename = game.request_codename_from_user()
             game.play(codename)
 
         if start_choice == Start_Up.HIGH_SCORE:
             game.show_highscore(db.highscore)
-            game.press_any_keys_to_continue()
+            gui.display_message_and_continues(msg)
 
         if start_choice == Start_Up.RULES:
             game.display_rules()
-            game.press_any_keys_to_continue()
+            gui.display_message_and_continues(msg)
 
 
 if __name__ == "__main__":
