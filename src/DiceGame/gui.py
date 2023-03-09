@@ -188,7 +188,7 @@ class GUI:
         scoreboard = "\n".join([line1, line2, line3])
         print(scoreboard)
 
-    def get_input_from_shown_menu(self, title: str,
+    def get_text_to_shown_menu(self, title: str,
                                   question: str, options: list,
                                   legend=['Option', 'Actions']) -> str:
         """
@@ -211,7 +211,8 @@ class GUI:
         """
         menu = self._get_menu_layout(title, options, legend)
         menu += f"\n{question}"
-        return input(menu)
+        
+        return menu
 
     def display_highscore(self, scores: list, size: int):
         """
@@ -290,7 +291,7 @@ class GUI:
         """
         print(msg)
 
-    def display_paused_game_message(self, code: str):
+    def display_paused_game_message(self, code: str) -> str:
         """
         Display a message to the console and prompt for input.
 
@@ -309,7 +310,7 @@ class GUI:
         msg += '\n\nUse this code (case sensitive) to resume your game.'
         msg += '\n\nSee you soon for another game of PIG!!\n'
         msg += '\nPress any key to go back to Start Up menu! '
-        input(msg)
+        return msg
 
     def cpu_question_answer_animation(self, msg1: str, msg2: str):
         """

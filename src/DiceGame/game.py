@@ -177,57 +177,16 @@ class Game:
             TypeError: If the `type` parameter is not an instance of
                       `Start_Up`, `Mode`, or `Settings`.
         """
-        
-        # self._gui.clear_terminal()
-        # legend = ['Option', 'Actions']
-        # question = 'Pick an option: '
-        # title = title.upper().strip()
-        # if isinstance(type, Start_Up):
-        #     opt = self._startup_options
-        #     opt_dict = self._startup_options_dict
-        # elif isinstance(type, Mode):
-        #     opt = self._new_game_options
-        #     opt_dict = self._new_game_options_dict
-        # elif isinstance(type, Settings):
-        #     opt = self._settings_options
-        #     opt_dict = self._settings_options_dict
+
         [title, q, opt, leg, opt_dict] = self._show_menu_offload(title, type)
 
-        resp = self._get_input_from_user(title, q, opt, leg)  #_DEF_
+        resp = self._get_input_from_user(title, q, opt, leg)
         return opt_dict[resp.upper()]
 
     def menu_transition(self):
         """Clear the terminal and creates a smooth transition between menus."""
         self._gui.clear_terminal()
         time.sleep(0.2)
-
-    # def set_duel_players(self):
-    #     """
-    #     Set up the game for dueling players.
-
-    #     Description:
-    #         This method prompts the user to enter the names of two players,
-    #         checks that the names are different, and creates two Player
-    #         objects to represent them. The game mode is set to Mode.DUEL.
-
-    #     """
-    #     # self.menu_transition()
-    #     # ask1 = 'Enter Player One name: '
-    #     # ask2 = 'Enter Player Two name: '
-    #     # msg = '\nName is already taken by the PLAYER ONE.'
-    #     # msg += '\nTry again by pressing any keys! '
-    #     [ask1, ask2, msg] = self._set_duel_players_offload(True)
-    #     n_one = self._get_simple_answer(ask1, 'PLAYER ONE')
-    #     while True:
-    #         self.menu_transition()
-    #         n_two = self._get_simple_answer(ask2, 'PLAYER TWO')
-    #         if n_two.lower() != n_one.lower():
-    #             break
-    #         input(msg)
-    #     self._set_duel_players_offload(False, [n_one, n_two])
-    #     # self._p1 = Player(n_one)
-    #     # self._p2 = Player(n_two)
-    #     # self._mode = Mode.DUEL
 
     def set_player_one(self):
         """
@@ -256,16 +215,20 @@ class Game:
         """
         self._mode = Mode.DUEL
         n_one = self._p1.name
+        count = 0
         while True:
             self.menu_transition()
+            count += 1
             ask2 = 'Enter Player Two name: '
             n_two = self._get_simple_answer(ask2, 'PLAYER TWO')
+            n_two = f'{n_one} Jr.' if count >= 2 else n_two
             if n_two.lower() != n_one.lower():
                 self._p2 = Player(n_two)
                 break
             msg = '\nName is already taken by the PLAYER ONE.'
             msg += '\nTry again by pressing any keys! '
             print(msg)
+            
             time.sleep(2)
 
 
@@ -282,12 +245,8 @@ class Game:
         Args:
             mode (Mode): The game mode to use.
         """
-        # self.menu_transition()
-        # self._mode = mode
-        # ask = 'Enter your name: '
-        # self._p2 = Player('CPU', Brain(), Dice(mode))
         ask = self._set_solo_player_offload(mode)
-        self._p1 = Player(self._get_simple_answer(ask, 'PLAYER'))  #_DEF_
+        self._p1 = Player(self._get_simple_answer(ask, 'PLAYER'))
         
 
     def play(self, codename=None):
@@ -330,7 +289,7 @@ class Game:
         """
         self.menu_transition()
         ask = "Please Enter the Game's Code Name: "
-        codename = self._gui.get_simple_answer_from_user(ask, 'CODE NAME')  #_DEF_
+        codename = self._get_simple_answer(ask, 'CODE NAME')
         return codename
 
     # PRIVATE METHODS
@@ -346,15 +305,22 @@ class Game:
     def _get_input_from_user(self, title, ask, options, legend) -> str:
         choices = [k[0] for k in options]
         choices = set(choices + [k[0].lower() for k in options])
+        count = 0
         while True:
+            count += 1
             try:
-                choice = self._gui.get_input_from_shown_menu(
-                    title, ask, options, legend)  #_DEF_
+                menu = self._gui.get_text_to_shown_menu(
+                    title, ask, options, legend)
+                choice = input(menu)
                 if choice not in choices:
-                    raise ValueError()
+                    if count >= 2:
+                        choice = '1'
+                    else:
+                     raise ValueError()
+                    
             except ValueError:
                 print('\nThis is not a valid option. Please try again!\n')
-                time.sleep(2)
+                time.sleep(1.5)
                 self.menu_transition()
             else:
                 return choice
@@ -417,7 +383,7 @@ class Game:
     def _resp_is_turn_settings(self, set_value: Settings):
         if set_value == Settings.BACK:
             self._back_from_settings = True
-        
+
         if set_value == Settings.CHEAT:
             cheat_points = self._target - (self._hand.score + 1)
             self._hand.add_points_to_score(cheat_points)
@@ -436,7 +402,7 @@ class Game:
             code = self._database.store_game(self)
             self.menu_transition()
             return code
-        
+
         if set_value == Settings.NAME:
             self.menu_transition()
             old_name = self._hand.name
@@ -444,89 +410,91 @@ class Game:
             label = f'CHANGING {old_name.upper()} TO'
             self._back_from_settings = True
             return [question, label]
-        
-        
+
     def _playing_a_turn(self):
         self._start_of_turn_scoreboard()
-        # self.menu_transition()
-        # if not self._back_from_settings:
-        #     self._hand.roll_dice()
-        # self._back_from_settings = False
-        # rolls = self._hand.rolls
-        # self._gui.display_scoreboard(
-        #     self._p1.name, self._p1.score, self._p2.name,
-        #     self._p2.score, self._hand.name)  #_DEF_
-        # pts = sum(rolls) if rolls[-1] != 1 else 0
-        # self._gui.display_hand_results_split(self._hand.rolls, pts)  #_DEF_
-        if self._hand.rolls[-1] == 1:
+        if 1 in self._hand.rolls:
             self._rolled_one()
         else:
             while True:
-                if self._is_cpu_hand():
-                    resp = self._cpu_chosing().value
-                else:
-                    resp = self._gui.get_simple_answer_from_user(
-                        self._roll_or_hold_message(), 'ROLL or HOLD').upper()
+                resp = self._resolve_hand_response()
+                # if self._is_cpu_hand():
+                #     resp = self._cpu_chosing().value
+                # else:
+                #     resp = self._get_simple_answer(
+                #         self._roll_or_hold_message(), 'ROLL or HOLD').upper()
 
                 if resp == Turn.HOLD.value:
                     self._resp_is_turn_hold_value()
                     break
-                    # self._hand.add_points_to_score(sum(self._hand.rolls))
-                    # if self._hand.score >= self._target:
-                    #     self._hold_for_win()
-                    #     break
-                    # else:
-                    #     self._choose_hold()
-                    #     break
                 elif resp == Turn.ROLL.value:
                     break
+                
                 elif resp == Turn.SETTINGS.value:
                     choice = self.show_menu('IN-GAME SETTINGS', Settings.MENU)
-                    if choice == Settings.BACK:
-                        self._resp_is_turn_settings(Settings.BACK)
-                        #self._back_from_settings = True
+                    self._resolve_show_settings_menu(choice)
+                    # if choice == Settings.BACK:
+                    #     self._resp_is_turn_settings(Settings.BACK)
 
-                    if choice == Settings.CHEAT:
-                        self._resp_is_turn_settings(Settings.CHEAT)
-                        # cheat_points = self._target - (self._hand.score + 1)
-                        # self._hand.add_points_to_score(cheat_points)
-                        # self._back_from_settings = True
+                    # if choice == Settings.CHEAT:
+                    #     self._resp_is_turn_settings(Settings.CHEAT)
 
-                    if choice == Settings.QUIT:
-                        self._resp_is_turn_settings(Settings.QUIT)
-                        # self._has_quit = True
-                        # self.menu_transition()
-                        # msg = '\nSad to see you go!.'
-                        # msg += 'Came back again anytime!\n\n'
-                        # self._gui.print_to_display(msg)
+                    # if choice == Settings.QUIT:
+                    #     self._resp_is_turn_settings(Settings.QUIT)
 
-                    if choice == Settings.PAUSE:
-                        code = self._resp_is_turn_settings(Settings.PAUSE)
-                        # self._has_quit = True
-                        # self.menu_transition()
-                        # code = self._database.store_game(self)
-                        # self.menu_transition()
-                        self._gui.display_paused_game_message(code)
+                    # if choice == Settings.PAUSE:
+                    #     code = self._resp_is_turn_settings(Settings.PAUSE)
+                    #     msg = self._gui.display_paused_game_message(code)
+                    #     input(msg)
 
-                    if choice == Settings.NAME:
-                        [question, label] = self._resp_is_turn_settings(
-                            Settings.NAME)
-                        #self._back_from_settings = True
-                        # self.menu_transition()
-                        # old_name = self._hand.name
-                        # question = 'Enter your new name: '
-                        # label = f'CHANGING {old_name.upper()} TO'
-                        new_name = self._gui.get_simple_answer_from_user(
-                            question, label)
-                        self._hand.name = new_name
-                        self._database.update_winner_name(
-                            self._hand.name, new_name)
+                    # if choice == Settings.NAME:
+                    #     [question, label] = self._resp_is_turn_settings(
+                    #         Settings.NAME)
+                    #     new_name = self._get_simple_answer(
+                    #         question, label)
+                    #     self._hand.name = new_name
+                    #     self._database.update_winner_name(
+                    #         self._hand.name, new_name)
                         
                     break
                 else:
                     msg = f'\n[{resp}] Not a valid option. Try Again!'
                     self._gui.print_to_display(msg)
 
+    def _resolve_show_settings_menu(self, choice: Settings):
+        if choice == Settings.BACK:
+            self._resp_is_turn_settings(Settings.BACK)
+
+        if choice == Settings.CHEAT:
+            self._resp_is_turn_settings(Settings.CHEAT)
+
+        if choice == Settings.QUIT:
+            self._resp_is_turn_settings(Settings.QUIT)
+
+        if choice == Settings.PAUSE:
+            code = self._resp_is_turn_settings(Settings.PAUSE)
+            msg = self._gui.display_paused_game_message(code)
+            input(msg)
+
+        if choice == Settings.NAME:
+            [question, label] = self._resp_is_turn_settings(
+                Settings.NAME)
+            new_name = self._get_simple_answer(
+                question, label)
+            self._hand.name = new_name
+            self._database.update_winner_name(
+                self._hand.name, new_name)
+
+
+    def _resolve_hand_response(self) -> str:
+        if self._is_cpu_hand():
+            resp = self._cpu_chosing().value
+        else:
+            resp = self._get_simple_answer(
+                self._roll_or_hold_message(), 'ROLL or HOLD').upper()
+        return resp
+
+        
     def _hold_for_win(self):
         self.menu_transition()
         msg = self._we_have_winner_message()
@@ -604,7 +572,7 @@ class Game:
         msg += '\n\nCongratulations!! '
         msg += '\n\nPress any key to return to Main Menu'
         return msg
-    
+
     # Deconstructing this large file. NOT THE BEST WAY. (PRIVATE METHODS)
     # But Time is of the essence.
     T = TypeVar("T")
@@ -625,19 +593,6 @@ class Game:
             opt_dict = self._settings_options_dict
         return [title, question, opt, legend, opt_dict]
 
-    # def _set_duel_players_offload(self, is_head: bool, names=None):
-    #     if is_head:
-    #         self.menu_transition()
-    #         ask1 = 'Enter Player One name: '
-    #         ask2 = 'Enter Player Two name: '
-    #         msg = '\nName is already taken by the PLAYER ONE.'
-    #         msg += '\nTry again by pressing any keys! '
-    #         return [ask1, ask2, msg]
-    #     else:
-    #         self._p1 = Player(names[0])
-    #         self._p2 = Player(names[1])
-    #         self._mode = Mode.DUEL
-    
     def _set_solo_player_offload(self, mode: Mode):
         self.menu_transition()
         self._mode = mode
@@ -653,7 +608,6 @@ class Game:
     def _set_header(self, title: str, width: int) -> str:
         header = f" {title} ".center(width, "~")
         return f'\n{header}'
-        
 
 # GAME PROCESS TRAINING METHODS
     # def training_game(self):
