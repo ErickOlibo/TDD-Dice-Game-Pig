@@ -1,0 +1,1694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>game API documentation</title>
+<meta name="description" content="This module organizes and controls the process of the game." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>game</code></h1>
+</header>
+<section id="section-intro">
+<p>This module organizes and controls the process of the game.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;This module organizes and controls the process of the game.&#34;&#34;&#34;
+from helpers import Mode, Textual, Start_Up, Settings, Turn
+from player import Player
+from winner import Winner
+from gui import GUI
+from brain import Brain
+from dice import Dice
+from typing import TypeVar
+import random
+import time
+
+
+class Game:
+    &#34;&#34;&#34;The main engine of the application.&#34;&#34;&#34;
+
+    def __init__(self, db):
+        &#34;&#34;&#34;Construct the necessary attributes for the game object.&#34;&#34;&#34;
+        self._database = db
+        self._time_stamp = round(time.time())
+        self._gui = GUI()
+        self._codename = None
+        self._mode = None
+        self._p1 = None
+        self._p2 = None
+        self._hand = None
+        self._target = 100
+        self._winner = False
+        self._back_from_settings = False
+        self._has_quit = False
+
+        self._startup_options = [
+            su.value for su in Start_Up if su.name != &#39;MENU&#39;
+        ]
+        self._startup_options_dict = {
+            su.value[0]: su for su in Start_Up if su.name != &#39;MENU&#39;
+        }
+        self._new_game_options = [
+            m.value for m in Mode if m.name != &#39;MENU&#39;
+        ]
+        self._new_game_options_dict = {
+            m.value[0]: m for m in Mode if m.name != &#39;MENU&#39;
+        }
+        self._settings_options = [
+            s.value for s in Settings if s.name != &#39;MENU&#39;
+        ]
+        self._settings_options_dict = {
+            s.value[0]: s for s in Settings if s.name != &#39;MENU&#39;
+        }
+
+    @property
+    def mode(self) -&gt; Mode:
+        &#34;&#34;&#34;
+        Return the current game mode.
+
+        Description:
+        This property returns the current game mode, which is stored as an
+        instance variable named _mode. The game mode determines the
+        behavior of the game, such as the scoring system or the rules of
+        play.
+
+        Returns:
+        - Mode: the current game mode.
+        &#34;&#34;&#34;
+        return self._mode
+
+    @mode.setter
+    def mode(self, mode: Mode):
+        if not isinstance(mode, Mode):
+            raise TypeError(&#39;Mode must be SOLO or DUEL!&#39;)
+        self._mode = mode
+
+    @property
+    def codename(self) -&gt; str:
+        &#34;&#34;&#34;
+        Return the code name of the game.
+
+        This property returns the code name of the game, which is a unique
+        identifier assigned to the game when it is created. The code name
+        is stored as an instance variable named _codename.
+
+        Returns:
+        - str: the code name of the game.
+        &#34;&#34;&#34;
+        return self._codename
+
+    @codename.setter
+    def codename(self, code: str):
+        &#34;&#34;&#34;
+        Set the code name of the game.
+
+        Description:
+        This setter method updates the code name of the game to the
+        specified value. The code name is a unique identifier assigned to
+        the game when it is created, and is stored as an instance variable
+        named _codename.
+
+        Args:
+        - code (str): the new code name to assign to the game.
+        &#34;&#34;&#34;
+        self._codename = code
+
+    def game_for_test(self, p1: Player, p2: Player, mode: Mode):
+        &#34;&#34;&#34;
+        Set up a game instance for testing purposes.
+
+        Descritpion:
+        This method creates a new game instance with the specified players
+        and mode, and assigns them to the instance variables _p1, _p2, and
+        _mode, respectively. This method is intended for testing purposes
+        only, and should not be used in production code.
+
+        Args:
+        - p1 (Player): the first player of the game.
+        - p2 (Player): the second player of the game.
+        - mode (Mode): the mode of the game.
+        &#34;&#34;&#34;
+        self._p1 = p1
+        self._p2 = p2
+        self._mode = mode
+
+    def display_rules(self):
+        &#34;&#34;&#34;
+        Clear the terminal and displays the game rules.
+
+        Description:
+        This method clears the terminal and then displays the game rules
+        using the GUI object&#39;s `display_info` method. The rules are
+        retrieved from the `Textual` enumeration, which contains the text
+        for various parts of the game. The maximum line length for the
+        displayed text is set to 70 characters.
+
+        &#34;&#34;&#34;
+        self._gui.clear_terminal()
+        self._gui.insert_line_breaks(1)
+        self._gui.display_info(Textual.RULES.value, &#39;RULES&#39;, 70)
+
+    def show_highscore(self, scores, size=10):
+        &#34;&#34;&#34;
+        Clear the terminal and displays the highscores.
+
+        Using the given `scores` list.
+                The `size` parameter determines the number of
+                highscores to display.
+                By default,it is set to 10.
+
+        Args:
+            - scores (list): A list of tuples, where each tuple represents
+                             a player&#39;s name and their score.
+            - size (int, optional): The number of highscores to display.
+              Defaults to 10.
+        &#34;&#34;&#34;
+        self._gui.clear_terminal()
+        self._gui.display_highscore(scores, size)
+
+    T = TypeVar(&#34;T&#34;)
+
+    def show_menu(self, title: str, type: T) -&gt; T:
+        &#34;&#34;&#34;
+        Clear the terminal and displays a menu.
+
+                  With the given `title` and `type` of options.
+                  The `type` parameter must be an instance of one of
+                  the following classes: `Start_Up`,
+                  `Mode`, or `Settings`. The function returns the
+                  user&#39;s selection from the options.
+
+        Args:
+            title (str): The title of the menu.
+            type (T): An instance of one of the following
+            classes: `Start_Up`, `Mode`, or `Settings`.
+
+        Returns:
+            T: The user&#39;s selection from the options,
+               as specified by the `type` parameter.
+
+        Raises:
+            TypeError: If the `type` parameter is not an instance of
+                      `Start_Up`, `Mode`, or `Settings`.
+        &#34;&#34;&#34;
+        [title, q, opt, leg, opt_dict] = self._show_menu_offload(title, type)
+
+        resp = self._get_input_from_user(title, q, opt, leg)
+        return opt_dict[resp.upper()]
+
+    def menu_transition(self):
+        &#34;&#34;&#34;Clear the terminal and creates a smooth transition between menus.&#34;&#34;&#34;
+        self._gui.clear_terminal()
+        time.sleep(0.2)
+
+    def set_player_one(self):
+        &#34;&#34;&#34;
+        Set up the game for the player one.
+
+        Description:
+            This method prompts the player one to enter a name.
+            The game mode is set to Mode.DUEL.
+
+        &#34;&#34;&#34;
+        self.menu_transition()
+        ask1 = &#39;Enter Player One name: &#39;
+        n_one = self._get_simple_answer(ask1, &#39;PLAYER ONE&#39;)
+        self._p1 = Player(n_one)
+
+    def set_player_two(self):
+        &#34;&#34;&#34;
+        Set up the game for the player two.
+
+        Description:
+            This method prompts the player two to enter a name.
+            In case the player enters the same name as player one,
+            he/she will be prompt to choice another one.
+            The game mode is set to Mode.DUEL.
+
+        &#34;&#34;&#34;
+        self._mode = Mode.DUEL
+        n_one = self._p1.name
+        count = 0
+        while True:
+            self.menu_transition()
+            count += 1
+            ask2 = &#39;Enter Player Two name: &#39;
+            n_two = self._get_simple_answer(ask2, &#39;PLAYER TWO&#39;)
+            n_two = f&#39;{n_one} Jr.&#39; if count &gt;= 2 else n_two
+            if n_two.lower() != n_one.lower():
+                self._p2 = Player(n_two)
+                break
+            msg = &#39;\nName is already taken by the PLAYER ONE.&#39;
+            msg += &#39;\nTry again by pressing any keys! &#39;
+            print(msg)
+            time.sleep(2)
+
+    def set_solo_player(self, mode: Mode):
+        &#34;&#34;&#34;
+        Set up the game for a single player.
+
+        Description:
+            This method prompts the user to enter their name,
+            creates a Player object to represent them,
+            and creates another Player object with the name &#34;CPU&#34;.
+            The game mode is set to the specified mode.
+
+        Args:
+            mode (Mode): The game mode to use.
+        &#34;&#34;&#34;
+        ask = self._set_solo_player_offload(mode)
+        self._p1 = Player(self._get_simple_answer(ask, &#39;PLAYER&#39;))
+
+    def play(self, codename=None):
+        &#34;&#34;&#34;
+        Start playing a game.
+
+        Description:
+            This method starts a new game if no codename is provided,
+            or resumes a paused game by loading its saved state from
+            the database using the provided codename.
+            If a new game is started, it determines whether the
+            game is solo or dueling based on the name of the second player.
+            Then, it starts the game loop by calling the
+            _play_new_game() or _play_paused_game() method as appropriate.
+
+        Args:
+            codename (str, optional): The codename of the saved game to resume.
+            If not provided, a new game is started.
+        &#34;&#34;&#34;
+        if codename is None:
+            is_solo = self._p2.name == &#39;CPU&#39;
+            self._play_new_game(is_solo)
+        else:
+            pg = self._database.load_game(codename)
+            self._p1 = pg._p1
+            self._p2 = pg._p2
+            self._hand = pg._hand
+            self.mode = pg.mode
+            self._play_paused_game()
+
+    def request_codename_from_user(self):
+        &#34;&#34;&#34;
+        Display the current game state.
+
+        Description:
+            This method displays the current state of the game, including the
+            scores of the players, the current hand, and any other relevant
+            information. It uses the _gui object to display the information to
+            the user.
+        &#34;&#34;&#34;
+        self.menu_transition()
+        ask = &#34;Please Enter the Game&#39;s Code Name: &#34;
+        codename = self._get_simple_answer(ask, &#39;CODE NAME&#39;)
+        return codename
+
+    # PRIVATE METHODS
+    def _play_paused_game(self):
+        self.menu_transition()
+        self._back_from_settings = True
+        while not self._winner:
+            if not self._has_quit:
+                self._playing_a_turn()
+            else:
+                break
+
+    def _get_input_from_user(self, title, ask, options, legend) -&gt; str:
+        choices = [k[0] for k in options]
+        choices = set(choices + [k[0].lower() for k in options])
+        count = 0
+        while True:
+            count += 1
+            try:
+                menu = self._gui.get_text_to_shown_menu(
+                    title, ask, options, legend)
+                choice = input(menu)
+                if choice not in choices:
+                    if count &gt;= 2:
+                        choice = &#39;1&#39;
+                    else:
+                        raise ValueError()
+
+            except ValueError:
+                print(&#39;\nThis is not a valid option. Please try again!\n&#39;)
+                time.sleep(1.5)
+                self.menu_transition()
+            else:
+                return choice
+
+    def _play_new_game(self, is_solo=False):
+        self.menu_transition()
+        if is_solo:
+            self._hand = self._p1
+        else:
+            self._hand = random.choice([self._p1, self._p2])
+        msg = self._intro_message()
+        input(msg)
+        while not self._winner:
+            if not self._has_quit:
+                self._playing_a_turn()
+            else:
+                break
+
+    def _play_new_solo_game(self):
+        self.menu_transition()
+        self._hand = self._p1
+        msg = self._intro_message()
+        input(msg)
+
+    def _change_hand(self):
+        self._hand = self._p1 if self._hand != self._p1 else self._p2
+
+    def _is_cpu_hand(self) -&gt; bool:
+        return self._hand.name == &#39;CPU&#39;
+
+    def _cpu_chosing(self) -&gt; Turn:
+        msg = self._roll_or_hold_message()
+        msg = self._gui.get_simple_answer_from_cpu(msg, &#39;ROLL or HOLD&#39;)
+        score = self._p2.score
+        pts = sum(self._p2.rolls)
+        turn = self._p2.brain.action(score, pts)
+        self._gui.cpu_question_answer_animation(msg, turn.value)
+        return turn
+
+    # SLITTING Playing a turn
+    def _start_of_turn_scoreboard(self):
+        self.menu_transition()
+        if not self._back_from_settings:
+            self._hand.roll_dice()
+        self._back_from_settings = False
+        rolls = self._hand.rolls
+        self._gui.display_scoreboard(
+            self._p1.name, self._p1.score, self._p2.name,
+            self._p2.score, self._hand.name)
+        pts = sum(rolls) if rolls[-1] != 1 else 0
+        self._gui.display_hand_results_split(self._hand.rolls, pts)
+
+    def _resp_is_turn_hold_value(self):
+        self._hand.add_points_to_score(sum(self._hand.rolls))
+        if self._hand.score &gt;= self._target:
+            self._hold_for_win()
+        else:
+            self._choose_hold()
+
+    def _resp_is_turn_settings(self, set_value: Settings):
+        if set_value == Settings.BACK:
+            self._back_from_settings = True
+
+        if set_value == Settings.CHEAT:
+            cheat_points = self._target - (self._hand.score + 1)
+            self._hand.add_points_to_score(cheat_points)
+            self._back_from_settings = True
+
+        if set_value == Settings.QUIT:
+            self._has_quit = True
+            self.menu_transition()
+            msg = &#39;\nSad to see you go!.&#39;
+            msg += &#39;Came back again anytime!\n\n&#39;
+            self._gui.print_to_display(msg)
+
+        if set_value == Settings.PAUSE:
+            self._has_quit = True
+            self.menu_transition()
+            code = self._database.store_game(self)
+            self.menu_transition()
+            return code
+
+        if set_value == Settings.NAME:
+            self.menu_transition()
+            old_name = self._hand.name
+            question = &#39;Enter your new name: &#39;
+            label = f&#39;CHANGING {old_name.upper()} TO&#39;
+            self._back_from_settings = True
+            return [question, label]
+
+    def _playing_a_turn(self):
+        self._start_of_turn_scoreboard()
+        if 1 in self._hand.rolls:
+            self._rolled_one()
+        else:
+            while True:
+                resp = self._resolve_hand_response()
+                if resp == Turn.HOLD.value:
+                    self._resp_is_turn_hold_value()
+                    break
+                elif resp == Turn.ROLL.value:
+                    break
+
+                elif resp == Turn.SETTINGS.value:
+                    choice = self.show_menu(&#39;IN-GAME SETTINGS&#39;, Settings.MENU)
+                    self._resolve_show_settings_menu(choice)
+                    break
+                else:
+                    msg = f&#39;\n[{resp}] Not a valid option. Try Again!&#39;
+                    self._gui.print_to_display(msg)
+
+    def _resolve_show_settings_menu(self, choice: Settings):
+        if choice == Settings.BACK:
+            self._resp_is_turn_settings(Settings.BACK)
+
+        if choice == Settings.CHEAT:
+            self._resp_is_turn_settings(Settings.CHEAT)
+
+        if choice == Settings.QUIT:
+            self._resp_is_turn_settings(Settings.QUIT)
+
+        if choice == Settings.PAUSE:
+            code = self._resp_is_turn_settings(Settings.PAUSE)
+            msg = self._gui.display_paused_game_message(code)
+            input(msg)
+
+        if choice == Settings.NAME:
+            [question, label] = self._resp_is_turn_settings(
+                Settings.NAME)
+            new_name = self._get_simple_answer(
+                question, label)
+            self._hand.name = new_name
+            self._database.update_winner_name(
+                self._hand.name, new_name)
+
+    def _resolve_hand_response(self) -&gt; str:
+        if self._is_cpu_hand():
+            resp = self._cpu_chosing().value
+        else:
+            resp = self._get_simple_answer(
+                self._roll_or_hold_message(), &#39;ROLL or HOLD&#39;).upper()
+        return resp
+
+    def _hold_for_win(self):
+        self.menu_transition()
+        msg = self._we_have_winner_message()
+        self._winner = True
+        input(msg)
+        victor = Winner(self._hand.name, self._hand.score)
+        self._database.add_winner(victor)
+
+    def _choose_hold(self):
+        sum_rolls = sum(self._hand.rolls)
+        self._hand.reset_rolls()
+        msg = self._hold_message(sum_rolls)
+
+        if self._is_cpu_hand():
+            self._gui.print_to_display(msg)
+            time.sleep(2.5)
+        else:
+            input(msg)
+
+    def _rolled_one(self) -&gt; Turn:
+        self._hand.reset_rolls()
+        loss_msg = self._loss_message()
+
+        if self._is_cpu_hand():
+            self._gui.print_to_display(loss_msg)
+            time.sleep(2.5)
+        else:
+            input(loss_msg)
+        return Turn.LOSS
+
+    def _intro_message(self) -&gt; str:
+        msg = Textual.NEW_START.value
+        msg += f&#39;\n\nWe have tossed a coin and [ {self._hand.name} ]&#39;
+        msg += &#39; is starting.!\n\nPress any key to start rolling! &#39;
+        return msg
+
+    def _loss_message(self) -&gt; str:
+        msg = f&#34;\nSorry {self._hand._name}! You rolled a [1]. &#34;
+        msg += &#34;No points for you.&#34;
+        self._change_hand()
+        msg += f&#34;\n\n{self._hand._name}, it&#39;s your turn&#34;
+        msg += &#34;\nPress any key to start Rolling! &#34;
+        return msg
+
+    def _roll_or_hold_message(self) -&gt; str:
+        msg = f&#34;{self._hand.name}:\n\n▐ [ S ] - Settings\n▐&#34;
+        msg += &#34; [ H ] - HOLD\n▐ [ R ] - ROLL\n\nYour Choice? &#34;
+        return msg
+
+    def _hold_message(self, pts: int) -&gt; str:
+        msg = f&#39;\nCongratulation {self._hand.name}!&#39;
+        msg += f&#39; {pts} points. TOTAL: {self._hand.score}&#39;
+        self._change_hand()
+        msg += f&#34;\n\n{self._hand.name}, it&#39;s your turn&#34;
+        msg += &#34;\nPress any key to start Rolling! &#34;
+        return msg
+
+    def _we_have_winner_message(self) -&gt; str:
+        lines = []
+        line = &#34;┌───┐&#34;
+        line += &#34; THE WINNER IS !! &#34;.center(28, &#34;~&#34;)
+        line += &#34;┌───┐&#34;
+        lines.append(line)
+        line = &#34;│ ● │                            │ ● │&#34;
+        lines.append(line)
+        line = f&#34;│ ● │ {self._hand.name.upper():^26} │ ● │&#34;
+        lines.append(line)
+        line = &#34;│ ● │                            │ ● │&#34;
+        lines.append(line)
+        line = &#34;└───┘&#34;
+        line += f&#34; [ {self._hand.score} points ] &#34;.center(28, &#34;~&#34;)
+        line += &#34;└───┘&#34;
+        lines.append(line)
+        msg = &#34;\n&#34;.join(lines)
+        msg += &#39;\n\nCongratulations!! &#39;
+        msg += &#39;\n\nPress any key to return to Main Menu&#39;
+        return msg
+
+    # Deconstructing this large file. NOT THE BEST WAY. (PRIVATE METHODS)
+    # But Time is of the essence.
+    T = TypeVar(&#34;T&#34;)
+
+    def _show_menu_offload(self, title: str, type: T):
+        self._gui.clear_terminal()
+        legend = [&#39;Option&#39;, &#39;Actions&#39;]
+        question = &#39;Pick an option: &#39;
+        title = title.upper().strip()
+        if isinstance(type, Start_Up):
+            opt = self._startup_options
+            opt_dict = self._startup_options_dict
+        elif isinstance(type, Mode):
+            opt = self._new_game_options
+            opt_dict = self._new_game_options_dict
+        elif isinstance(type, Settings):
+            opt = self._settings_options
+            opt_dict = self._settings_options_dict
+        return [title, question, opt, legend, opt_dict]
+
+    def _set_solo_player_offload(self, mode: Mode):
+        self.menu_transition()
+        self._mode = mode
+        ask = &#39;Enter your name: &#39;
+        self._p2 = Player(&#39;CPU&#39;, Brain(), Dice(mode))
+        return ask
+
+    def _get_simple_answer(self, ask: str, title: str, width=40) -&gt; str:
+        header = self._set_header(title, width)
+        ask_input = &#34;\n&#34;.join([header, ask])
+        return input(ask_input)
+
+    def _set_header(self, title: str, width: int) -&gt; str:
+        header = f&#34; {title} &#34;.center(width, &#34;~&#34;)
+        return f&#39;\n{header}&#39;
+
+# GAME PROCESS TRAINING METHODS
+    # def training_game(self):
+    #     &#34;&#34;&#34;Allow a fast track to the a game session.&#34;&#34;&#34;
+    #     self._mode = Mode.DUEL
+    #     self._p1 = Player(&#39;Erick&#39;)
+    #     self._p2 = Player(&#39;Robert&#39;)
+    #     self._play_new_game()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="game.Game"><code class="flex name class">
+<span>class <span class="ident">Game</span></span>
+<span>(</span><span>db)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The main engine of the application.</p>
+<p>Construct the necessary attributes for the game object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Game:
+    &#34;&#34;&#34;The main engine of the application.&#34;&#34;&#34;
+
+    def __init__(self, db):
+        &#34;&#34;&#34;Construct the necessary attributes for the game object.&#34;&#34;&#34;
+        self._database = db
+        self._time_stamp = round(time.time())
+        self._gui = GUI()
+        self._codename = None
+        self._mode = None
+        self._p1 = None
+        self._p2 = None
+        self._hand = None
+        self._target = 100
+        self._winner = False
+        self._back_from_settings = False
+        self._has_quit = False
+
+        self._startup_options = [
+            su.value for su in Start_Up if su.name != &#39;MENU&#39;
+        ]
+        self._startup_options_dict = {
+            su.value[0]: su for su in Start_Up if su.name != &#39;MENU&#39;
+        }
+        self._new_game_options = [
+            m.value for m in Mode if m.name != &#39;MENU&#39;
+        ]
+        self._new_game_options_dict = {
+            m.value[0]: m for m in Mode if m.name != &#39;MENU&#39;
+        }
+        self._settings_options = [
+            s.value for s in Settings if s.name != &#39;MENU&#39;
+        ]
+        self._settings_options_dict = {
+            s.value[0]: s for s in Settings if s.name != &#39;MENU&#39;
+        }
+
+    @property
+    def mode(self) -&gt; Mode:
+        &#34;&#34;&#34;
+        Return the current game mode.
+
+        Description:
+        This property returns the current game mode, which is stored as an
+        instance variable named _mode. The game mode determines the
+        behavior of the game, such as the scoring system or the rules of
+        play.
+
+        Returns:
+        - Mode: the current game mode.
+        &#34;&#34;&#34;
+        return self._mode
+
+    @mode.setter
+    def mode(self, mode: Mode):
+        if not isinstance(mode, Mode):
+            raise TypeError(&#39;Mode must be SOLO or DUEL!&#39;)
+        self._mode = mode
+
+    @property
+    def codename(self) -&gt; str:
+        &#34;&#34;&#34;
+        Return the code name of the game.
+
+        This property returns the code name of the game, which is a unique
+        identifier assigned to the game when it is created. The code name
+        is stored as an instance variable named _codename.
+
+        Returns:
+        - str: the code name of the game.
+        &#34;&#34;&#34;
+        return self._codename
+
+    @codename.setter
+    def codename(self, code: str):
+        &#34;&#34;&#34;
+        Set the code name of the game.
+
+        Description:
+        This setter method updates the code name of the game to the
+        specified value. The code name is a unique identifier assigned to
+        the game when it is created, and is stored as an instance variable
+        named _codename.
+
+        Args:
+        - code (str): the new code name to assign to the game.
+        &#34;&#34;&#34;
+        self._codename = code
+
+    def game_for_test(self, p1: Player, p2: Player, mode: Mode):
+        &#34;&#34;&#34;
+        Set up a game instance for testing purposes.
+
+        Descritpion:
+        This method creates a new game instance with the specified players
+        and mode, and assigns them to the instance variables _p1, _p2, and
+        _mode, respectively. This method is intended for testing purposes
+        only, and should not be used in production code.
+
+        Args:
+        - p1 (Player): the first player of the game.
+        - p2 (Player): the second player of the game.
+        - mode (Mode): the mode of the game.
+        &#34;&#34;&#34;
+        self._p1 = p1
+        self._p2 = p2
+        self._mode = mode
+
+    def display_rules(self):
+        &#34;&#34;&#34;
+        Clear the terminal and displays the game rules.
+
+        Description:
+        This method clears the terminal and then displays the game rules
+        using the GUI object&#39;s `display_info` method. The rules are
+        retrieved from the `Textual` enumeration, which contains the text
+        for various parts of the game. The maximum line length for the
+        displayed text is set to 70 characters.
+
+        &#34;&#34;&#34;
+        self._gui.clear_terminal()
+        self._gui.insert_line_breaks(1)
+        self._gui.display_info(Textual.RULES.value, &#39;RULES&#39;, 70)
+
+    def show_highscore(self, scores, size=10):
+        &#34;&#34;&#34;
+        Clear the terminal and displays the highscores.
+
+        Using the given `scores` list.
+                The `size` parameter determines the number of
+                highscores to display.
+                By default,it is set to 10.
+
+        Args:
+            - scores (list): A list of tuples, where each tuple represents
+                             a player&#39;s name and their score.
+            - size (int, optional): The number of highscores to display.
+              Defaults to 10.
+        &#34;&#34;&#34;
+        self._gui.clear_terminal()
+        self._gui.display_highscore(scores, size)
+
+    T = TypeVar(&#34;T&#34;)
+
+    def show_menu(self, title: str, type: T) -&gt; T:
+        &#34;&#34;&#34;
+        Clear the terminal and displays a menu.
+
+                  With the given `title` and `type` of options.
+                  The `type` parameter must be an instance of one of
+                  the following classes: `Start_Up`,
+                  `Mode`, or `Settings`. The function returns the
+                  user&#39;s selection from the options.
+
+        Args:
+            title (str): The title of the menu.
+            type (T): An instance of one of the following
+            classes: `Start_Up`, `Mode`, or `Settings`.
+
+        Returns:
+            T: The user&#39;s selection from the options,
+               as specified by the `type` parameter.
+
+        Raises:
+            TypeError: If the `type` parameter is not an instance of
+                      `Start_Up`, `Mode`, or `Settings`.
+        &#34;&#34;&#34;
+        [title, q, opt, leg, opt_dict] = self._show_menu_offload(title, type)
+
+        resp = self._get_input_from_user(title, q, opt, leg)
+        return opt_dict[resp.upper()]
+
+    def menu_transition(self):
+        &#34;&#34;&#34;Clear the terminal and creates a smooth transition between menus.&#34;&#34;&#34;
+        self._gui.clear_terminal()
+        time.sleep(0.2)
+
+    def set_player_one(self):
+        &#34;&#34;&#34;
+        Set up the game for the player one.
+
+        Description:
+            This method prompts the player one to enter a name.
+            The game mode is set to Mode.DUEL.
+
+        &#34;&#34;&#34;
+        self.menu_transition()
+        ask1 = &#39;Enter Player One name: &#39;
+        n_one = self._get_simple_answer(ask1, &#39;PLAYER ONE&#39;)
+        self._p1 = Player(n_one)
+
+    def set_player_two(self):
+        &#34;&#34;&#34;
+        Set up the game for the player two.
+
+        Description:
+            This method prompts the player two to enter a name.
+            In case the player enters the same name as player one,
+            he/she will be prompt to choice another one.
+            The game mode is set to Mode.DUEL.
+
+        &#34;&#34;&#34;
+        self._mode = Mode.DUEL
+        n_one = self._p1.name
+        count = 0
+        while True:
+            self.menu_transition()
+            count += 1
+            ask2 = &#39;Enter Player Two name: &#39;
+            n_two = self._get_simple_answer(ask2, &#39;PLAYER TWO&#39;)
+            n_two = f&#39;{n_one} Jr.&#39; if count &gt;= 2 else n_two
+            if n_two.lower() != n_one.lower():
+                self._p2 = Player(n_two)
+                break
+            msg = &#39;\nName is already taken by the PLAYER ONE.&#39;
+            msg += &#39;\nTry again by pressing any keys! &#39;
+            print(msg)
+            time.sleep(2)
+
+    def set_solo_player(self, mode: Mode):
+        &#34;&#34;&#34;
+        Set up the game for a single player.
+
+        Description:
+            This method prompts the user to enter their name,
+            creates a Player object to represent them,
+            and creates another Player object with the name &#34;CPU&#34;.
+            The game mode is set to the specified mode.
+
+        Args:
+            mode (Mode): The game mode to use.
+        &#34;&#34;&#34;
+        ask = self._set_solo_player_offload(mode)
+        self._p1 = Player(self._get_simple_answer(ask, &#39;PLAYER&#39;))
+
+    def play(self, codename=None):
+        &#34;&#34;&#34;
+        Start playing a game.
+
+        Description:
+            This method starts a new game if no codename is provided,
+            or resumes a paused game by loading its saved state from
+            the database using the provided codename.
+            If a new game is started, it determines whether the
+            game is solo or dueling based on the name of the second player.
+            Then, it starts the game loop by calling the
+            _play_new_game() or _play_paused_game() method as appropriate.
+
+        Args:
+            codename (str, optional): The codename of the saved game to resume.
+            If not provided, a new game is started.
+        &#34;&#34;&#34;
+        if codename is None:
+            is_solo = self._p2.name == &#39;CPU&#39;
+            self._play_new_game(is_solo)
+        else:
+            pg = self._database.load_game(codename)
+            self._p1 = pg._p1
+            self._p2 = pg._p2
+            self._hand = pg._hand
+            self.mode = pg.mode
+            self._play_paused_game()
+
+    def request_codename_from_user(self):
+        &#34;&#34;&#34;
+        Display the current game state.
+
+        Description:
+            This method displays the current state of the game, including the
+            scores of the players, the current hand, and any other relevant
+            information. It uses the _gui object to display the information to
+            the user.
+        &#34;&#34;&#34;
+        self.menu_transition()
+        ask = &#34;Please Enter the Game&#39;s Code Name: &#34;
+        codename = self._get_simple_answer(ask, &#39;CODE NAME&#39;)
+        return codename
+
+    # PRIVATE METHODS
+    def _play_paused_game(self):
+        self.menu_transition()
+        self._back_from_settings = True
+        while not self._winner:
+            if not self._has_quit:
+                self._playing_a_turn()
+            else:
+                break
+
+    def _get_input_from_user(self, title, ask, options, legend) -&gt; str:
+        choices = [k[0] for k in options]
+        choices = set(choices + [k[0].lower() for k in options])
+        count = 0
+        while True:
+            count += 1
+            try:
+                menu = self._gui.get_text_to_shown_menu(
+                    title, ask, options, legend)
+                choice = input(menu)
+                if choice not in choices:
+                    if count &gt;= 2:
+                        choice = &#39;1&#39;
+                    else:
+                        raise ValueError()
+
+            except ValueError:
+                print(&#39;\nThis is not a valid option. Please try again!\n&#39;)
+                time.sleep(1.5)
+                self.menu_transition()
+            else:
+                return choice
+
+    def _play_new_game(self, is_solo=False):
+        self.menu_transition()
+        if is_solo:
+            self._hand = self._p1
+        else:
+            self._hand = random.choice([self._p1, self._p2])
+        msg = self._intro_message()
+        input(msg)
+        while not self._winner:
+            if not self._has_quit:
+                self._playing_a_turn()
+            else:
+                break
+
+    def _play_new_solo_game(self):
+        self.menu_transition()
+        self._hand = self._p1
+        msg = self._intro_message()
+        input(msg)
+
+    def _change_hand(self):
+        self._hand = self._p1 if self._hand != self._p1 else self._p2
+
+    def _is_cpu_hand(self) -&gt; bool:
+        return self._hand.name == &#39;CPU&#39;
+
+    def _cpu_chosing(self) -&gt; Turn:
+        msg = self._roll_or_hold_message()
+        msg = self._gui.get_simple_answer_from_cpu(msg, &#39;ROLL or HOLD&#39;)
+        score = self._p2.score
+        pts = sum(self._p2.rolls)
+        turn = self._p2.brain.action(score, pts)
+        self._gui.cpu_question_answer_animation(msg, turn.value)
+        return turn
+
+    # SLITTING Playing a turn
+    def _start_of_turn_scoreboard(self):
+        self.menu_transition()
+        if not self._back_from_settings:
+            self._hand.roll_dice()
+        self._back_from_settings = False
+        rolls = self._hand.rolls
+        self._gui.display_scoreboard(
+            self._p1.name, self._p1.score, self._p2.name,
+            self._p2.score, self._hand.name)
+        pts = sum(rolls) if rolls[-1] != 1 else 0
+        self._gui.display_hand_results_split(self._hand.rolls, pts)
+
+    def _resp_is_turn_hold_value(self):
+        self._hand.add_points_to_score(sum(self._hand.rolls))
+        if self._hand.score &gt;= self._target:
+            self._hold_for_win()
+        else:
+            self._choose_hold()
+
+    def _resp_is_turn_settings(self, set_value: Settings):
+        if set_value == Settings.BACK:
+            self._back_from_settings = True
+
+        if set_value == Settings.CHEAT:
+            cheat_points = self._target - (self._hand.score + 1)
+            self._hand.add_points_to_score(cheat_points)
+            self._back_from_settings = True
+
+        if set_value == Settings.QUIT:
+            self._has_quit = True
+            self.menu_transition()
+            msg = &#39;\nSad to see you go!.&#39;
+            msg += &#39;Came back again anytime!\n\n&#39;
+            self._gui.print_to_display(msg)
+
+        if set_value == Settings.PAUSE:
+            self._has_quit = True
+            self.menu_transition()
+            code = self._database.store_game(self)
+            self.menu_transition()
+            return code
+
+        if set_value == Settings.NAME:
+            self.menu_transition()
+            old_name = self._hand.name
+            question = &#39;Enter your new name: &#39;
+            label = f&#39;CHANGING {old_name.upper()} TO&#39;
+            self._back_from_settings = True
+            return [question, label]
+
+    def _playing_a_turn(self):
+        self._start_of_turn_scoreboard()
+        if 1 in self._hand.rolls:
+            self._rolled_one()
+        else:
+            while True:
+                resp = self._resolve_hand_response()
+                if resp == Turn.HOLD.value:
+                    self._resp_is_turn_hold_value()
+                    break
+                elif resp == Turn.ROLL.value:
+                    break
+
+                elif resp == Turn.SETTINGS.value:
+                    choice = self.show_menu(&#39;IN-GAME SETTINGS&#39;, Settings.MENU)
+                    self._resolve_show_settings_menu(choice)
+                    break
+                else:
+                    msg = f&#39;\n[{resp}] Not a valid option. Try Again!&#39;
+                    self._gui.print_to_display(msg)
+
+    def _resolve_show_settings_menu(self, choice: Settings):
+        if choice == Settings.BACK:
+            self._resp_is_turn_settings(Settings.BACK)
+
+        if choice == Settings.CHEAT:
+            self._resp_is_turn_settings(Settings.CHEAT)
+
+        if choice == Settings.QUIT:
+            self._resp_is_turn_settings(Settings.QUIT)
+
+        if choice == Settings.PAUSE:
+            code = self._resp_is_turn_settings(Settings.PAUSE)
+            msg = self._gui.display_paused_game_message(code)
+            input(msg)
+
+        if choice == Settings.NAME:
+            [question, label] = self._resp_is_turn_settings(
+                Settings.NAME)
+            new_name = self._get_simple_answer(
+                question, label)
+            self._hand.name = new_name
+            self._database.update_winner_name(
+                self._hand.name, new_name)
+
+    def _resolve_hand_response(self) -&gt; str:
+        if self._is_cpu_hand():
+            resp = self._cpu_chosing().value
+        else:
+            resp = self._get_simple_answer(
+                self._roll_or_hold_message(), &#39;ROLL or HOLD&#39;).upper()
+        return resp
+
+    def _hold_for_win(self):
+        self.menu_transition()
+        msg = self._we_have_winner_message()
+        self._winner = True
+        input(msg)
+        victor = Winner(self._hand.name, self._hand.score)
+        self._database.add_winner(victor)
+
+    def _choose_hold(self):
+        sum_rolls = sum(self._hand.rolls)
+        self._hand.reset_rolls()
+        msg = self._hold_message(sum_rolls)
+
+        if self._is_cpu_hand():
+            self._gui.print_to_display(msg)
+            time.sleep(2.5)
+        else:
+            input(msg)
+
+    def _rolled_one(self) -&gt; Turn:
+        self._hand.reset_rolls()
+        loss_msg = self._loss_message()
+
+        if self._is_cpu_hand():
+            self._gui.print_to_display(loss_msg)
+            time.sleep(2.5)
+        else:
+            input(loss_msg)
+        return Turn.LOSS
+
+    def _intro_message(self) -&gt; str:
+        msg = Textual.NEW_START.value
+        msg += f&#39;\n\nWe have tossed a coin and [ {self._hand.name} ]&#39;
+        msg += &#39; is starting.!\n\nPress any key to start rolling! &#39;
+        return msg
+
+    def _loss_message(self) -&gt; str:
+        msg = f&#34;\nSorry {self._hand._name}! You rolled a [1]. &#34;
+        msg += &#34;No points for you.&#34;
+        self._change_hand()
+        msg += f&#34;\n\n{self._hand._name}, it&#39;s your turn&#34;
+        msg += &#34;\nPress any key to start Rolling! &#34;
+        return msg
+
+    def _roll_or_hold_message(self) -&gt; str:
+        msg = f&#34;{self._hand.name}:\n\n▐ [ S ] - Settings\n▐&#34;
+        msg += &#34; [ H ] - HOLD\n▐ [ R ] - ROLL\n\nYour Choice? &#34;
+        return msg
+
+    def _hold_message(self, pts: int) -&gt; str:
+        msg = f&#39;\nCongratulation {self._hand.name}!&#39;
+        msg += f&#39; {pts} points. TOTAL: {self._hand.score}&#39;
+        self._change_hand()
+        msg += f&#34;\n\n{self._hand.name}, it&#39;s your turn&#34;
+        msg += &#34;\nPress any key to start Rolling! &#34;
+        return msg
+
+    def _we_have_winner_message(self) -&gt; str:
+        lines = []
+        line = &#34;┌───┐&#34;
+        line += &#34; THE WINNER IS !! &#34;.center(28, &#34;~&#34;)
+        line += &#34;┌───┐&#34;
+        lines.append(line)
+        line = &#34;│ ● │                            │ ● │&#34;
+        lines.append(line)
+        line = f&#34;│ ● │ {self._hand.name.upper():^26} │ ● │&#34;
+        lines.append(line)
+        line = &#34;│ ● │                            │ ● │&#34;
+        lines.append(line)
+        line = &#34;└───┘&#34;
+        line += f&#34; [ {self._hand.score} points ] &#34;.center(28, &#34;~&#34;)
+        line += &#34;└───┘&#34;
+        lines.append(line)
+        msg = &#34;\n&#34;.join(lines)
+        msg += &#39;\n\nCongratulations!! &#39;
+        msg += &#39;\n\nPress any key to return to Main Menu&#39;
+        return msg
+
+    # Deconstructing this large file. NOT THE BEST WAY. (PRIVATE METHODS)
+    # But Time is of the essence.
+    T = TypeVar(&#34;T&#34;)
+
+    def _show_menu_offload(self, title: str, type: T):
+        self._gui.clear_terminal()
+        legend = [&#39;Option&#39;, &#39;Actions&#39;]
+        question = &#39;Pick an option: &#39;
+        title = title.upper().strip()
+        if isinstance(type, Start_Up):
+            opt = self._startup_options
+            opt_dict = self._startup_options_dict
+        elif isinstance(type, Mode):
+            opt = self._new_game_options
+            opt_dict = self._new_game_options_dict
+        elif isinstance(type, Settings):
+            opt = self._settings_options
+            opt_dict = self._settings_options_dict
+        return [title, question, opt, legend, opt_dict]
+
+    def _set_solo_player_offload(self, mode: Mode):
+        self.menu_transition()
+        self._mode = mode
+        ask = &#39;Enter your name: &#39;
+        self._p2 = Player(&#39;CPU&#39;, Brain(), Dice(mode))
+        return ask
+
+    def _get_simple_answer(self, ask: str, title: str, width=40) -&gt; str:
+        header = self._set_header(title, width)
+        ask_input = &#34;\n&#34;.join([header, ask])
+        return input(ask_input)
+
+    def _set_header(self, title: str, width: int) -&gt; str:
+        header = f&#34; {title} &#34;.center(width, &#34;~&#34;)
+        return f&#39;\n{header}&#39;
+
+# GAME PROCESS TRAINING METHODS
+    # def training_game(self):
+    #     &#34;&#34;&#34;Allow a fast track to the a game session.&#34;&#34;&#34;
+    #     self._mode = Mode.DUEL
+    #     self._p1 = Player(&#39;Erick&#39;)
+    #     self._p2 = Player(&#39;Robert&#39;)
+    #     self._play_new_game()</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="game.Game.T"><code class="name">var <span class="ident">T</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="game.Game.codename"><code class="name">var <span class="ident">codename</span> : str</code></dt>
+<dd>
+<div class="desc"><p>Return the code name of the game.</p>
+<p>This property returns the code name of the game, which is a unique
+identifier assigned to the game when it is created. The code name
+is stored as an instance variable named _codename.</p>
+<p>Returns:
+- str: the code name of the game.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def codename(self) -&gt; str:
+    &#34;&#34;&#34;
+    Return the code name of the game.
+
+    This property returns the code name of the game, which is a unique
+    identifier assigned to the game when it is created. The code name
+    is stored as an instance variable named _codename.
+
+    Returns:
+    - str: the code name of the game.
+    &#34;&#34;&#34;
+    return self._codename</code></pre>
+</details>
+</dd>
+<dt id="game.Game.mode"><code class="name">var <span class="ident">mode</span> : <a title="helpers.Mode" href="helpers.html#helpers.Mode">Mode</a></code></dt>
+<dd>
+<div class="desc"><p>Return the current game mode.</p>
+<p>Description:
+This property returns the current game mode, which is stored as an
+instance variable named _mode. The game mode determines the
+behavior of the game, such as the scoring system or the rules of
+play.</p>
+<p>Returns:
+- Mode: the current game mode.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def mode(self) -&gt; Mode:
+    &#34;&#34;&#34;
+    Return the current game mode.
+
+    Description:
+    This property returns the current game mode, which is stored as an
+    instance variable named _mode. The game mode determines the
+    behavior of the game, such as the scoring system or the rules of
+    play.
+
+    Returns:
+    - Mode: the current game mode.
+    &#34;&#34;&#34;
+    return self._mode</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="game.Game.display_rules"><code class="name flex">
+<span>def <span class="ident">display_rules</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Clear the terminal and displays the game rules.</p>
+<p>Description:
+This method clears the terminal and then displays the game rules
+using the GUI object's <code>display_info</code> method. The rules are
+retrieved from the <code>Textual</code> enumeration, which contains the text
+for various parts of the game. The maximum line length for the
+displayed text is set to 70 characters.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def display_rules(self):
+    &#34;&#34;&#34;
+    Clear the terminal and displays the game rules.
+
+    Description:
+    This method clears the terminal and then displays the game rules
+    using the GUI object&#39;s `display_info` method. The rules are
+    retrieved from the `Textual` enumeration, which contains the text
+    for various parts of the game. The maximum line length for the
+    displayed text is set to 70 characters.
+
+    &#34;&#34;&#34;
+    self._gui.clear_terminal()
+    self._gui.insert_line_breaks(1)
+    self._gui.display_info(Textual.RULES.value, &#39;RULES&#39;, 70)</code></pre>
+</details>
+</dd>
+<dt id="game.Game.game_for_test"><code class="name flex">
+<span>def <span class="ident">game_for_test</span></span>(<span>self, p1: <a title="player.Player" href="player.html#player.Player">Player</a>, p2: <a title="player.Player" href="player.html#player.Player">Player</a>, mode: <a title="helpers.Mode" href="helpers.html#helpers.Mode">Mode</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set up a game instance for testing purposes.</p>
+<p>Descritpion:
+This method creates a new game instance with the specified players
+and mode, and assigns them to the instance variables _p1, _p2, and
+_mode, respectively. This method is intended for testing purposes
+only, and should not be used in production code.</p>
+<p>Args:
+- p1 (Player): the first player of the game.
+- p2 (Player): the second player of the game.
+- mode (Mode): the mode of the game.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def game_for_test(self, p1: Player, p2: Player, mode: Mode):
+    &#34;&#34;&#34;
+    Set up a game instance for testing purposes.
+
+    Descritpion:
+    This method creates a new game instance with the specified players
+    and mode, and assigns them to the instance variables _p1, _p2, and
+    _mode, respectively. This method is intended for testing purposes
+    only, and should not be used in production code.
+
+    Args:
+    - p1 (Player): the first player of the game.
+    - p2 (Player): the second player of the game.
+    - mode (Mode): the mode of the game.
+    &#34;&#34;&#34;
+    self._p1 = p1
+    self._p2 = p2
+    self._mode = mode</code></pre>
+</details>
+</dd>
+<dt id="game.Game.menu_transition"><code class="name flex">
+<span>def <span class="ident">menu_transition</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Clear the terminal and creates a smooth transition between menus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def menu_transition(self):
+    &#34;&#34;&#34;Clear the terminal and creates a smooth transition between menus.&#34;&#34;&#34;
+    self._gui.clear_terminal()
+    time.sleep(0.2)</code></pre>
+</details>
+</dd>
+<dt id="game.Game.play"><code class="name flex">
+<span>def <span class="ident">play</span></span>(<span>self, codename=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Start playing a game.</p>
+<h2 id="description">Description</h2>
+<p>This method starts a new game if no codename is provided,
+or resumes a paused game by loading its saved state from
+the database using the provided codename.
+If a new game is started, it determines whether the
+game is solo or dueling based on the name of the second player.
+Then, it starts the game loop by calling the
+_play_new_game() or _play_paused_game() method as appropriate.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>codename</code></strong> :&ensp;<code>str</code>, optional</dt>
+<dd>The codename of the saved game to resume.</dd>
+</dl>
+<p>If not provided, a new game is started.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def play(self, codename=None):
+    &#34;&#34;&#34;
+    Start playing a game.
+
+    Description:
+        This method starts a new game if no codename is provided,
+        or resumes a paused game by loading its saved state from
+        the database using the provided codename.
+        If a new game is started, it determines whether the
+        game is solo or dueling based on the name of the second player.
+        Then, it starts the game loop by calling the
+        _play_new_game() or _play_paused_game() method as appropriate.
+
+    Args:
+        codename (str, optional): The codename of the saved game to resume.
+        If not provided, a new game is started.
+    &#34;&#34;&#34;
+    if codename is None:
+        is_solo = self._p2.name == &#39;CPU&#39;
+        self._play_new_game(is_solo)
+    else:
+        pg = self._database.load_game(codename)
+        self._p1 = pg._p1
+        self._p2 = pg._p2
+        self._hand = pg._hand
+        self.mode = pg.mode
+        self._play_paused_game()</code></pre>
+</details>
+</dd>
+<dt id="game.Game.request_codename_from_user"><code class="name flex">
+<span>def <span class="ident">request_codename_from_user</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Display the current game state.</p>
+<h2 id="description">Description</h2>
+<p>This method displays the current state of the game, including the
+scores of the players, the current hand, and any other relevant
+information. It uses the _gui object to display the information to
+the user.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def request_codename_from_user(self):
+    &#34;&#34;&#34;
+    Display the current game state.
+
+    Description:
+        This method displays the current state of the game, including the
+        scores of the players, the current hand, and any other relevant
+        information. It uses the _gui object to display the information to
+        the user.
+    &#34;&#34;&#34;
+    self.menu_transition()
+    ask = &#34;Please Enter the Game&#39;s Code Name: &#34;
+    codename = self._get_simple_answer(ask, &#39;CODE NAME&#39;)
+    return codename</code></pre>
+</details>
+</dd>
+<dt id="game.Game.set_player_one"><code class="name flex">
+<span>def <span class="ident">set_player_one</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set up the game for the player one.</p>
+<h2 id="description">Description</h2>
+<p>This method prompts the player one to enter a name.
+The game mode is set to Mode.DUEL.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_player_one(self):
+    &#34;&#34;&#34;
+    Set up the game for the player one.
+
+    Description:
+        This method prompts the player one to enter a name.
+        The game mode is set to Mode.DUEL.
+
+    &#34;&#34;&#34;
+    self.menu_transition()
+    ask1 = &#39;Enter Player One name: &#39;
+    n_one = self._get_simple_answer(ask1, &#39;PLAYER ONE&#39;)
+    self._p1 = Player(n_one)</code></pre>
+</details>
+</dd>
+<dt id="game.Game.set_player_two"><code class="name flex">
+<span>def <span class="ident">set_player_two</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set up the game for the player two.</p>
+<h2 id="description">Description</h2>
+<p>This method prompts the player two to enter a name.
+In case the player enters the same name as player one,
+he/she will be prompt to choice another one.
+The game mode is set to Mode.DUEL.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_player_two(self):
+    &#34;&#34;&#34;
+    Set up the game for the player two.
+
+    Description:
+        This method prompts the player two to enter a name.
+        In case the player enters the same name as player one,
+        he/she will be prompt to choice another one.
+        The game mode is set to Mode.DUEL.
+
+    &#34;&#34;&#34;
+    self._mode = Mode.DUEL
+    n_one = self._p1.name
+    count = 0
+    while True:
+        self.menu_transition()
+        count += 1
+        ask2 = &#39;Enter Player Two name: &#39;
+        n_two = self._get_simple_answer(ask2, &#39;PLAYER TWO&#39;)
+        n_two = f&#39;{n_one} Jr.&#39; if count &gt;= 2 else n_two
+        if n_two.lower() != n_one.lower():
+            self._p2 = Player(n_two)
+            break
+        msg = &#39;\nName is already taken by the PLAYER ONE.&#39;
+        msg += &#39;\nTry again by pressing any keys! &#39;
+        print(msg)
+        time.sleep(2)</code></pre>
+</details>
+</dd>
+<dt id="game.Game.set_solo_player"><code class="name flex">
+<span>def <span class="ident">set_solo_player</span></span>(<span>self, mode: <a title="helpers.Mode" href="helpers.html#helpers.Mode">Mode</a>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set up the game for a single player.</p>
+<h2 id="description">Description</h2>
+<p>This method prompts the user to enter their name,
+creates a Player object to represent them,
+and creates another Player object with the name "CPU".
+The game mode is set to the specified mode.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>mode</code></strong> :&ensp;<code>Mode</code></dt>
+<dd>The game mode to use.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_solo_player(self, mode: Mode):
+    &#34;&#34;&#34;
+    Set up the game for a single player.
+
+    Description:
+        This method prompts the user to enter their name,
+        creates a Player object to represent them,
+        and creates another Player object with the name &#34;CPU&#34;.
+        The game mode is set to the specified mode.
+
+    Args:
+        mode (Mode): The game mode to use.
+    &#34;&#34;&#34;
+    ask = self._set_solo_player_offload(mode)
+    self._p1 = Player(self._get_simple_answer(ask, &#39;PLAYER&#39;))</code></pre>
+</details>
+</dd>
+<dt id="game.Game.show_highscore"><code class="name flex">
+<span>def <span class="ident">show_highscore</span></span>(<span>self, scores, size=10)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Clear the terminal and displays the highscores.</p>
+<p>Using the given <code>scores</code> list.
+The <code>size</code> parameter determines the number of
+highscores to display.
+By default,it is set to 10.</p>
+<h2 id="args">Args</h2>
+<ul>
+<li>scores (list): A list of tuples, where each tuple represents
+a player's name and their score.</li>
+<li>size (int, optional): The number of highscores to display.
+Defaults to 10.</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_highscore(self, scores, size=10):
+    &#34;&#34;&#34;
+    Clear the terminal and displays the highscores.
+
+    Using the given `scores` list.
+            The `size` parameter determines the number of
+            highscores to display.
+            By default,it is set to 10.
+
+    Args:
+        - scores (list): A list of tuples, where each tuple represents
+                         a player&#39;s name and their score.
+        - size (int, optional): The number of highscores to display.
+          Defaults to 10.
+    &#34;&#34;&#34;
+    self._gui.clear_terminal()
+    self._gui.display_highscore(scores, size)</code></pre>
+</details>
+</dd>
+<dt id="game.Game.show_menu"><code class="name flex">
+<span>def <span class="ident">show_menu</span></span>(<span>self, title: str, type: ~T) ‑> ~T</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Clear the terminal and displays a menu.</p>
+<pre><code>      With the given &lt;code&gt;title&lt;/code&gt; and &lt;code&gt;type&lt;/code&gt; of options.
+      The &lt;code&gt;type&lt;/code&gt; parameter must be an instance of one of
+      the following classes: &lt;code&gt;Start\_Up&lt;/code&gt;,
+      &lt;code&gt;Mode&lt;/code&gt;, or &lt;code&gt;Settings&lt;/code&gt;. The function returns the
+      user's selection from the options.
+</code></pre>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>title</code></strong> :&ensp;<code>str</code></dt>
+<dd>The title of the menu.</dd>
+<dt><strong><code>type</code></strong> :&ensp;<code>T</code></dt>
+<dd>An instance of one of the following</dd>
+<dt><strong><code>classes</code></strong></dt>
+<dd><code>Start_Up</code>, <code>Mode</code>, or <code>Settings</code>.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>T</code></dt>
+<dd>The user's selection from the options,
+as specified by the <code>type</code> parameter.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>TypeError</code></dt>
+<dd>If the <code>type</code> parameter is not an instance of
+<code>Start_Up</code>, <code>Mode</code>, or <code>Settings</code>.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_menu(self, title: str, type: T) -&gt; T:
+    &#34;&#34;&#34;
+    Clear the terminal and displays a menu.
+
+              With the given `title` and `type` of options.
+              The `type` parameter must be an instance of one of
+              the following classes: `Start_Up`,
+              `Mode`, or `Settings`. The function returns the
+              user&#39;s selection from the options.
+
+    Args:
+        title (str): The title of the menu.
+        type (T): An instance of one of the following
+        classes: `Start_Up`, `Mode`, or `Settings`.
+
+    Returns:
+        T: The user&#39;s selection from the options,
+           as specified by the `type` parameter.
+
+    Raises:
+        TypeError: If the `type` parameter is not an instance of
+                  `Start_Up`, `Mode`, or `Settings`.
+    &#34;&#34;&#34;
+    [title, q, opt, leg, opt_dict] = self._show_menu_offload(title, type)
+
+    resp = self._get_input_from_user(title, q, opt, leg)
+    return opt_dict[resp.upper()]</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="game.Game" href="#game.Game">Game</a></code></h4>
+<ul class="">
+<li><code><a title="game.Game.T" href="#game.Game.T">T</a></code></li>
+<li><code><a title="game.Game.codename" href="#game.Game.codename">codename</a></code></li>
+<li><code><a title="game.Game.display_rules" href="#game.Game.display_rules">display_rules</a></code></li>
+<li><code><a title="game.Game.game_for_test" href="#game.Game.game_for_test">game_for_test</a></code></li>
+<li><code><a title="game.Game.menu_transition" href="#game.Game.menu_transition">menu_transition</a></code></li>
+<li><code><a title="game.Game.mode" href="#game.Game.mode">mode</a></code></li>
+<li><code><a title="game.Game.play" href="#game.Game.play">play</a></code></li>
+<li><code><a title="game.Game.request_codename_from_user" href="#game.Game.request_codename_from_user">request_codename_from_user</a></code></li>
+<li><code><a title="game.Game.set_player_one" href="#game.Game.set_player_one">set_player_one</a></code></li>
+<li><code><a title="game.Game.set_player_two" href="#game.Game.set_player_two">set_player_two</a></code></li>
+<li><code><a title="game.Game.set_solo_player" href="#game.Game.set_solo_player">set_solo_player</a></code></li>
+<li><code><a title="game.Game.show_highscore" href="#game.Game.show_highscore">show_highscore</a></code></li>
+<li><code><a title="game.Game.show_menu" href="#game.Game.show_menu">show_menu</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

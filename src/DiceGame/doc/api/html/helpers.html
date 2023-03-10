@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>helpers API documentation</title>
+<meta name="description" content="This module is a collection of constant and enums needed." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>helpers</code></h1>
+</header>
+<section id="section-intro">
+<p>This module is a collection of constant and enums needed.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;This module is a collection of constant and enums needed.&#34;&#34;&#34;
+from enum import Enum, auto
+
+
+class Turn(Enum):
+    &#34;&#34;&#34;Enum listing the state of the hand in the game.&#34;&#34;&#34;
+
+    HOLD = &#39;H&#39;
+    ROLL = &#39;R&#39;
+    LOSS = &#39;L&#39;
+    SETTINGS = &#39;S&#39;
+
+
+class Tactic(Enum):
+    &#34;&#34;&#34;Enum listing different strategy the brain can use during a game.
+
+    A Tactic will be randomly assigned at the creation of a Brain per Game
+    &#34;&#34;&#34;
+
+    TEN = 10
+    TWENTY = 20
+    TWENTY_FIVE = 25
+    FOUR_TURNS = auto()
+
+
+class Mode(Enum):
+    &#34;&#34;&#34;Enum representing the different option of playing the game.
+
+    Select between One player against the CPU or a duel.
+    &#34;&#34;&#34;
+
+    DUEL = [&#39;1&#39;, &#39;Duel&#39;]
+    SOLO_EASY = [&#39;2&#39;, &#39;Solo - Easy&#39;]
+    SOLO_MEDIUM = [&#39;3&#39;, &#39;Solo - Medium&#39;]
+    SOLO_HARD = [&#39;4&#39;, &#39;Solo - Hard&#39;]
+    SOLO_MERCILESS = [&#39;5&#39;, &#39;Solo - Merciless&#39;]
+    BACK = [&#39;B&#39;, &#39;↩ Back&#39;]
+    MENU = auto()
+
+
+class Start_Up(Enum):
+    &#34;&#34;&#34;The Start Up menu as the user to make an initial choice.
+
+    Args:
+        Enum (list[str]): Used to display the Start_up menu to the user
+    &#34;&#34;&#34;
+
+    NEW_GAME = [&#39;1&#39;, &#39;New Game&#39;]
+    RESUME_GAME = [&#39;2&#39;, &#39;Resume Game&#39;]
+    HIGH_SCORE = [&#39;3&#39;, &#39;High-score&#39;]
+    RULES = [&#39;4&#39;, &#39;Rules&#39;]
+    EXIT = [&#39;E&#39;, &#39;Exit&#39;]
+    MENU = auto()
+
+
+class Settings(Enum):
+    &#34;&#34;&#34;Show the settings view to the user.
+
+    Args:
+        Enum (list[str]): Used to display the Start_up menu to the user
+    &#34;&#34;&#34;
+
+    NAME = [&#39;1&#39;, &#39;Change Name&#39;]
+    PAUSE = [&#39;2&#39;, &#39;Pause Game&#39;]
+    QUIT = [&#39;3&#39;, &#39;Quit Game&#39;]
+    CHEAT = [&#39;4&#39;, &#39;Enter Cheat Mode&#39;]
+    BACK = [&#39;B&#39;, &#39;↩ Back&#39;]
+    MENU = auto()
+
+
+class Data_Path(Enum):
+    &#34;&#34;&#34;The collection of paths to pickled files.&#34;&#34;&#34;
+
+    WINNERS = &#39;db/winners.pkl&#39;
+    GAMES = &#39;db/games.pkl&#39;
+
+
+&#34;&#34;&#34;Constant for the Dice rolling faces. Copyright Leodanis Pozo Ramos
+    URL: https://realpython.com/python-dice-roll/
+&#34;&#34;&#34;
+DICE_FACES = {
+    1: (
+        &#34;┌─────────┐&#34;,
+        &#34;│         │&#34;,
+        &#34;│    ●    │&#34;,
+        &#34;│         │&#34;,
+        &#34;└─────────┘&#34;,
+    ),
+    2: (
+        &#34;┌─────────┐&#34;,
+        &#34;│  ●      │&#34;,
+        &#34;│         │&#34;,
+        &#34;│      ●  │&#34;,
+        &#34;└─────────┘&#34;,
+    ),
+    3: (
+        &#34;┌─────────┐&#34;,
+        &#34;│  ●      │&#34;,
+        &#34;│    ●    │&#34;,
+        &#34;│      ●  │&#34;,
+        &#34;└─────────┘&#34;,
+    ),
+    4: (
+        &#34;┌─────────┐&#34;,
+        &#34;│  ●   ●  │&#34;,
+        &#34;│         │&#34;,
+        &#34;│  ●   ●  │&#34;,
+        &#34;└─────────┘&#34;,
+    ),
+    5: (
+        &#34;┌─────────┐&#34;,
+        &#34;│  ●   ●  │&#34;,
+        &#34;│    ●    │&#34;,
+        &#34;│  ●   ●  │&#34;,
+        &#34;└─────────┘&#34;,
+    ),
+    6: (
+        &#34;┌─────────┐&#34;,
+        &#34;│  ●   ●  │&#34;,
+        &#34;│  ●   ●  │&#34;,
+        &#34;│  ●   ●  │&#34;,
+        &#34;└─────────┘&#34;,
+    ),
+}
+
+DIE_HEIGHT = len(DICE_FACES[1])
+DIE_WIDTH = len(DICE_FACES[1][0])
+DIE_SEP = &#34; &#34;
+
+CODE_NAMES = [&#34;Taja&#34;, &#34;Baby&#34;, &#34;Walt&#34;, &#34;Dana&#34;, &#34;Barb&#34;, &#34;Vida&#34;, &#34;Hana&#34;, &#34;Foch&#34;,
+              &#34;Bret&#34;, &#34;Vena&#34;, &#34;Cori&#34;, &#34;Eula&#34;, &#34;Theo&#34;, &#34;Kobe&#34;, &#34;Elin&#34;, &#34;Noel&#34;,
+              &#34;Yoel&#34;, &#34;Jean&#34;, &#34;Kami&#34;, &#34;Zayn&#34;, &#34;Wade&#34;, &#34;Jaye&#34;, &#34;Nery&#34;, &#34;Irva&#34;,
+              &#34;Dior&#34;, &#34;Lise&#34;, &#34;Mena&#34;, &#34;Tito&#34;, &#34;Matt&#34;, &#34;Wirt&#34;, &#34;Reva&#34;, &#34;Nick&#34;,
+              &#34;Hali&#34;, &#34;Gael&#34;, &#34;Rand&#34;, &#34;Wess&#34;, &#34;Geno&#34;, &#34;Zela&#34;, &#34;Harl&#34;, &#34;Hill&#34;,
+              &#34;Ella&#34;, &#34;Fawn&#34;, &#34;Olan&#34;, &#34;Amil&#34;, &#34;Opal&#34;, &#34;Lyle&#34;, &#34;Sada&#34;, &#34;Ferd&#34;,
+              &#34;Deon&#34;, &#34;Lone&#34;, &#34;Zena&#34;, &#34;Bree&#34;, &#34;Case&#34;, &#34;Adel&#34;, &#34;Zayd&#34;, &#34;Ford&#34;,
+              &#34;Murl&#34;, &#34;Fran&#34;, &#34;Vada&#34;, &#34;Iver&#34;, &#34;Vicy&#34;, &#34;Baby&#34;, &#34;Gary&#34;, &#34;Keli&#34;,
+              &#34;Wava&#34;, &#34;Purl&#34;, &#34;Ivey&#34;, &#34;Neil&#34;, &#34;Sing&#34;, &#34;Kane&#34;, &#34;Dino&#34;, &#34;Faye&#34;,
+              &#34;Vina&#34;, &#34;Knox&#34;, &#34;Tobi&#34;, &#34;John&#34;, &#34;Darl&#34;, &#34;Jael&#34;, &#34;Xavi&#34;, &#34;Jett&#34;,
+              &#34;Oley&#34;, &#34;Nila&#34;, &#34;Pink&#34;, &#34;Less&#34;, &#34;Verl&#34;, &#34;Gena&#34;, &#34;Wong&#34;, &#34;Irma&#34;,
+              &#34;Rolf&#34;, &#34;Aron&#34;, &#34;Crew&#34;, &#34;Jade&#34;, &#34;Zack&#34;, &#34;Kyle&#34;, &#34;Lita&#34;, &#34;Yair&#34;,
+              &#34;Zada&#34;, &#34;Phil&#34;, &#34;Ruie&#34;, &#34;Lola&#34;, &#34;Kirt&#34;, &#34;Ares&#34;, &#34;Pink&#34;, &#34;Burk&#34;,
+              &#34;Pete&#34;, &#34;Olof&#34;, &#34;Tyra&#34;, &#34;Rube&#34;, &#34;Kira&#34;, &#34;Myra&#34;, &#34;Yara&#34;, &#34;Elna&#34;,
+              &#34;Fate&#34;, &#34;Adda&#34;, &#34;Bose&#34;, &#34;Burl&#34;, &#34;Chad&#34;, &#34;Star&#34;, &#34;Vito&#34;, &#34;Zoya&#34;,
+              &#34;Sage&#34;, &#34;Rudy&#34;, &#34;Jody&#34;, &#34;Shea&#34;, &#34;Naya&#34;, &#34;Jody&#34;, &#34;Niko&#34;, &#34;Tory&#34;,
+              &#34;Nola&#34;, &#34;Geri&#34;, &#34;Alta&#34;, &#34;Otha&#34;, &#34;Cena&#34;, &#34;Omer&#34;, &#34;Zeke&#34;, &#34;Carl&#34;,
+              &#34;Hamp&#34;, &#34;Tana&#34;, &#34;Iker&#34;, &#34;Chet&#34;, &#34;Bama&#34;, &#34;Anna&#34;, &#34;Edna&#34;, &#34;Cali&#34;,
+              &#34;Mimi&#34;, &#34;Aili&#34;, &#34;Xena&#34;, &#34;Gene&#34;, &#34;Halo&#34;, &#34;Etta&#34;, &#34;Neva&#34;, &#34;Mack&#34;,
+              &#34;Ivah&#34;, &#34;Dani&#34;, &#34;Wren&#34;, &#34;Hays&#34;, &#34;Isom&#34;, &#34;Greg&#34;, &#34;Maud&#34;, &#34;Shay&#34;,
+              &#34;Page&#34;, &#34;Olar&#34;, &#34;Iola&#34;, &#34;Mima&#34;, &#34;Yael&#34;, &#34;Lula&#34;, &#34;Joan&#34;, &#34;Hedy&#34;,
+              &#34;Keri&#34;, &#34;Fern&#34;, &#34;Gale&#34;, &#34;Elmo&#34;, &#34;Rita&#34;, &#34;Cody&#34;, &#34;Jose&#34;, &#34;Tera&#34;,
+              &#34;Zeno&#34;, &#34;York&#34;, &#34;Kory&#34;, &#34;Roma&#34;, &#34;Will&#34;, &#34;Brea&#34;, &#34;Paul&#34;, &#34;Gwen&#34;,
+              &#34;Asha&#34;, &#34;Zula&#34;, &#34;Vera&#34;, &#34;Gigi&#34;, &#34;Hope&#34;, &#34;Dell&#34;, &#34;Omie&#34;, &#34;Male&#34;,
+              &#34;Shad&#34;, &#34;Vick&#34;, &#34;Etha&#34;, &#34;Thor&#34;, &#34;Shan&#34;, &#34;Rosy&#34;, &#34;Dona&#34;, &#34;Tony&#34;,
+              &#34;Octa&#34;, &#34;Luka&#34;, &#34;Ivan&#34;, &#34;Vern&#34;, &#34;Dora&#34;, &#34;Floy&#34;, &#34;Flem&#34;, &#34;Luke&#34;,
+              &#34;Ella&#34;, &#34;Dick&#34;, &#34;Isam&#34;, &#34;Cuba&#34;, &#34;Andy&#34;, &#34;Macy&#34;, &#34;Shay&#34;, &#34;Harm&#34;,
+              &#34;Sade&#34;, &#34;Nona&#34;, &#34;Lesa&#34;, &#34;Rock&#34;,
+              ]
+
+
+class Textual(Enum):
+    &#34;&#34;&#34;Enum to collect all Static text needed in the application.&#34;&#34;&#34;
+
+    MENU = &#39;MENU Gets DISPLAY NOW!&#39;
+    RULES = &#34;&#34;&#34;
+Pig is a simple dice game.
+Players take turns to roll a single dice as many times as they wish,
+adding all roll results to a running total, but losing their gained score
+for the turn if they roll a 1.
+
+GAMEPLAY:
+Each turn, a player repeatedly rolls a die until either a 1 is rolled
+or the player decides to &#34;hold&#34;:
+  ⏺ The player rolls a [1], they score 0 points. The hand changes.
+  ⏺ The player rolls [2] to [6], they continues to ROLL or HOLD.
+  ⏺ The player chooses to &#34;hold&#34;, the total dice count is added to their score.
+
+The first player to score at least 100 points wins.
+
+MODES:
+The game has various playing modes reflecting the difficulty.
+  ⏺ DUEL, You battle agaisnt a friend.
+  ⏺ SOLO-EASY
+  ⏺ SOLO-MEDIUM
+  ⏺ SOLO-HARD
+  ⏺ SOLO-MERCILESS
+
+    Good Luck!
+    &#34;&#34;&#34;
+    NEW_START = &#34;&#34;&#34;
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Welcome to the Start of this Game of PIG. It is simple:
+
+
+        ⏺ First player to reach 100 or more points, WINS!
+
+        ⏺ [ 🟩 ] &lt;-- Means it is your turn to play.
+
+        ⏺ [ 🟥 ] &lt;-- Means it is not your turn...
+
+        ⏺ ROLL [2]-[3]-[4]-[5]-[6], you are safe!
+
+        ⏺ ROLL [1], you loose all cummulated points of your turn.
+
+        ⏺ HOLD before getting [1] and you add points to your total
+
+
+    Good Luck..!
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    &#34;&#34;&#34;</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="helpers.Data_Path"><code class="flex name class">
+<span>class <span class="ident">Data_Path</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The collection of paths to pickled files.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Data_Path(Enum):
+    &#34;&#34;&#34;The collection of paths to pickled files.&#34;&#34;&#34;
+
+    WINNERS = &#39;db/winners.pkl&#39;
+    GAMES = &#39;db/games.pkl&#39;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="helpers.Data_Path.GAMES"><code class="name">var <span class="ident">GAMES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Data_Path.WINNERS"><code class="name">var <span class="ident">WINNERS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="helpers.Mode"><code class="flex name class">
+<span>class <span class="ident">Mode</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enum representing the different option of playing the game.</p>
+<p>Select between One player against the CPU or a duel.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Mode(Enum):
+    &#34;&#34;&#34;Enum representing the different option of playing the game.
+
+    Select between One player against the CPU or a duel.
+    &#34;&#34;&#34;
+
+    DUEL = [&#39;1&#39;, &#39;Duel&#39;]
+    SOLO_EASY = [&#39;2&#39;, &#39;Solo - Easy&#39;]
+    SOLO_MEDIUM = [&#39;3&#39;, &#39;Solo - Medium&#39;]
+    SOLO_HARD = [&#39;4&#39;, &#39;Solo - Hard&#39;]
+    SOLO_MERCILESS = [&#39;5&#39;, &#39;Solo - Merciless&#39;]
+    BACK = [&#39;B&#39;, &#39;↩ Back&#39;]
+    MENU = auto()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="helpers.Mode.BACK"><code class="name">var <span class="ident">BACK</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Mode.DUEL"><code class="name">var <span class="ident">DUEL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Mode.MENU"><code class="name">var <span class="ident">MENU</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Mode.SOLO_EASY"><code class="name">var <span class="ident">SOLO_EASY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Mode.SOLO_HARD"><code class="name">var <span class="ident">SOLO_HARD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Mode.SOLO_MEDIUM"><code class="name">var <span class="ident">SOLO_MEDIUM</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Mode.SOLO_MERCILESS"><code class="name">var <span class="ident">SOLO_MERCILESS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="helpers.Settings"><code class="flex name class">
+<span>class <span class="ident">Settings</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Show the settings view to the user.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>Enum</code></strong> :&ensp;<code>list[str]</code></dt>
+<dd>Used to display the Start_up menu to the user</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Settings(Enum):
+    &#34;&#34;&#34;Show the settings view to the user.
+
+    Args:
+        Enum (list[str]): Used to display the Start_up menu to the user
+    &#34;&#34;&#34;
+
+    NAME = [&#39;1&#39;, &#39;Change Name&#39;]
+    PAUSE = [&#39;2&#39;, &#39;Pause Game&#39;]
+    QUIT = [&#39;3&#39;, &#39;Quit Game&#39;]
+    CHEAT = [&#39;4&#39;, &#39;Enter Cheat Mode&#39;]
+    BACK = [&#39;B&#39;, &#39;↩ Back&#39;]
+    MENU = auto()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="helpers.Settings.BACK"><code class="name">var <span class="ident">BACK</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Settings.CHEAT"><code class="name">var <span class="ident">CHEAT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Settings.MENU"><code class="name">var <span class="ident">MENU</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Settings.NAME"><code class="name">var <span class="ident">NAME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Settings.PAUSE"><code class="name">var <span class="ident">PAUSE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Settings.QUIT"><code class="name">var <span class="ident">QUIT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="helpers.Start_Up"><code class="flex name class">
+<span>class <span class="ident">Start_Up</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The Start Up menu as the user to make an initial choice.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>Enum</code></strong> :&ensp;<code>list[str]</code></dt>
+<dd>Used to display the Start_up menu to the user</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Start_Up(Enum):
+    &#34;&#34;&#34;The Start Up menu as the user to make an initial choice.
+
+    Args:
+        Enum (list[str]): Used to display the Start_up menu to the user
+    &#34;&#34;&#34;
+
+    NEW_GAME = [&#39;1&#39;, &#39;New Game&#39;]
+    RESUME_GAME = [&#39;2&#39;, &#39;Resume Game&#39;]
+    HIGH_SCORE = [&#39;3&#39;, &#39;High-score&#39;]
+    RULES = [&#39;4&#39;, &#39;Rules&#39;]
+    EXIT = [&#39;E&#39;, &#39;Exit&#39;]
+    MENU = auto()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="helpers.Start_Up.EXIT"><code class="name">var <span class="ident">EXIT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Start_Up.HIGH_SCORE"><code class="name">var <span class="ident">HIGH_SCORE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Start_Up.MENU"><code class="name">var <span class="ident">MENU</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Start_Up.NEW_GAME"><code class="name">var <span class="ident">NEW_GAME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Start_Up.RESUME_GAME"><code class="name">var <span class="ident">RESUME_GAME</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Start_Up.RULES"><code class="name">var <span class="ident">RULES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="helpers.Tactic"><code class="flex name class">
+<span>class <span class="ident">Tactic</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enum listing different strategy the brain can use during a game.</p>
+<p>A Tactic will be randomly assigned at the creation of a Brain per Game</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Tactic(Enum):
+    &#34;&#34;&#34;Enum listing different strategy the brain can use during a game.
+
+    A Tactic will be randomly assigned at the creation of a Brain per Game
+    &#34;&#34;&#34;
+
+    TEN = 10
+    TWENTY = 20
+    TWENTY_FIVE = 25
+    FOUR_TURNS = auto()</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="helpers.Tactic.FOUR_TURNS"><code class="name">var <span class="ident">FOUR_TURNS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Tactic.TEN"><code class="name">var <span class="ident">TEN</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Tactic.TWENTY"><code class="name">var <span class="ident">TWENTY</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Tactic.TWENTY_FIVE"><code class="name">var <span class="ident">TWENTY_FIVE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="helpers.Textual"><code class="flex name class">
+<span>class <span class="ident">Textual</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enum to collect all Static text needed in the application.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Textual(Enum):
+    &#34;&#34;&#34;Enum to collect all Static text needed in the application.&#34;&#34;&#34;
+
+    MENU = &#39;MENU Gets DISPLAY NOW!&#39;
+    RULES = &#34;&#34;&#34;
+Pig is a simple dice game.
+Players take turns to roll a single dice as many times as they wish,
+adding all roll results to a running total, but losing their gained score
+for the turn if they roll a 1.
+
+GAMEPLAY:
+Each turn, a player repeatedly rolls a die until either a 1 is rolled
+or the player decides to &#34;hold&#34;:
+  ⏺ The player rolls a [1], they score 0 points. The hand changes.
+  ⏺ The player rolls [2] to [6], they continues to ROLL or HOLD.
+  ⏺ The player chooses to &#34;hold&#34;, the total dice count is added to their score.
+
+The first player to score at least 100 points wins.
+
+MODES:
+The game has various playing modes reflecting the difficulty.
+  ⏺ DUEL, You battle agaisnt a friend.
+  ⏺ SOLO-EASY
+  ⏺ SOLO-MEDIUM
+  ⏺ SOLO-HARD
+  ⏺ SOLO-MERCILESS
+
+    Good Luck!
+    &#34;&#34;&#34;
+    NEW_START = &#34;&#34;&#34;
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    Welcome to the Start of this Game of PIG. It is simple:
+
+
+        ⏺ First player to reach 100 or more points, WINS!
+
+        ⏺ [ 🟩 ] &lt;-- Means it is your turn to play.
+
+        ⏺ [ 🟥 ] &lt;-- Means it is not your turn...
+
+        ⏺ ROLL [2]-[3]-[4]-[5]-[6], you are safe!
+
+        ⏺ ROLL [1], you loose all cummulated points of your turn.
+
+        ⏺ HOLD before getting [1] and you add points to your total
+
+
+    Good Luck..!
+    ~~~~~~~~~~~~~~~~~~~~~~~~~
+    &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="helpers.Textual.MENU"><code class="name">var <span class="ident">MENU</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Textual.NEW_START"><code class="name">var <span class="ident">NEW_START</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Textual.RULES"><code class="name">var <span class="ident">RULES</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+<dt id="helpers.Turn"><code class="flex name class">
+<span>class <span class="ident">Turn</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enum listing the state of the hand in the game.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Turn(Enum):
+    &#34;&#34;&#34;Enum listing the state of the hand in the game.&#34;&#34;&#34;
+
+    HOLD = &#39;H&#39;
+    ROLL = &#39;R&#39;
+    LOSS = &#39;L&#39;
+    SETTINGS = &#39;S&#39;</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="helpers.Turn.HOLD"><code class="name">var <span class="ident">HOLD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Turn.LOSS"><code class="name">var <span class="ident">LOSS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Turn.ROLL"><code class="name">var <span class="ident">ROLL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="helpers.Turn.SETTINGS"><code class="name">var <span class="ident">SETTINGS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="helpers.Data_Path" href="#helpers.Data_Path">Data_Path</a></code></h4>
+<ul class="">
+<li><code><a title="helpers.Data_Path.GAMES" href="#helpers.Data_Path.GAMES">GAMES</a></code></li>
+<li><code><a title="helpers.Data_Path.WINNERS" href="#helpers.Data_Path.WINNERS">WINNERS</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="helpers.Mode" href="#helpers.Mode">Mode</a></code></h4>
+<ul class="two-column">
+<li><code><a title="helpers.Mode.BACK" href="#helpers.Mode.BACK">BACK</a></code></li>
+<li><code><a title="helpers.Mode.DUEL" href="#helpers.Mode.DUEL">DUEL</a></code></li>
+<li><code><a title="helpers.Mode.MENU" href="#helpers.Mode.MENU">MENU</a></code></li>
+<li><code><a title="helpers.Mode.SOLO_EASY" href="#helpers.Mode.SOLO_EASY">SOLO_EASY</a></code></li>
+<li><code><a title="helpers.Mode.SOLO_HARD" href="#helpers.Mode.SOLO_HARD">SOLO_HARD</a></code></li>
+<li><code><a title="helpers.Mode.SOLO_MEDIUM" href="#helpers.Mode.SOLO_MEDIUM">SOLO_MEDIUM</a></code></li>
+<li><code><a title="helpers.Mode.SOLO_MERCILESS" href="#helpers.Mode.SOLO_MERCILESS">SOLO_MERCILESS</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="helpers.Settings" href="#helpers.Settings">Settings</a></code></h4>
+<ul class="two-column">
+<li><code><a title="helpers.Settings.BACK" href="#helpers.Settings.BACK">BACK</a></code></li>
+<li><code><a title="helpers.Settings.CHEAT" href="#helpers.Settings.CHEAT">CHEAT</a></code></li>
+<li><code><a title="helpers.Settings.MENU" href="#helpers.Settings.MENU">MENU</a></code></li>
+<li><code><a title="helpers.Settings.NAME" href="#helpers.Settings.NAME">NAME</a></code></li>
+<li><code><a title="helpers.Settings.PAUSE" href="#helpers.Settings.PAUSE">PAUSE</a></code></li>
+<li><code><a title="helpers.Settings.QUIT" href="#helpers.Settings.QUIT">QUIT</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="helpers.Start_Up" href="#helpers.Start_Up">Start_Up</a></code></h4>
+<ul class="two-column">
+<li><code><a title="helpers.Start_Up.EXIT" href="#helpers.Start_Up.EXIT">EXIT</a></code></li>
+<li><code><a title="helpers.Start_Up.HIGH_SCORE" href="#helpers.Start_Up.HIGH_SCORE">HIGH_SCORE</a></code></li>
+<li><code><a title="helpers.Start_Up.MENU" href="#helpers.Start_Up.MENU">MENU</a></code></li>
+<li><code><a title="helpers.Start_Up.NEW_GAME" href="#helpers.Start_Up.NEW_GAME">NEW_GAME</a></code></li>
+<li><code><a title="helpers.Start_Up.RESUME_GAME" href="#helpers.Start_Up.RESUME_GAME">RESUME_GAME</a></code></li>
+<li><code><a title="helpers.Start_Up.RULES" href="#helpers.Start_Up.RULES">RULES</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="helpers.Tactic" href="#helpers.Tactic">Tactic</a></code></h4>
+<ul class="">
+<li><code><a title="helpers.Tactic.FOUR_TURNS" href="#helpers.Tactic.FOUR_TURNS">FOUR_TURNS</a></code></li>
+<li><code><a title="helpers.Tactic.TEN" href="#helpers.Tactic.TEN">TEN</a></code></li>
+<li><code><a title="helpers.Tactic.TWENTY" href="#helpers.Tactic.TWENTY">TWENTY</a></code></li>
+<li><code><a title="helpers.Tactic.TWENTY_FIVE" href="#helpers.Tactic.TWENTY_FIVE">TWENTY_FIVE</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="helpers.Textual" href="#helpers.Textual">Textual</a></code></h4>
+<ul class="">
+<li><code><a title="helpers.Textual.MENU" href="#helpers.Textual.MENU">MENU</a></code></li>
+<li><code><a title="helpers.Textual.NEW_START" href="#helpers.Textual.NEW_START">NEW_START</a></code></li>
+<li><code><a title="helpers.Textual.RULES" href="#helpers.Textual.RULES">RULES</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="helpers.Turn" href="#helpers.Turn">Turn</a></code></h4>
+<ul class="">
+<li><code><a title="helpers.Turn.HOLD" href="#helpers.Turn.HOLD">HOLD</a></code></li>
+<li><code><a title="helpers.Turn.LOSS" href="#helpers.Turn.LOSS">LOSS</a></code></li>
+<li><code><a title="helpers.Turn.ROLL" href="#helpers.Turn.ROLL">ROLL</a></code></li>
+<li><code><a title="helpers.Turn.SETTINGS" href="#helpers.Turn.SETTINGS">SETTINGS</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
