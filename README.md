@@ -34,7 +34,7 @@ To run this project, you will need to create a virtual environment and install t
 
 ### Activating the Virtual Environment
 1. Run the following command to activate the virtual environment:
-'''source venv/bin/activate'''
+```source venv/bin/activate```
 
 ### Installing Dependencies
 1. Run the following command to install the required dependencies:
