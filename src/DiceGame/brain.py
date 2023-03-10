@@ -56,7 +56,7 @@ class Brain:
                 else:
                     return Turn.ROLL
             else:
-                remain = (self._max_turns - self._current_turns)
+                remain = self._max_turns - self._current_turns
                 if remain == 0:
                     raise ZeroDivisionError('Cannot divid by Zero!')
 

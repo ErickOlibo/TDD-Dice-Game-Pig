@@ -1,11 +1,11 @@
 """This module creates and maintains a database for the application."""
 import pickle
 import random
+import os
 from game import Game
 from winner import Winner
 # from player import Player
 from helpers import Data_Path as PATH, CODE_NAMES
-import os
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
 
 
@@ -116,8 +116,8 @@ class Database:
         """
         winners = []
         for win in self._winners:
-            [st, n, sc,] = win.data
-            upd_win = Winner(new, sc, st) if n == old else win
+            [stamp, name, score,] = win.data
+            upd_win = Winner(new, score, stamp) if name == old else win
             winners.append(upd_win)
         self._winners = winners
         self._store_data(self._winners, PATH.WINNERS)
@@ -125,15 +125,15 @@ class Database:
     def _update_highscore(self):
         self._highscore = self._generate_highscore()
 
-    def _load_data(self, p: PATH):
-        file = open(p.value, 'rb')
-        data = pickle.load(file)
+    def _load_data(self, path: PATH):
+        with open(path.value, 'rb') as file:
+            data = pickle.load(file)
         file.close()
         return data
 
-    def _store_data(self, data, p: PATH):
-        file = open(p.value, 'wb')
-        pickle.dump(data, file)
+    def _store_data(self, data, path: PATH):
+        with open(path.value, 'wb') as file:
+            pickle.dump(data, file)
         file.close()
 
     def _generate_highscore(self) -> list:
