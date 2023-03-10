@@ -15,7 +15,6 @@ black
 
 # Documentation -> Look into the pyDoc
 pdoc3
-sphinx
 
 # Unit test and coverage
 coverage
