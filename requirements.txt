@@ -3,8 +3,7 @@
 # Code analysis
 bandit
 flake8
-flake8-docstrings
-flake8-polyfill
+
 #cohesion
 #metrics.pylint
 pylint
