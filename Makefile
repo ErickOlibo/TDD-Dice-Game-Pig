@@ -39,6 +39,14 @@ coverage:
 flake8:
 	for f in src/DiceGame/*.py ; do flake8 $${f} ; done
 
+pylint:
+	for f in src/DiceGame/*.py; do \
+		if grep -q test_ "$${f}"; then \
+			continue; \
+		else \
+			pylint $${f}; \
+		fi \
+	done
 
 
 # Documentation

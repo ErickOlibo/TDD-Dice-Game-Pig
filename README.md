@@ -50,11 +50,13 @@ To run this project, you will need to create a virtual environment and install t
 ### Use Makefile
 You can use this repo and clone it to your desktop, and then use make file
 1. Create virtual Environment, Activate it.
-2. use the Makefile to do the rest.
+2. Use the Makefile to do the rest.
     * check you are running Python 3:  ```make version```
     * Install requirements: ```make install```
     * Check the code coverage: ```make coverage```
     * Check the style: ```make flake8```
+    * Check the linter: ```make pylint```
     * Produce the HTML documentation: ```make doc```
     * Create a UML view of the source code: ```make uml```
     * Clean up the created files: ```make clean```
+3. Run the Dice Game Pig: ```make run```
